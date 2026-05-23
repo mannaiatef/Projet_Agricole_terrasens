@@ -1,0 +1,314 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <h1>🌾 Crop Calendar</h1>
+    <p>Generate and manage your crop growth calendars</p>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-error">
+    {{ errorMessage }}
+    <button class="close-btn" (click)="clearMessages()">×</button>
+  </div>
+
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+    <button class="close-btn" (click)="clearMessages()">×</button>
+  </div>
+
+  <div class="calendar-content">
+    <!-- Calendar Form -->
+    <div class="calendar-form-section">
+      <div class="form-card">
+        <h2>📍 Select Parcelle & Generate Calendar</h2>
+
+        <div class="form-group">
+          <label for="parcelle">Select Parcelle</label>
+          <select
+            id="parcelle"
+            [(ngModel)]="selectedParcelleId"
+            (change)="onParcelleChange()"
+            [disabled]="isLoading || parcelles.length === 0"
+            class="form-control"
+          >
+            <option [value]="0">-- Choose a parcelle --</option>
+            
+            <!-- Parcelles with crops assigned -->
+            <optgroup *ngIf="parcellesWithCrop.length > 0" label="📅 With Crops Assigned">
+              <option *ngFor="let parcelle of parcellesWithCrop" [value]="parcelle.id">
+                {{ parcelle.name }} - {{ parcelle.surface }} ha - {{ getCropName(parcelle.crop_id!) }}
+              </option>
+            </optgroup>
+            
+            <!-- All other parcelles -->
+            <optgroup label="📍 All Parcelles">
+              <option *ngFor="let parcelle of parcelles" [value]="parcelle.id">
+                {{ parcelle.name }} ({{ parcelle.surface }} ha)
+              </option>
+            </optgroup>
+          </select>
+          <small *ngIf="parcelles.length === 0" style="color: #e74c3c;">
+            ❌ No parcelles available. Create one in the Parcelles section first.
+          </small>
+          <small *ngIf="parcelles.length > 0 && parcellesWithCrop.length === 0" style="color: #f39c12;">
+            ℹ️ No parcelles have crops assigned yet. Go to Parcelles to assign one.
+          </small>
+        </div>
+
+        <!-- Show selected parcelle info if has crop assigned -->
+        <div *ngIf="selectedParcelleId > 0 && getSelectedParcelle()" class="selected-parcelle-info" style="padding: 15px; background: #f0f9ff; border-left: 4px solid #3498db; margin-bottom: 20px; border-radius: 4px;">
+          <h4 style="margin-top: 0;">📍 Selected Parcelle</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px;">
+            <div>
+              <strong>Name:</strong> {{ getSelectedParcelle()?.name || 'Unknown' }}
+            </div>
+            <div>
+              <strong>Surface:</strong> {{ getSelectedParcelle()?.surface || 0 }} ha
+            </div>
+            <div>
+              <strong>Crop:</strong> {{ getCropName(getSelectedParcelle()?.crop_id || 0) || 'None' }}
+            </div>
+            <div>
+              <strong>Sowing Date:</strong> {{ getSelectedParcelle()?.sowing_date || 'Not set' }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Form for generating calendar (show only if parcelle without calendar) -->
+        <div *ngIf="selectedParcelleId > 0 && !generatedCalendar" style="padding: 15px; background: #fff9e6; border: 2px dashed #f39c12; border-radius: 4px;">
+          <h3>🎯 Generate Calendar</h3>
+          
+          <div class="form-group">
+            <label for="crop">Select Crop</label>
+            <select
+              id="crop"
+              [(ngModel)]="selectedCropId"
+              (change)="onCropChange()"
+              [disabled]="isLoading"
+              class="form-control"
+            >
+              <option [value]="0">-- Choose a crop --</option>
+              <option *ngFor="let crop of crops" [value]="crop.id">
+                {{ crop.name }} ({{ crop.duration_days }} days)
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sowing-date">Sowing Date</label>
+            <input
+              id="sowing-date"
+              type="date"
+              [(ngModel)]="sowingDate"
+              [disabled]="isLoading"
+              class="form-control"
+            />
+          </div>
+
+          <button
+            (click)="generateCalendar()"
+            [disabled]="isLoading || selectedParcelleId === 0 || selectedCropId === 0 || !sowingDate"
+            class="btn btn-primary"
+          >
+            <span *ngIf="!isLoading">📅 Generate Calendar</span>
+            <span *ngIf="isLoading">⏳ Generating...</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Available Crops Info -->
+      <div class="crops-info">
+        <h3>Available Crops</h3>
+        <div class="crops-list">
+          <div *ngFor="let crop of crops" class="crop-item">
+            <strong>{{ crop.name }}</strong>
+            <span class="duration">{{ crop.duration_days }} days</span>
+          </div>
+          <div *ngIf="crops.length === 0" class="no-crops">
+            <p>No crops available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Generated Calendar Display -->
+    <div *ngIf="generatedCalendar" class="calendar-display-section">
+      <div class="calendar-overview">
+        <div class="overview-header">
+          <h2>📅 {{ getParcelleName(selectedParcelleId) }} - {{ generatedCalendar.crop_name }}</h2>
+          <button (click)="clearCalendar()" class="btn btn-secondary">
+            Clear
+          </button>
+        </div>
+
+        <div class="overview-info">
+          <div class="info-card">
+            <label>Parcelle</label>
+            <p>{{ getParcelleName(selectedParcelleId) }}</p>
+          </div>
+          <div class="info-card">
+            <label>Crop</label>
+            <p>{{ generatedCalendar.crop_name }}</p>
+          </div>
+          <div class="info-card">
+            <label>Sowing Date</label>
+            <p>{{ generatedCalendar.sowing_date }}</p>
+          </div>
+          <div class="info-card">
+            <label>Total Duration</label>
+            <p>{{ generatedCalendar.total_duration_days }} days</p>
+          </div>
+          <div class="info-card">
+            <label>Current Stage</label>
+            <p>
+              <span *ngFor="let stage of generatedCalendar.stages">
+                <span *ngIf="isStageCurrent(stage.start_date, stage.end_date)">
+                  {{ stage.name }}
+                </span>
+              </span>
+              <span *ngIf="!hasAnyCurrentStage()">
+                Not started
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stages Timeline -->
+      <div class="stages-timeline">
+        <h3>Growth Stages</h3>
+
+        <div *ngFor="let stage of generatedCalendar.stages; let i = index" class="stage-item">
+          <div class="stage-header">
+            <div class="stage-number">Stage {{ stage.number }}</div>
+            <h4>{{ stage.name }}</h4>
+            <div class="stage-dates">
+              <span>{{ stage.start_date }}</span>
+              <span class="to">→</span>
+              <span>{{ stage.end_date }}</span>
+            </div>
+          </div>
+
+          <!-- Stage Progress Bar -->
+          <div class="stage-progress">
+            <div class="progress-bar">
+              <div
+                class="progress-fill"
+                [ngClass]="{
+                  'completed': isStageCompleted(stage.end_date),
+                  'current': isStageCurrent(stage.start_date, stage.end_date)
+                }"
+                [style.width.%]="getStageProgress(stage.start_date, stage.end_date)"
+              ></div>
+            </div>
+            <span class="progress-label">
+              {{ getStageProgress(stage.start_date, stage.end_date) }}%
+            </span>
+          </div>
+
+          <!-- Stage Details -->
+          <div class="stage-details">
+            <div class="detail">
+              <label>Duration</label>
+              <p>{{ stage.duration_days }} days</p>
+            </div>
+            <div class="detail">
+              <label>Water Coefficient (Kc)</label>
+              <p>{{ stage.kc_value }}</p>
+            </div>
+            <div class="detail">
+              <label>Days Elapsed</label>
+              <p>{{ daysUntilToday(stage.start_date) }} days</p>
+            </div>
+          </div>
+
+          <!-- Stage Actions -->
+          <div *ngIf="stage.actions && stage.actions.length > 0" class="stage-actions">
+            <h5>✅ Recommended Actions</h5>
+            <div class="actions-list">
+              <div *ngFor="let action of stage.actions" class="action-item">
+                <div class="action-header">
+                  <span class="action-type" [ngClass]="'type-' + action.type">
+                    {{ action.type }}
+                  </span>
+                  <span class="action-priority" [ngClass]="'priority-' + action.priority">
+                    {{ action.priority }}
+                  </span>
+                </div>
+                <h6>{{ action.title }}</h6>
+                <p class="action-description">{{ action.description }}</p>
+                <div class="action-details">
+                  <span class="frequency" *ngIf="action.frequency">
+                    <strong>Frequency:</strong> {{ action.frequency }}
+                  </span>
+                  <span class="alert-msg" *ngIf="action.alert_message">
+                    <strong>Alert:</strong> {{ action.alert_message }}
+                  </span>
+                </div>
+                <div class="action-how-to">
+                  <strong>How to:</strong>
+                  <p>{{ action.how_to }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- No Actions -->
+          <div *ngIf="!stage.actions || stage.actions.length === 0" class="no-actions">
+            No actions scheduled for this stage
+          </div>
+
+          <!-- Stage Alerts/Vigilance -->
+          <div *ngIf="stage.alerts && stage.alerts.length > 0" class="stage-alerts">
+            <h5>⚠️ Alerts & Vigilance</h5>
+            <div class="alerts-list">
+              <div *ngFor="let alert of stage.alerts" class="alert-item">
+                <div class="alert-header">
+                  <span class="alert-type">{{ alert.type || 'Alert' }}</span>
+                  <span class="alert-level" [ngClass]="'level-' + (alert.severity || 'medium')">
+                    {{ alert.severity || 'medium' }}
+                  </span>
+                </div>
+                <h6>{{ alert.title || alert.name }}</h6>
+                <p class="alert-description">{{ alert.description || alert.message }}</p>
+                <div class="alert-details" *ngIf="alert.action">
+                  <strong>Action Required:</strong> {{ alert.action }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage Fertilization Plan -->
+          <div *ngIf="stage.fertilization" class="stage-fertilization">
+            <h5>🌱 Fertilization Plan</h5>
+            <div class="fertilization-details">
+              <div class="fertilization-item">
+                <span class="label">Fertilizer Type:</span>
+                <span class="value">{{ stage.fertilization.type }}</span>
+              </div>
+              <div class="fertilization-item">
+                <span class="label">Product:</span>
+                <span class="value">{{ stage.fertilization.product }}</span>
+              </div>
+              <div class="fertilization-item">
+                <span class="label">Dose:</span>
+                <span class="value">{{ stage.fertilization.dose_kg_ha }} kg/ha</span>
+              </div>
+              <div class="fertilization-item" *ngIf="stage.fertilization.day_from_start">
+                <span class="label">Apply On Day:</span>
+                <span class="value">{{ stage.fertilization.day_from_start }} of stage</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!generatedCalendar && !isLoading" class="empty-state">
+      <div class="empty-state-content">
+        <p>👇 Generate a calendar to see crop growth stages and recommended actions</p>
+      </div>
+    </div>
+  </div>
+</div>

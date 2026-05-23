@@ -1,0 +1,133 @@
+version: '3.8'
+
+services:
+  # Stress Service API
+  stress-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stress-api
+    ports:
+      - "3004:3004"
+    environment:
+      - NODE_ENV=production
+      - PORT=3004
+      - DB_HOST=stress-mysql
+      - DB_PORT=3306
+      - DB_USER=stress_user
+      - DB_PASSWORD=stress_password
+      - DB_NAME=stress_service_db
+      - REDIS_HOST=stress-redis
+      - REDIS_PORT=6379
+      - PLANET_API_KEY=${PLANET_API_KEY}
+      - PLANET_API_BASE_URL=https://api.planet.com/data/v1
+      - CROP_CALENDAR_SERVICE_URL=http://crop-calendar:3002
+      - LOG_LEVEL=info
+      - CRON_SCHEDULE=0 2 * * *
+      - STRESS_ALERT_THRESHOLD=30
+    depends_on:
+      stress-mysql:
+        condition: service_healthy
+      stress-redis:
+        condition: service_healthy
+    networks:
+      - stress-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3004/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+
+  # Stress Service Worker
+  stress-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stress-worker
+    command: node src/worker.js
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=stress-mysql
+      - DB_PORT=3306
+      - DB_USER=stress_user
+      - DB_PASSWORD=stress_password
+      - DB_NAME=stress_service_db
+      - REDIS_HOST=stress-redis
+      - REDIS_PORT=6379
+      - PLANET_API_KEY=${PLANET_API_KEY}
+      - PLANET_API_BASE_URL=https://api.planet.com/data/v1
+      - CROP_CALENDAR_SERVICE_URL=http://crop-calendar:3002
+      - LOG_LEVEL=info
+      - CRON_SCHEDULE=0 2 * * *
+      - STRESS_ALERT_THRESHOLD=30
+    depends_on:
+      stress-mysql:
+        condition: service_healthy
+      stress-redis:
+        condition: service_healthy
+    networks:
+      - stress-network
+    restart: unless-stopped
+
+  # MySQL Database
+  stress-mysql:
+    image: mysql:8.0
+    container_name: stress-mysql
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_USER=stress_user
+      - MYSQL_PASSWORD=stress_password
+      - MYSQL_DATABASE=stress_service_db
+    volumes:
+      - stress-mysql-data:/var/lib/mysql
+    networks:
+      - stress-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Redis Cache & Job Queue
+  stress-redis:
+    image: redis:7-alpine
+    container_name: stress-redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - stress-redis-data:/data
+    networks:
+      - stress-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Redis Commander (optional - for queue monitoring)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: stress-redis-commander
+    ports:
+      - "8081:8081"
+    environment:
+      - REDIS_HOSTS=local:stress-redis:6379
+    depends_on:
+      - stress-redis
+    networks:
+      - stress-network
+    restart: unless-stopped
+
+volumes:
+  stress-mysql-data:
+  stress-redis-data:
+
+networks:
+  stress-network:
+    driver: bridge

@@ -1,0 +1,182 @@
+<div class="parcel-form-container">
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    ✓ {{ successMessage }}
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="error" class="alert alert-error">
+    ✗ {{ error }}
+  </div>
+
+  <!-- Step Indicator -->
+  <div class="step-indicator">
+    <button
+      class="step"
+      [class.active]="currentStep === 'map'"
+      [class.completed]="isStepComplete('map')"
+      (click)="currentStep = 'map'"
+      [disabled]="isSubmitting"
+    >
+      <span class="step-number">1</span>
+      <span class="step-label">Draw Parcel</span>
+    </button>
+
+    <div class="step-connector"></div>
+
+    <button
+      class="step"
+      [class.active]="currentStep === 'details'"
+      [class.completed]="isStepComplete('details')"
+      (click)="currentStep = 'details'"
+      [disabled]="!isStepComplete('map') || isSubmitting"
+    >
+      <span class="step-number">2</span>
+      <span class="step-label">Add Details</span>
+    </button>
+
+    <div class="step-connector"></div>
+
+    <button
+      class="step"
+      [class.active]="currentStep === 'review'"
+      [class.completed]="isStepComplete('review')"
+      (click)="currentStep = 'review'"
+      [disabled]="!isStepComplete('details') || isSubmitting"
+    >
+      <span class="step-number">3</span>
+      <span class="step-label">Review & Save</span>
+    </button>
+  </div>
+
+  <!-- Step 1: Map Drawing -->
+  <div *ngIf="currentStep === 'map'" class="step-content map-step">
+    <app-parcel-drawer
+      #drawer
+      [editMode]="editMode"
+      [initialGeometry]="editingParcel?.polygon"
+      (geometryDrawn)="onGeometryDrawn($event)"
+      (geometryCleared)="onGeometryCleared()"
+    ></app-parcel-drawer>
+  </div>
+
+  <!-- Step 2: Details -->
+  <div *ngIf="currentStep === 'details'" class="step-content details-step">
+    <h3>Parcel Details</h3>
+    <form [formGroup]="parcelForm">
+      <!-- Parcel Name -->
+      <div class="form-group">
+        <label for="name">Parcel Name *</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="e.g., Field A, North Plot, Wheat Field"
+          class="form-control"
+          [class.error]="parcelForm.get('name')?.invalid && parcelForm.get('name')?.touched"
+        />
+        <div *ngIf="parcelForm.get('name')?.invalid && parcelForm.get('name')?.touched" class="error-message">
+          <span *ngIf="parcelForm.get('name')?.errors?.['required']">
+            Parcel name is required
+          </span>
+          <span *ngIf="parcelForm.get('name')?.errors?.['minlength']">
+            Name must be at least 3 characters
+          </span>
+        </div>
+      </div>
+
+      <!-- Geometry Summary -->
+      <div class="geometry-summary">
+        <h4>Parcel Summary</h4>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <span class="label">Area:</span>
+            <span class="value">{{ getFormattedArea() }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="label">Vertices:</span>
+            <span class="value">{{ drawnData?.pointCount || 0 }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="label">Center:</span>
+            <span class="value" *ngIf="drawnData">
+              {{ drawnData.center[0].toFixed(4) }}°, {{ drawnData.center[1].toFixed(4) }}°
+            </span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Step 3: Review -->
+  <div *ngIf="currentStep === 'review'" class="step-content review-step">
+    <h3>Review Your Parcel</h3>
+
+    <div class="review-section">
+      <h4>Parcel Information</h4>
+      <div class="review-item">
+        <span class="label">Name:</span>
+        <span class="value">{{ parcelForm.get('name')?.value }}</span>
+      </div>
+      <div class="review-item">
+        <span class="label">Area:</span>
+        <span class="value">{{ getFormattedArea() }}</span>
+      </div>
+      <div class="review-item">
+        <span class="label">Vertices:</span>
+        <span class="value">{{ drawnData?.pointCount }}</span>
+      </div>
+      <div class="review-item">
+        <span class="label">Center:</span>
+        <span class="value" *ngIf="drawnData">
+          {{ drawnData.center[0].toFixed(4) }}°N, {{ drawnData.center[1].toFixed(4) }}°E
+        </span>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <h4>Geometry</h4>
+      <details class="geojson-details">
+        <summary>View GeoJSON</summary>
+        <pre *ngIf="drawnData">{{ drawnData.geometry | json }}</pre>
+      </details>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button
+      *ngIf="currentStep !== 'map'"
+      class="btn btn-secondary"
+      (click)="previousStep()"
+      [disabled]="isSubmitting"
+    >
+      ← Back
+    </button>
+
+    <div class="spacer"></div>
+
+    <button
+      *ngIf="currentStep !== 'review'"
+      class="btn btn-primary"
+      (click)="nextStep()"
+      [disabled]="!isStepComplete(currentStep === 'map' ? 'map' : 'details') || isSubmitting"
+    >
+      Next →
+    </button>
+
+    <button
+      *ngIf="currentStep === 'review'"
+      class="btn btn-success"
+      (click)="submitForm()"
+      [disabled]="isSubmitting"
+    >
+      <span *ngIf="!isSubmitting">
+        {{ editMode ? '✓ Update Parcel' : '✓ Create Parcel' }}
+      </span>
+      <span *ngIf="isSubmitting">
+        Saving...
+      </span>
+    </button>
+  </div>
+</div>

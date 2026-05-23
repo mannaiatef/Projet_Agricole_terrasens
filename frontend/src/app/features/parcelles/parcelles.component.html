@@ -1,0 +1,210 @@
+<div class="parcelles-container">
+  <div class="parcelles-header">
+    <div>
+      <h1>📍 Mes Parcelles</h1>
+      <p>Manage your farm plots and assign crops</p>
+    </div>
+    <button
+      class="btn btn-primary"
+      (click)="showCreateForm = true"
+      [disabled]="isLoading"
+    >
+      + New Parcelle
+    </button>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-error">
+    {{ errorMessage }}
+    <button class="close-btn" (click)="closeMessages()">×</button>
+  </div>
+
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+    <button class="close-btn" (click)="closeMessages()">×</button>
+  </div>
+
+  <!-- Create Form Modal -->
+  <div *ngIf="showCreateForm" class="modal-overlay" (click)="closeForm()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Create New Parcelle</h2>
+        <button class="close-btn" (click)="closeForm()">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="parcelle-name">Parcelle Name</label>
+          <input
+            id="parcelle-name"
+            type="text"
+            [(ngModel)]="newParcelleForm.name"
+            placeholder="e.g., Field A, North Plot"
+            class="form-control"
+            [disabled]="isLoading"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location (Coordinates)</label>
+          <input
+            id="location"
+            type="text"
+            [(ngModel)]="newParcelleForm.location"
+            placeholder="e.g., N 45.67, E 3.45"
+            class="form-control"
+            [disabled]="isLoading"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="surface">Surface (hectares)</label>
+          <input
+            id="surface"
+            type="number"
+            [(ngModel)]="newParcelleForm.surface"
+            placeholder="e.g., 2.5"
+            step="0.1"
+            class="form-control"
+            [disabled]="isLoading"
+          />
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeForm()" [disabled]="isLoading">
+          Cancel
+        </button>
+        <button
+          class="btn btn-primary"
+          (click)="createParcelle()"
+          [disabled]="isLoading"
+        >
+          {{ isLoading ? 'Creating...' : 'Create Parcelle' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Assign Crop Form Modal -->
+  <div *ngIf="showAssignForm && selectedParcelle" class="modal-overlay" (click)="closeForm()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Assign Crop to {{ selectedParcelle.name }}</h2>
+        <button class="close-btn" (click)="closeForm()">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="crop">Select Crop</label>
+          <select
+            id="crop"
+            [(ngModel)]="assignCropForm.crop_id"
+            class="form-control"
+            [disabled]="isLoading"
+          >
+            <option [value]="null">-- Choose a crop --</option>
+            <option *ngFor="let crop of crops" [value]="crop.id">
+              {{ crop.name }} ({{ crop.duration_days }} days)
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="sowing-date">Sowing Date</label>
+          <input
+            id="sowing-date"
+            type="date"
+            [(ngModel)]="assignCropForm.sowing_date"
+            class="form-control"
+            [disabled]="isLoading"
+          />
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeForm()" [disabled]="isLoading">
+          Cancel
+        </button>
+        <button
+          class="btn btn-primary"
+          (click)="assignCrop()"
+          [disabled]="isLoading"
+        >
+          {{ isLoading ? 'Assigning...' : 'Assign Crop' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Parcelles List -->
+  <div class="parcelles-grid">
+    <div *ngIf="isLoading" class="loading-state">
+      <p>Loading parcelles...</p>
+    </div>
+
+    <div *ngIf="!isLoading && parcelles.length === 0" class="empty-state">
+      <p>No parcelles yet. Create one to get started!</p>
+    </div>
+
+    <div *ngFor="let parcelle of parcelles" class="parcelle-card">
+      <div class="card-header">
+        <div class="card-title">
+          <h3>{{ parcelle.name }}</h3>
+          <span class="location">📍 {{ parcelle.location }}</span>
+        </div>
+        <div class="card-status">
+          <span *ngIf="parcelle.crop_id" class="badge badge-success">
+            {{ getGroupName(parcelle.crop_id) }}
+          </span>
+          <span *ngIf="!parcelle.crop_id" class="badge badge-warning">
+            No Crop
+          </span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="info-row">
+          <span class="label">Surface:</span>
+          <span class="value">{{ parcelle.surface }} ha</span>
+        </div>
+
+        <div class="info-row" *ngIf="parcelle.sowing_date">
+          <span class="label">Sowing Date:</span>
+          <span class="value">{{ parcelle.sowing_date }}</span>
+        </div>
+
+        <div class="info-row" *ngIf="!parcelle.sowing_date && parcelle.crop_id">
+          <span class="label">Status:</span>
+          <span class="value" style="color: #ff6b6b">Crop assigned but no date</span>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <button
+          class="btn btn-sm btn-outline"
+          (click)="openAssignForm(parcelle)"
+          [disabled]="isLoading"
+        >
+          🌱 Assign Crop
+        </button>
+        <button
+          *ngIf="parcelle.crop_id && parcelle.sowing_date"
+          class="btn btn-sm btn-success"
+          routerLink="/dashboard/calendar"
+          title="View crop calendar"
+        >
+          📅 View Calendar
+        </button>
+        <button
+          class="btn btn-sm btn-danger"
+          (click)="deleteParcelle(parcelle)"
+          [disabled]="isLoading"
+        >
+          🗑️ Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

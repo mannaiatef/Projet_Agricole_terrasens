@@ -1,0 +1,28 @@
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-04-07 21:54:35"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-04-07 21:54:35"}
+{"level":"info","message":"Stress Service API running on port 3004","service":"stress-service","timestamp":"2026-04-07 21:54:35"}
+{"body":{"parcel_id":23,"priority":"high"},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-04-07 21:55:14"}
+{"level":"info","message":"[Dev Mock] Job queued: 23-1775595314368","name":"analyze-stress","parcelId":23,"service":"stress-service","timestamp":"2026-04-07 21:55:14"}
+{"jobId":"23-1775595314368","level":"info","message":"Stress analysis job added to queue","parcelId":23,"service":"stress-service","timestamp":"2026-04-07 21:55:14"}
+{"level":"info","message":"[Dev Mock] Processing job: 23-1775595314368","parcelId":23,"service":"stress-service","timestamp":"2026-04-07 21:55:14"}
+{"level":"info","message":"Starting stress analysis","parcelId":23,"service":"stress-service","timestamp":"2026-04-07 21:55:14"}
+{"level":"info","message":"Stress record created","parcelId":23,"recordId":18,"service":"stress-service","timestamp":"2026-04-07 21:55:14"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3002","parcelId":23,"service":"stress-service","timestamp":"2026-04-07 21:55:14"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3002","parcelId":23,"recordId":18,"service":"stress-service","timestamp":"2026-04-07 21:55:14"}
+{"level":"info","message":"Stress record status updated","recordId":18,"service":"stress-service","status":"failed","timestamp":"2026-04-07 21:55:14"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3002","level":"error","message":"[Dev Mock] Job failed: 23-1775595314368","service":"stress-service","timestamp":"2026-04-07 21:55:14"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-04-07 21:55:32"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-04-07 21:58:49"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-04-07 21:58:49"}
+{"level":"info","message":"Stress Service API running on port 3004","service":"stress-service","timestamp":"2026-04-07 21:58:49"}
+{"body":{"parcel_id":23,"priority":"high"},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-04-07 22:01:55"}
+{"level":"info","message":"[Dev Mock] Job queued: 23-1775595715799","name":"analyze-stress","parcelId":23,"service":"stress-service","timestamp":"2026-04-07 22:01:55"}
+{"jobId":"23-1775595715799","level":"info","message":"Stress analysis job added to queue","parcelId":23,"service":"stress-service","timestamp":"2026-04-07 22:01:55"}
+{"level":"info","message":"[Dev Mock] Processing job: 23-1775595715799","parcelId":23,"service":"stress-service","timestamp":"2026-04-07 22:01:55"}
+{"level":"info","message":"Starting stress analysis","parcelId":23,"service":"stress-service","timestamp":"2026-04-07 22:01:55"}
+{"level":"info","message":"Stress record created","parcelId":23,"recordId":19,"service":"stress-service","timestamp":"2026-04-07 22:01:55"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3002","parcelId":23,"service":"stress-service","timestamp":"2026-04-07 22:01:55"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3002","parcelId":23,"recordId":19,"service":"stress-service","timestamp":"2026-04-07 22:01:55"}
+{"level":"info","message":"Stress record status updated","recordId":19,"service":"stress-service","status":"failed","timestamp":"2026-04-07 22:01:55"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3002","level":"error","message":"[Dev Mock] Job failed: 23-1775595715799","service":"stress-service","timestamp":"2026-04-07 22:01:55"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-04-07 22:02:32"}

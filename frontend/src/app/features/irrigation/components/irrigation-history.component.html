@@ -1,0 +1,122 @@
+<div class="history-container">
+  <!-- Header with Controls -->
+  <div class="history-header">
+    <h3>📋 Irrigation History</h3>
+
+    <div class="controls">
+      <div class="control-group">
+        <label>Filter by:</label>
+        <select [(ngModel)]="selectedFilter" (change)="applyFilters()">
+          <option value="all">All Methods</option>
+          <option value="automatic">Automatic</option>
+          <option value="manual">Manual</option>
+          <option value="scheduled">Scheduled</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label>Sort by:</label>
+        <select [(ngModel)]="sortBy" (change)="applyFilters()">
+          <option value="date">Latest First</option>
+          <option value="amount">Most Water</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistics -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-icon">💧</span>
+      <div class="stat-info">
+        <p class="stat-label">Total Water Applied</p>
+        <p class="stat-value">{{ getTotalWater() | number: '1.1-1' }} mm</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-icon">📊</span>
+      <div class="stat-info">
+        <p class="stat-label">Average Per Session</p>
+        <p class="stat-value">{{ getAverageWater() | number: '1.1-1' }} mm</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-icon">🔔</span>
+      <div class="stat-info">
+        <p class="stat-label">Total Sessions</p>
+        <p class="stat-value">{{ getTotalSessions() }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- History Records -->
+  <div class="history-list">
+    <div *ngIf="filteredRecords.length === 0" class="empty-state">
+      <span class="icon">📭</span>
+      <p>No irrigation records found</p>
+      <p class="hint">Start irrigating to build your history</p>
+    </div>
+
+    <div *ngFor="let record of filteredRecords" class="history-item">
+      <div class="history-item-header">
+        <div class="method-badge" [style.color]="getMethodColor(record.method)">
+          <span class="method-emoji">{{ getMethodEmoji(record.method) }}</span>
+          <span class="method-name">{{ record.method | titlecase }}</span>
+        </div>
+        <div class="record-date">{{ formatDate(record.date) }}</div>
+      </div>
+
+      <div class="history-item-content">
+        <div class="content-detail">
+          <span class="detail-icon">💧</span>
+          <div class="detail-info">
+            <span class="detail-label">Amount Applied</span>
+            <span class="detail-value">{{ record.amount }} mm</span>
+          </div>
+        </div>
+
+        <div class="content-detail">
+          <span class="detail-icon">⏱️</span>
+          <div class="detail-info">
+            <span class="detail-label">Duration</span>
+            <span class="detail-value">{{ record.duration }} minutes</span>
+          </div>
+        </div>
+
+        <div class="content-detail" *ngIf="record.weather_condition">
+          <span class="detail-icon">🌤️</span>
+          <div class="detail-info">
+            <span class="detail-label">Weather</span>
+            <span class="detail-value">{{ record.weather_condition }}</span>
+          </div>
+        </div>
+
+        <div class="content-detail" *ngIf="record.notes">
+          <span class="detail-icon">📝</span>
+          <div class="detail-info">
+            <span class="detail-label">Notes</span>
+            <span class="detail-value">{{ record.notes }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline Chart (Optional) -->
+  <div *ngIf="filteredRecords.length > 0" class="timeline-section">
+    <h4>7-Day Trend</h4>
+    <div class="timeline-bar">
+      <div
+        *ngFor="let record of filteredRecords | slice: 0:7"
+        class="timeline-item"
+        [title]="formatDate(record.date)"
+        [style.height.%]="(record.amount / (getTotalWater() / filteredRecords.length)) * 100"
+        [style.animation-delay]="filteredRecords.indexOf(record) * 0.05 + 's'"
+      >
+        <span class="tooltip">{{ record.amount }}mm</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1378 @@
+{
+  "PROJECT_OVERVIEW": {
+    "name": "TerraSens",
+    "type": "Smart Agriculture IoT SaaS Platform",
+    "description": "Comprehensive intelligent agriculture decision-support system that combines satellite imagery analysis, real-time sensor data, crop calendar management, and AI-powered recommendations to optimize irrigation, disease management, and overall crop health monitoring for precision farming.",
+    "version": "1.0.0",
+    "status": "Production-ready with continuous development",
+    "deployment": "Microservices architecture with Docker Compose",
+    "primary_language": "Node.js (backend), TypeScript/Angular (frontend)",
+    "database": "MySQL 8.0",
+    "caching": "Redis 7-alpine",
+    "hosting_infrastructure": "Docker containers with health checks"
+  },
+
+  "OBJECTIVES": [
+    "Enable precision agriculture through satellite-based vegetation stress monitoring",
+    "Automate irrigation decisions based on crop requirements, weather, and plant stress",
+    "Detect crop diseases early using AI image analysis (Hugging Face)",
+    "Provide intelligent crop calendar management with dynamic stage tracking",
+    "Offer conversational AI assistance to farmers through multi-language chatbot",
+    "Integrate multiple data sources (satellite, weather, sensors) into unified platform",
+    "Reduce water usage through intelligent irrigation scheduling",
+    "Minimize crop losses through early disease detection",
+    "Provide real-time alerts and recommendations for critical situations",
+    "Enable data-driven farm management decisions"
+  ],
+
+  "ACTORS": {
+    "end_users": [
+      {
+        "type": "Farmer/Farm Manager",
+        "responsibilities": "Monitor parcels, receive recommendations, manage crops and irrigation",
+        "access": "Mobile/Web dashboard, chatbot interface",
+        "data_access": "Own farm data, parcels, analysis results"
+      },
+      {
+        "type": "Agricultural Advisor",
+        "responsibilities": "Monitor multiple farms, provide guidance, interpret AI recommendations",
+        "access": "Dashboard, batch analysis tools",
+        "data_access": "Assigned farm data"
+      }
+    ],
+    "system_actors": [
+      {
+        "type": "Satellite API (Planet Labs)",
+        "role": "Provides satellite imagery for NDVI analysis",
+        "integration": "REST API for imagery retrieval and NDVI band data"
+      },
+      {
+        "type": "Weather API (Open-Meteo)",
+        "role": "Provides real-time weather data for irrigation calculations",
+        "integration": "Open-source weather API"
+      },
+      {
+        "type": "AI Models (Hugging Face)",
+        "role": "Plant disease detection from crop images",
+        "integration": "API-based image classification"
+      },
+      {
+        "type": "Google Gemini LLM",
+        "role": "Conversational AI for chatbot and intelligent routing",
+        "integration": "Tool-based agent architecture"
+      }
+    ]
+  },
+
+  "FEATURES": {
+    "stress_detection": {
+      "description": "Satellite-based vegetation stress analysis",
+      "capabilities": [
+        "NDVI (Normalized Difference Vegetation Index) computation",
+        "Pixel-level stress classification (HIGH/MEDIUM/HEALTHY)",
+        "Automatic zone generation for stressed areas",
+        "Historical stress tracking and trend analysis",
+        "Alert generation for critical stress levels",
+        "Heatmap visualization of stress distribution"
+      ],
+      "data_sources": ["Planet Labs satellite imagery", "NIR and Red bands"],
+      "output": "Stress records, GeoJSON zones, visualization heatmaps"
+    },
+    "irrigation_management": {
+      "description": "Intelligent irrigation recommendation engine",
+      "capabilities": [
+        "ETc (Crop evapotranspiration) calculations",
+        "Crop coefficient (Kc) based optimization",
+        "Weather integration for rainfall forecasting",
+        "Plant stress adjustment factors",
+        "Humidity and soil moisture considerations",
+        "Automated irrigation scheduling",
+        "Water requirement calculations",
+        "Priority-based decision making (LOW/MEDIUM/HIGH)"
+      ],
+      "algorithms": "ETc = ETo × Kc × StressAdjustment × HumidityAdjustment",
+      "integrations": ["Crop Calendar Service", "Stress Service", "Weather API"]
+    },
+    "crop_calendar": {
+      "description": "Dynamic agricultural calendar management",
+      "capabilities": [
+        "Crop stage definitions and timelines",
+        "Water coefficient (Kc) per stage",
+        "Action tracking (irrigation, fertilization, treatment)",
+        "Stage duration management",
+        "Automated stage progression",
+        "Parcel-specific crop calendar generation",
+        "Multi-crop support"
+      ],
+      "data_model": "Crops → Stages → Actions with Kc coefficients"
+    },
+    "disease_detection": {
+      "description": "AI-powered crop disease detection from images",
+      "capabilities": [
+        "Image upload and validation (jpg, png, max 5MB)",
+        "AI-powered disease identification via Hugging Face",
+        "Confidence scoring for predictions",
+        "Rule-based treatment recommendations",
+        "Disease history tracking per parcel",
+        "Urgency levels (low/medium/high)"
+      ],
+      "ai_model": "Hugging Face image classification API",
+      "output": "Disease type, confidence, treatment recommendations"
+    },
+    "ai_chatbot": {
+      "description": "Intelligent agricultural assistant",
+      "capabilities": [
+        "Natural language query understanding",
+        "Multi-language support (English, French, Arabic)",
+        "Tool-based agent routing to microservices",
+        "Conversation history with context awareness",
+        "Image analysis for disease detection",
+        "Real-time data aggregation from multiple services",
+        "Intelligent reasoning about farm data"
+      ],
+      "llm": "Google Gemini with tool-calling capability",
+      "tools": ["getStress", "getIrrigationStatus", "getCropCalendar", "detectDisease"]
+    },
+    "real_time_monitoring": {
+      "description": "Live farm status dashboard",
+      "capabilities": [
+        "Parcel health visualization",
+        "Dual-mode heatmap visualization (Zones vs Pixel-level NDVI)",
+        "Real-time alert notifications",
+        "Historical trend analysis",
+        "Interactive map with Leaflet",
+        "Parcel polygon drawing and management"
+      ]
+    },
+    "alert_system": {
+      "description": "Critical event notifications",
+      "capabilities": [
+        "High stress alerts with thresholds",
+        "Disease risk notifications",
+        "Water requirement alerts",
+        "Irrigation scheduling reminders",
+        "Alert acknowledgment tracking",
+        "Priority-based alert organization"
+      ],
+      "trigger_sources": ["Stress analysis", "Disease detection", "Irrigation calculations"]
+    },
+    "background_processing": {
+      "description": "Asynchronous job queue management",
+      "capabilities": [
+        "Stress analysis job queuing (BullMQ)",
+        "Automated daily cron analysis",
+        "Bulk parcel processing",
+        "Job status tracking",
+        "Queue statistics and monitoring",
+        "Retry logic and error handling"
+      ],
+      "queue_system": "Redis-backed BullMQ"
+    }
+  },
+
+  "MODULES": {
+    "backend_services": {
+      "api_gateway": {
+        "port": 3000,
+        "language": "Node.js/Express",
+        "purpose": "Central routing hub for all microservices",
+        "responsibilities": [
+          "Request routing to appropriate services",
+          "JWT token verification middleware",
+          "CORS handling",
+          "Request logging with Morgan",
+          "Rate limiting (100 req/15 min)",
+          "Error response formatting",
+          "Health check endpoint"
+        ],
+        "key_middleware": ["JWT verification", "CORS", "Morgan logger", "Rate limiter"],
+        "routes_to": ["auth-service", "crop-calendar-service", "stress-service", "irrigation-service", "chatbot-service", "disease-detection-service"]
+      },
+      "auth_service": {
+        "port": 3001,
+        "language": "Node.js/Express",
+        "purpose": "User authentication and authorization",
+        "responsibilities": [
+          "User registration with email validation",
+          "User login and password verification",
+          "JWT token generation and validation",
+          "User profile management",
+          "Password hashing (bcrypt)"
+        ],
+        "database": "terrasens_auth",
+        "key_endpoints": [
+          "POST /api/auth/register",
+          "POST /api/auth/login",
+          "POST /api/auth/verify",
+          "GET /api/auth/profile"
+        ],
+        "authentication": "JWT-based with 7-day expiration",
+        "key_dependencies": ["bcrypt", "jsonwebtoken", "mysql2"]
+      },
+      "crop_calendar_service": {
+        "port": 3003,
+        "language": "Node.js/Express with Sequelize ORM",
+        "purpose": "Manage crop calendars and agricultural stages",
+        "responsibilities": [
+          "Crop database management",
+          "Stage definitions and timelines",
+          "Water coefficient (Kc) management",
+          "Action tracking per stage",
+          "Parcel-specific calendar generation",
+          "Stage progression automation"
+        ],
+        "database": "terrasens_calendar",
+        "key_entities": ["Crop", "CropStage", "CropAction", "Parcel", "ParcelCalendar"],
+        "key_endpoints": [
+          "GET /calendar/crops",
+          "GET /calendar/crops/:cropId/stages",
+          "GET /calendar/parcel/:parcelId",
+          "POST /calendar/parcel",
+          "PUT /calendar/parcel/:parcelId"
+        ],
+        "key_dependencies": ["sequelize", "mysql2"]
+      },
+      "stress_service": {
+        "port": 3005,
+        "language": "Node.js/Express",
+        "purpose": "Vegetation stress detection via satellite imagery",
+        "responsibilities": [
+          "NDVI computation from satellite bands",
+          "Stress classification and pixel mapping",
+          "Zone generation from stress pixels",
+          "Historical record tracking",
+          "Alert management",
+          "Heatmap data generation",
+          "Background job processing"
+        ],
+        "database": "stress_service_db",
+        "external_apis": ["Planet Labs API (satellite imagery)"],
+        "key_entities": ["StressRecord", "StressZone", "Alert", "AnalysisJob"],
+        "key_services": [
+          "StressAnalysisService - orchestrator",
+          "NDVIService - NDVI computation",
+          "GeoJSONService - spatial formatting",
+          "PlanetLabsClient - satellite API",
+          "MapService - map data aggregation"
+        ],
+        "key_endpoints": [
+          "GET /stress/parcel/:id/latest",
+          "GET /stress/parcel/:id/map",
+          "POST /stress/analyze",
+          "GET /stress/jobs/:jobId",
+          "GET /stress/queue/stats"
+        ],
+        "queue_system": "BullMQ with Redis backend",
+        "cron_jobs": "Daily analysis at 2 AM (configurable)",
+        "key_dependencies": ["bullmq", "redis", "axios", "node-cron"]
+      },
+      "irrigation_service": {
+        "port": 3004,
+        "language": "Node.js/Express",
+        "purpose": "Intelligent irrigation decision-making",
+        "responsibilities": [
+          "ETc calculation",
+          "Irrigation requirement computation",
+          "Schedule generation and management",
+          "Weather data integration",
+          "Stress factor adjustment",
+          "History and statistics tracking",
+          "Alert generation for water needs"
+        ],
+        "database": "terrasens_irrigation",
+        "external_apis": ["Open-Meteo Weather API"],
+        "key_entities": ["IrrigationRecord", "IrrigationSchedule", "IrrigationAlert", "IrrigationHistory"],
+        "key_endpoints": [
+          "GET /irrigation/parcel/:parcelId",
+          "POST /irrigation/calculate",
+          "GET /irrigation/schedule/:parcelId",
+          "GET /irrigation/history/:parcelId",
+          "GET /irrigation/stats"
+        ],
+        "algorithms": "ETc-based with multi-factor adjustment",
+        "priority_levels": ["LOW", "MEDIUM", "HIGH"],
+        "key_dependencies": ["axios", "bullmq"]
+      },
+      "disease_detection_service": {
+        "port": 3007,
+        "language": "Node.js/Express",
+        "purpose": "AI-powered crop disease detection from images",
+        "responsibilities": [
+          "Image upload and validation",
+          "Disease classification via Hugging Face",
+          "Treatment recommendation generation",
+          "Analysis history storage",
+          "Confidence scoring"
+        ],
+        "database": "disease_detection_db",
+        "external_apis": ["Hugging Face Image Classification"],
+        "key_endpoints": [
+          "POST /api/v1/disease/analyze",
+          "GET /api/v1/disease/history",
+          "GET /api/v1/disease/:analysisId"
+        ],
+        "file_upload": "Multipart form-data (jpg/png, max 5MB)",
+        "ai_model": "Hugging Face endpoint for plant disease classification",
+        "key_dependencies": ["multer", "axios", "uuid"]
+      },
+      "chatbot_service": {
+        "port": 3006,
+        "language": "Node.js/Express",
+        "purpose": "AI-powered agricultural chatbot and intelligent agent",
+        "responsibilities": [
+          "Natural language query processing",
+          "Tool-based routing to microservices",
+          "Conversation history management",
+          "Image processing for disease detection",
+          "Multi-language support",
+          "Real-time data aggregation",
+          "Context-aware responses"
+        ],
+        "database": "terrasens_chatbot",
+        "llm": "Google Gemini with tool-calling",
+        "key_tools": [
+          "getStress(parcelId) - fetch stress data",
+          "getIrrigationStatus(parcelId) - fetch irrigation data",
+          "getCropCalendar(parcelId) - fetch calendar data",
+          "detectDisease(image) - analyze crop images"
+        ],
+        "languages_supported": ["English", "French", "Arabic"],
+        "key_endpoints": [
+          "POST /chat - send message",
+          "POST /chat/image - analyze image",
+          "GET /chat/history - get conversation history"
+        ],
+        "key_services": [
+          "LLMService - Gemini integration",
+          "ToolExecutor - tool routing and execution",
+          "ChatService - conversation management"
+        ],
+        "key_dependencies": ["@google/generative-ai", "axios", "sequelize"]
+      }
+    },
+    "frontend": {
+      "framework": "Angular 17+ (Standalone components)",
+      "language": "TypeScript",
+      "port": 4200,
+      "purpose": "Web dashboard for farmer and agricultural advisor",
+      "key_features": [
+        "User authentication UI (login/register)",
+        "Farm dashboard with parcel overview",
+        "Interactive map with Leaflet",
+        "Dual-mode heatmap visualization (Zones/Pixel-level NDVI)",
+        "Stress monitoring with alerts",
+        "Irrigation recommendations",
+        "Disease detection interface",
+        "Chatbot UI",
+        "Crop calendar view",
+        "Real-time notifications"
+      ],
+      "key_components": [
+        "AuthComponent - login/register",
+        "FarmsComponent - farm and parcel management",
+        "ParcelStressDisplayComponent - stress visualization with heatmap",
+        "IrrigationComponent - irrigation recommendations",
+        "ChatbotComponent - conversational interface",
+        "DiseaseDetectionComponent - image upload and analysis"
+      ],
+      "styling": "Angular Material / custom CSS",
+      "http_client": "Angular HttpClient with JWT interceptors",
+      "mapping": "Leaflet 1.9.4",
+      "drawing": "Leaflet-draw for parcel creation",
+      "state_management": "RxJS Observables",
+      "key_dependencies": ["@angular/core", "@angular/common", "leaflet", "leaflet-draw"]
+    }
+  },
+
+  "TECHNOLOGIES_STACK": {
+    "backend_runtime": {
+      "nodejs": "18.0.0 or higher",
+      "npm": "Latest stable"
+    },
+    "frameworks": {
+      "express": "4.18.2 - REST API framework",
+      "sequelize": "6.35.2 - ORM for database abstraction",
+      "nestjs_alternative": "Not used; pure Express chosen for simplicity"
+    },
+    "database": {
+      "primary": "MySQL 8.0",
+      "cache": "Redis 7-alpine",
+      "orm": "Sequelize 6.35.2"
+    },
+    "message_queue": {
+      "bullmq": "5.0.0 - Job queue for background processing",
+      "redis": "4.6.0 - Queue backend"
+    },
+    "authentication": {
+      "jsonwebtoken": "9.0.0 - JWT token generation",
+      "bcrypt": "5.x - Password hashing"
+    },
+    "external_integrations": {
+      "planet_labs_api": "Satellite imagery and NDVI bands",
+      "open_meteo_api": "Weather data (free, no key required)",
+      "hugging_face_api": "AI image classification for disease detection",
+      "google_gemini": "@google/generative-ai - LLM for chatbot"
+    },
+    "http_clients": {
+      "axios": "1.6.0 - HTTP requests to external APIs"
+    },
+    "frontend": {
+      "angular": "17.0.0+",
+      "typescript": "5.x",
+      "leaflet": "1.9.4 - Interactive mapping",
+      "leaflet_draw": "Parcel polygon drawing",
+      "angular_material": "UI components"
+    },
+    "utilities": {
+      "dotenv": "16.3.1 - Environment configuration",
+      "morgan": "1.10.0 - HTTP request logging",
+      "cors": "2.8.5 - Cross-origin resource sharing",
+      "multer": "1.4.5-lts.1 - File upload handling",
+      "winston": "3.11.0 - Application logging",
+      "node_cron": "3.0.2 - Scheduled jobs",
+      "uuid": "9.0.0 - Unique ID generation"
+    },
+    "containerization": {
+      "docker": "Containerization",
+      "docker_compose": "3.8 - Multi-container orchestration",
+      "healthchecks": "Service readiness verification"
+    },
+    "development": {
+      "nodemon": "3.0.1 - Auto-restart on file changes",
+      "jest": "29.7.0 - Testing framework"
+    }
+  },
+
+  "ARCHITECTURE": {
+    "pattern": "Microservices architecture with API Gateway",
+    "deployment_model": "Docker Compose with health checks",
+    "scalability": "Horizontal scaling possible per service",
+    "communication": {
+      "sync": "REST APIs over HTTP",
+      "async": "Redis-based BullMQ job queues",
+      "service_discovery": "Docker Compose networking (DNS-based)"
+    },
+    "services_topology": {
+      "layer_1_gateway": {
+        "component": "API Gateway",
+        "port": 3000,
+        "role": "Entry point, routing, middleware"
+      },
+      "layer_2_business_services": [
+        {
+          "component": "Auth Service",
+          "port": 3001,
+          "role": "User management and JWT generation"
+        },
+        {
+          "component": "Crop Calendar Service",
+          "port": 3003,
+          "role": "Crop and stage management"
+        },
+        {
+          "component": "Irrigation Service",
+          "port": 3004,
+          "role": "Irrigation calculations and scheduling"
+        },
+        {
+          "component": "Stress Service",
+          "port": 3005,
+          "role": "NDVI and stress analysis"
+        },
+        {
+          "component": "Chatbot Service",
+          "port": 3006,
+          "role": "AI agent and conversational interface"
+        },
+        {
+          "component": "Disease Detection Service",
+          "port": 3007,
+          "role": "AI image analysis for disease"
+        }
+      ],
+      "layer_3_infrastructure": [
+        {
+          "component": "MySQL",
+          "port": 3306,
+          "role": "Primary data persistence"
+        },
+        {
+          "component": "Redis",
+          "port": 6379,
+          "role": "Queue, caching, session storage"
+        }
+      ],
+      "layer_4_frontend": {
+        "component": "Angular Web Application",
+        "port": 4200,
+        "role": "User interface dashboard"
+      }
+    },
+    "data_flow": {
+      "user_request": "Browser → Angular Frontend → API Gateway → Microservice → Database/External API → Response chain",
+      "background_processing": "Cron/Manual Trigger → Service → Redis Queue (BullMQ) → Worker → Processing → Database",
+      "realtime_monitoring": "Periodic polling from Frontend → Service → Database/Cache"
+    },
+    "network": {
+      "bridge_network": "terrasens-network",
+      "dns_resolution": "Docker Compose service names resolve internally",
+      "external_apis": "Direct HTTP/HTTPS calls from services"
+    }
+  },
+
+  "DATABASE_STRUCTURE": {
+    "primary_database": "MySQL 8.0",
+    "databases": {
+      "terrasens_auth": {
+        "purpose": "User authentication and profiles",
+        "entities": [
+          {
+            "name": "users",
+            "columns": [
+              "id (PK)",
+              "name (string)",
+              "email (string, unique)",
+              "password (string, hashed)",
+              "created_at (timestamp)",
+              "updated_at (timestamp)"
+            ]
+          }
+        ]
+      },
+      "terrasens_calendar": {
+        "purpose": "Crop calendars and agricultural stages",
+        "entities": [
+          {
+            "name": "crops",
+            "columns": ["id (PK)", "name (string)", "description (text)"]
+          },
+          {
+            "name": "crop_stages",
+            "columns": [
+              "id (PK)",
+              "crop_id (FK)",
+              "stage_name (string)",
+              "duration_days (int)",
+              "kc_coefficient (decimal)",
+              "order (int)"
+            ]
+          },
+          {
+            "name": "crop_actions",
+            "columns": [
+              "id (PK)",
+              "stage_id (FK)",
+              "action_type (enum: irrigation, fertilization, treatment)",
+              "description (text)"
+            ]
+          },
+          {
+            "name": "parcels",
+            "columns": [
+              "id (PK)",
+              "user_id (FK)",
+              "name (string)",
+              "area (decimal)",
+              "polygon (GeoJSON)",
+              "crop_id (FK)"
+            ]
+          },
+          {
+            "name": "parcel_calendars",
+            "columns": [
+              "id (PK)",
+              "parcel_id (FK)",
+              "sowing_date (date)",
+              "current_stage (int)",
+              "stage_start_date (date)"
+            ]
+          }
+        ]
+      },
+      "stress_service_db": {
+        "purpose": "Vegetation stress analysis and monitoring",
+        "entities": [
+          {
+            "name": "stress_records",
+            "columns": [
+              "id (PK)",
+              "parcel_id (FK)",
+              "mean_ndvi (decimal)",
+              "stress_percentage (decimal)",
+              "pixel_count (int)",
+              "imagery_date (timestamp)",
+              "cloud_coverage (decimal)",
+              "status (enum: pending, processing, completed)",
+              "created_at (timestamp)"
+            ]
+          },
+          {
+            "name": "stress_zones",
+            "columns": [
+              "id (PK)",
+              "record_id (FK)",
+              "stress_level (enum: high, medium, healthy)",
+              "geojson (JSON)",
+              "pixel_count (int)",
+              "mean_ndvi (decimal)"
+            ]
+          },
+          {
+            "name": "stress_alerts",
+            "columns": [
+              "id (PK)",
+              "parcel_id (FK)",
+              "alert_type (string)",
+              "stress_level (enum)",
+              "threshold (decimal)",
+              "is_acknowledged (boolean)",
+              "created_at (timestamp)"
+            ]
+          },
+          {
+            "name": "analysis_jobs",
+            "columns": [
+              "id (PK)",
+              "job_id (string, unique)",
+              "parcel_id (FK)",
+              "status (enum: queued, processing, completed, failed)",
+              "priority (enum: low, medium, high)",
+              "created_at (timestamp)",
+              "completed_at (timestamp)"
+            ]
+          }
+        ]
+      },
+      "terrasens_irrigation": {
+        "purpose": "Irrigation scheduling and recommendations",
+        "entities": [
+          {
+            "name": "irrigation_records",
+            "columns": [
+              "id (PK)",
+              "parcel_id (FK)",
+              "water_requirement (decimal)",
+              "priority (enum: low, medium, high)",
+              "etc_value (decimal)",
+              "weather_data (JSON)",
+              "stress_factor (decimal)",
+              "recommended_watering (boolean)",
+              "created_at (timestamp)"
+            ]
+          },
+          {
+            "name": "irrigation_schedules",
+            "columns": [
+              "id (PK)",
+              "parcel_id (FK)",
+              "scheduled_date (datetime)",
+              "water_amount (decimal)",
+              "status (enum: pending, completed, skipped)",
+              "reason (text)"
+            ]
+          },
+          {
+            "name": "irrigation_alerts",
+            "columns": [
+              "id (PK)",
+              "parcel_id (FK)",
+              "alert_type (enum: high_water_need, dry_conditions)",
+              "priority (enum)",
+              "is_acknowledged (boolean)"
+            ]
+          },
+          {
+            "name": "irrigation_history",
+            "columns": [
+              "id (PK)",
+              "parcel_id (FK)",
+              "water_applied (decimal)",
+              "application_date (timestamp)",
+              "method (enum: drip, sprinkler, flood)"
+            ]
+          }
+        ]
+      },
+      "disease_detection_db": {
+        "purpose": "Disease detection analysis history",
+        "entities": [
+          {
+            "name": "disease_analysis",
+            "columns": [
+              "id (PK, UUID)",
+              "parcel_id (FK)",
+              "image_path (string)",
+              "detected_disease (string)",
+              "confidence (decimal 0-100)",
+              "treatment (JSON)",
+              "urgency (enum: low, medium, high)",
+              "analyzed_at (timestamp)"
+            ]
+          }
+        ]
+      },
+      "terrasens_chatbot": {
+        "purpose": "Chatbot conversations and history",
+        "entities": [
+          {
+            "name": "conversations",
+            "columns": [
+              "id (PK, UUID)",
+              "user_id (FK)",
+              "title (string)",
+              "created_at (timestamp)",
+              "updated_at (timestamp)"
+            ]
+          },
+          {
+            "name": "messages",
+            "columns": [
+              "id (PK, UUID)",
+              "conversation_id (FK)",
+              "role (enum: user, assistant)",
+              "content (text)",
+              "tools_used (JSON)",
+              "created_at (timestamp)"
+            ]
+          }
+        ]
+      }
+    },
+    "relationships": {
+      "users_parcels": "One User has Many Parcels (1:N)",
+      "parcels_crops": "Many Parcels have One Crop (N:1)",
+      "crops_stages": "One Crop has Many Stages (1:N)",
+      "stages_actions": "One Stage has Many Actions (1:N)",
+      "parcels_stress": "One Parcel has Many Stress Records (1:N)",
+      "stress_records_zones": "One Record has Many Zones (1:N)",
+      "parcels_irrigation": "One Parcel has Many Irrigation Records (1:N)",
+      "parcels_disease": "One Parcel has Many Disease Analysis (1:N)",
+      "users_conversations": "One User has Many Conversations (1:N)"
+    },
+    "indexing": {
+      "performance_indexes": [
+        "users.email (unique)",
+        "parcels.user_id (foreign key)",
+        "stress_records.parcel_id",
+        "stress_records.created_at",
+        "irrigation_records.parcel_id",
+        "disease_analysis.parcel_id"
+      ]
+    }
+  },
+
+  "API_ENDPOINTS": {
+    "authentication": [
+      {
+        "method": "POST",
+        "path": "/api/auth/register",
+        "purpose": "User registration",
+        "auth_required": false,
+        "request_body": {
+          "name": "string",
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "success": "boolean",
+          "data": {
+            "userId": "number",
+            "token": "JWT"
+          }
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/api/auth/login",
+        "purpose": "User login",
+        "auth_required": false,
+        "request_body": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "success": "boolean",
+          "data": {
+            "token": "JWT",
+            "expiresIn": "7d"
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/api/auth/profile",
+        "purpose": "Get current user profile",
+        "auth_required": true,
+        "response": {
+          "success": "boolean",
+          "data": {
+            "id": "number",
+            "name": "string",
+            "email": "string"
+          }
+        }
+      }
+    ],
+    "crop_calendar": [
+      {
+        "method": "GET",
+        "path": "/api/calendar/crops",
+        "purpose": "Get all available crops",
+        "auth_required": false,
+        "response": {
+          "success": "boolean",
+          "data": "Crop[]"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/api/calendar/crops/:cropId/stages",
+        "purpose": "Get stages for a crop",
+        "auth_required": false,
+        "response": {
+          "success": "boolean",
+          "data": "CropStage[]"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/api/calendar/parcel/:parcelId",
+        "purpose": "Get crop calendar for a parcel",
+        "auth_required": true,
+        "response": {
+          "success": "boolean",
+          "data": {
+            "parcelId": "number",
+            "crop": "object",
+            "sowingDate": "date",
+            "stages": "array",
+            "currentStage": "object"
+          }
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/api/calendar/parcel",
+        "purpose": "Create new parcel with crop",
+        "auth_required": true,
+        "request_body": {
+          "name": "string",
+          "cropId": "number",
+          "polygon": "GeoJSON",
+          "area": "decimal"
+        },
+        "response": {
+          "success": "boolean",
+          "data": {
+            "parcelId": "number"
+          }
+        }
+      }
+    ],
+    "stress_monitoring": [
+      {
+        "method": "GET",
+        "path": "/api/stress/parcel/:id/latest",
+        "purpose": "Get latest stress analysis with heatmap",
+        "auth_required": true,
+        "response": {
+          "success": "boolean",
+          "data": {
+            "record": {
+              "id": "number",
+              "parcel_id": "number",
+              "mean_ndvi": "decimal",
+              "stress_percentage": "decimal"
+            },
+            "heatmap": {
+              "type": "FeatureCollection",
+              "features": "Feature[]"
+            }
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/api/stress/parcel/:id/map",
+        "purpose": "Get complete map data including polygon, zones, and heatmap",
+        "auth_required": true,
+        "response": {
+          "success": "boolean",
+          "data": {
+            "polygon": "GeoJSON",
+            "zones": "GeoJSON",
+            "heatmap": "GeoJSON with pixel-level NDVI",
+            "bounds": "object",
+            "center": "object"
+          }
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/api/stress/analyze",
+        "purpose": "Trigger stress analysis for a parcel",
+        "auth_required": true,
+        "request_body": {
+          "parcel_id": "number",
+          "priority": "enum: low, medium, high"
+        },
+        "response": {
+          "success": "boolean",
+          "message": "string",
+          "jobId": "string"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/api/stress/jobs/:jobId",
+        "purpose": "Get analysis job status",
+        "auth_required": true,
+        "response": {
+          "success": "boolean",
+          "data": {
+            "jobId": "string",
+            "status": "enum: queued, processing, completed, failed",
+            "progress": "number 0-100"
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/api/stress/parcel/:id/alerts",
+        "purpose": "Get stress alerts for parcel",
+        "auth_required": true,
+        "response": {
+          "success": "boolean",
+          "data": "Alert[]"
+        }
+      }
+    ],
+    "irrigation": [
+      {
+        "method": "GET",
+        "path": "/api/irrigation/parcel/:parcelId",
+        "purpose": "Get irrigation status and recommendations",
+        "auth_required": true,
+        "response": {
+          "success": "boolean",
+          "data": {
+            "waterRequirement": "decimal",
+            "priority": "enum",
+            "etc": "decimal",
+            "recommendation": "string"
+          }
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/api/irrigation/calculate",
+        "purpose": "Calculate irrigation for specific conditions",
+        "auth_required": true,
+        "request_body": {
+          "parcelId": "number",
+          "includeWeather": "boolean"
+        },
+        "response": {
+          "success": "boolean",
+          "data": {
+            "waterNeeded": "decimal",
+            "schedule": "object"
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/api/irrigation/schedule/:parcelId",
+        "purpose": "Get irrigation schedule",
+        "auth_required": true,
+        "response": {
+          "success": "boolean",
+          "data": "IrrigationSchedule[]"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/api/irrigation/history/:parcelId",
+        "purpose": "Get irrigation application history",
+        "auth_required": true,
+        "query_params": {
+          "limit": "number",
+          "offset": "number"
+        },
+        "response": {
+          "success": "boolean",
+          "data": "IrrigationHistory[]"
+        }
+      }
+    ],
+    "disease_detection": [
+      {
+        "method": "POST",
+        "path": "/api/v1/disease/analyze",
+        "purpose": "Analyze crop image for disease",
+        "auth_required": true,
+        "content_type": "multipart/form-data",
+        "request_params": {
+          "image": "file (jpg/png, max 5MB)",
+          "parcelId": "number (optional)",
+          "cropType": "string (optional)"
+        },
+        "response": {
+          "success": "boolean",
+          "data": {
+            "analysisId": "UUID",
+            "disease": "string",
+            "confidence": "number 0-100",
+            "recommendation": "string",
+            "treatment": "object"
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/disease/history",
+        "purpose": "Get disease analysis history",
+        "auth_required": true,
+        "query_params": {
+          "limit": "number",
+          "offset": "number"
+        },
+        "response": {
+          "success": "boolean",
+          "data": "DiseaseAnalysis[]"
+        }
+      }
+    ],
+    "chatbot": [
+      {
+        "method": "POST",
+        "path": "/api/chat",
+        "purpose": "Send message to AI chatbot",
+        "auth_required": true,
+        "request_body": {
+          "message": "string",
+          "parcelId": "number (optional)",
+          "conversationId": "UUID (optional)"
+        },
+        "response": {
+          "success": "boolean",
+          "data": {
+            "conversationId": "UUID",
+            "response": "string",
+            "toolsUsed": "string[]",
+            "data": "object (aggregated from tools)"
+          }
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/api/chat/image",
+        "purpose": "Upload image for disease detection via chat",
+        "auth_required": true,
+        "content_type": "multipart/form-data",
+        "request_params": {
+          "image": "file",
+          "parcelId": "number"
+        },
+        "response": {
+          "success": "boolean",
+          "data": {
+            "analysisResult": "object"
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/api/chat/history",
+        "purpose": "Get conversation history",
+        "auth_required": true,
+        "query_params": {
+          "conversationId": "UUID (optional)",
+          "limit": "number"
+        },
+        "response": {
+          "success": "boolean",
+          "data": "Message[]"
+        }
+      }
+    ],
+    "health_check": [
+      {
+        "method": "GET",
+        "path": "/health",
+        "purpose": "Basic health check",
+        "auth_required": false,
+        "response": {
+          "status": "ok",
+          "timestamp": "ISO timestamp"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/health/detailed",
+        "purpose": "Detailed service health with dependencies",
+        "auth_required": false,
+        "response": {
+          "status": "ok/degraded",
+          "services": {
+            "database": "ok/error",
+            "redis": "ok/error",
+            "external_apis": "ok/error"
+          }
+        }
+      }
+    ]
+  },
+
+  "DEVOPS_TOOLS": {
+    "containerization": {
+      "docker": {
+        "version": "Latest",
+        "purpose": "Container images for each microservice",
+        "base_images": {
+          "node": "node:18-alpine (backend services)",
+          "mysql": "mysql:8.0 (database)",
+          "redis": "redis:7-alpine (cache/queue)"
+        }
+      },
+      "docker_compose": {
+        "version": "3.8",
+        "purpose": "Local development and testing orchestration",
+        "services": 7,
+        "volumes": ["mysql_data", "redis_data"],
+        "networks": ["terrasens-network"],
+        "healthchecks": "All services have readiness probes"
+      }
+    },
+    "service_orchestration": {
+      "deployment": "Docker Compose for dev, Kubernetes ready for prod",
+      "restart_policy": "unless-stopped",
+      "depends_on": "Service dependency management",
+      "environment_management": ".env files for configuration"
+    },
+    "logging": {
+      "winston": "3.11.0 - Structured logging framework",
+      "morgan": "1.10.0 - HTTP request logging",
+      "log_levels": ["error", "warn", "info", "debug"]
+    },
+    "monitoring": {
+      "health_endpoints": "/health and /health/detailed for all services",
+      "queue_stats": "GET /api/stress/queue/stats for BullMQ monitoring",
+      "database_healthchecks": "MySQL and Redis built-in healthchecks"
+    },
+    "testing": {
+      "jest": "29.7.0 - Unit testing framework",
+      "test_coverage": "Commands available: npm test, npm run test:watch"
+    },
+    "database_management": {
+      "migrations": "npm run migrations - Initialize database schema",
+      "seeding": "npm run seed - Populate initial data",
+      "orm": "Sequelize for database abstraction"
+    },
+    "development_tools": {
+      "nodemon": "Auto-restart on file changes",
+      "npm_scripts": "Custom scripts for development workflows"
+    },
+    "api_gateway_routing": {
+      "service_urls": "Environment-based configuration",
+      "proxy_middleware": "http-proxy-middleware for request forwarding",
+      "load_balancing": "Not implemented (suitable for scaling)"
+    },
+    "ci_cd": {
+      "current_status": "Docker Compose setup for local; Production-ready structure",
+      "recommended": "GitHub Actions, GitLab CI, or Jenkins for automated builds"
+    }
+  },
+
+  "AI_COMPONENTS": {
+    "satellite_imagery_analysis": {
+      "provider": "Planet Labs API",
+      "integration": "PlanetLabsClient service",
+      "process": [
+        "Request satellite imagery for parcel polygon",
+        "Extract NIR (Near-Infrared) and Red bands",
+        "Compute NDVI: (NIR - Red) / (NIR + Red)",
+        "Classify pixels as stressed/healthy",
+        "Generate visualization heatmap"
+      ],
+      "output": "NDVI values (-1 to 1), stress classification, heatmap"
+    },
+    "ndvi_computation": {
+      "service": "NDVIService",
+      "algorithm": "NDVI = (NIR - Red) / (NIR + Red)",
+      "normalization": "0 to 1 scale for visualization",
+      "stress_classification": {
+        "HIGH": "NDVI ≤ 0.35",
+        "MEDIUM": "NDVI 0.35-0.45",
+        "HEALTHY": "NDVI > 0.45"
+      },
+      "output": "Pixel-level stress map with coordinates"
+    },
+    "disease_detection": {
+      "provider": "Hugging Face API",
+      "integration": "DiseaseDetectionService",
+      "model_type": "Image classification model for plant diseases",
+      "process": [
+        "User uploads crop image",
+        "Image sent to Hugging Face endpoint",
+        "AI model classifies disease type",
+        "Confidence score returned (0-100%)",
+        "Rule-based recommendations generated"
+      ],
+      "output": "Disease name, confidence, treatment recommendations"
+    },
+    "conversational_ai": {
+      "provider": "Google Gemini LLM",
+      "integration": "ChatbotService with LLMService",
+      "architecture": "Tool-calling agent",
+      "process": [
+        "User sends natural language query",
+        "Gemini processes and identifies intent",
+        "Route to appropriate tool (getStress, getIrrigation, etc.)",
+        "Tool executes and returns data",
+        "Gemini synthesizes response with context",
+        "Multi-language response generation"
+      ],
+      "supported_tools": [
+        "getStress(parcelId)",
+        "getIrrigationStatus(parcelId)",
+        "getCropCalendar(parcelId)",
+        "detectDisease(image)"
+      ],
+      "languages": ["English", "French", "Arabic"]
+    },
+    "weather_integration": {
+      "provider": "Open-Meteo API (free, no API key)",
+      "integration": "IrrigationService",
+      "data_points": [
+        "Current temperature",
+        "Rainfall forecast",
+        "Humidity",
+        "Wind speed",
+        "Solar radiation"
+      ],
+      "usage": "ETc calculation adjustment, irrigation scheduling"
+    },
+    "intelligent_irrigation": {
+      "algorithm": "ETc-based with multi-factor adjustment",
+      "formula": "Water Needed = ETo × Kc × StressAdjustment × HumidityAdjustment",
+      "data_inputs": [
+        "Reference evapotranspiration (ETo)",
+        "Crop coefficient (Kc) from stage",
+        "Stress percentage from stress analysis",
+        "Humidity from weather API",
+        "Rainfall forecast"
+      ],
+      "decision_levels": ["LOW", "MEDIUM", "HIGH priority"],
+      "output": "Irrigation schedule, water amount, timing"
+    }
+  },
+
+  "PROBLEMS_SOLVED": [
+    {
+      "problem": "Manual irrigation scheduling leads to water waste",
+      "solution": "Automated ETc-based irrigation calculations with weather integration",
+      "impact": "Reduce water usage 20-30% while maintaining yield"
+    },
+    {
+      "problem": "Late detection of crop diseases results in crop loss",
+      "solution": "AI-powered image analysis for real-time disease detection",
+      "impact": "Early intervention enables preventive treatment"
+    },
+    {
+      "problem": "Farmers cannot monitor large areas regularly",
+      "solution": "Satellite-based vegetation stress monitoring with automatic alerts",
+      "impact": "Real-time visibility across entire farm without physical inspection"
+    },
+    {
+      "problem": "Complex data from multiple sources confuses farmers",
+      "solution": "AI chatbot aggregates and explains data in natural language",
+      "impact": "Farmers understand recommendations without technical expertise"
+    },
+    {
+      "problem": "Inconsistent crop management across seasons",
+      "solution": "Dynamic crop calendar with automated stage tracking",
+      "impact": "Consistent practices, optimized timing for each crop stage"
+    },
+    {
+      "problem": "No historical data for farm analysis and improvement",
+      "solution": "Comprehensive database tracking of stress, irrigation, disease, and yields",
+      "impact": "Data-driven decision making and farm optimization over time"
+    },
+    {
+      "problem": "Delayed response to water stress in critical periods",
+      "solution": "Real-time alerts and prioritized notifications system",
+      "impact": "Faster intervention during critical plant growth stages"
+    },
+    {
+      "problem": "Language barriers for agricultural advisors",
+      "solution": "Multi-language chatbot support (English, French, Arabic)",
+      "impact": "Service accessible to diverse farmer populations"
+    },
+    {
+      "problem": "Difficulty correlating multiple factors for decision-making",
+      "solution": "Integrated platform combining stress, irrigation, calendar, and disease",
+      "impact": "Holistic view enables better strategic decisions"
+    },
+    {
+      "problem": "Limited scalability for managing multiple farms/parcels",
+      "solution": "Microservices architecture with background job processing",
+      "impact": "Can handle thousands of parcels with independent scaling"
+    }
+  ],
+
+  "DEPLOYMENT_INSTRUCTIONS": {
+    "prerequisites": [
+      "Docker and Docker Compose installed",
+      "Planet Labs API key (for satellite imagery)",
+      "Google Gemini API key (for chatbot)",
+      "Hugging Face API key (for disease detection - optional, can use public models)"
+    ],
+    "environment_setup": {
+      "create_env_file": ".env file in project root",
+      "required_variables": [
+        "PLANET_API_KEY=your_planet_api_key",
+        "GEMINI_API_KEY=your_gemini_api_key",
+        "JWT_SECRET=strong_random_secret",
+        "DB_PASSWORD=secure_password"
+      ]
+    },
+    "startup": {
+      "command": "docker-compose up -d",
+      "wait_time": "30-60 seconds for services initialization",
+      "verify": "docker-compose ps should show all services running"
+    },
+    "access": {
+      "frontend": "http://localhost:4200",
+      "api_gateway": "http://localhost:3000",
+      "individual_services": "Accessible via gateway routing"
+    },
+    "initialization": {
+      "create_admin_user": "POST /api/auth/register with admin credentials",
+      "seed_crops": "Crop calendar service auto-loads seed data",
+      "initial_analysis": "Manually trigger analysis or wait for cron jobs (2 AM daily)"
+    }
+  },
+
+  "KEY_FEATURES_SUMMARY": {
+    "real_time_monitoring": "Live heatmap visualization of vegetation stress using satellite data",
+    "intelligent_recommendations": "AI-driven irrigation scheduling based on multiple factors",
+    "early_warning_system": "Alerts for high stress, disease risk, and water needs",
+    "multi_language_support": "Chatbot available in English, French, and Arabic",
+    "scalable_architecture": "Microservices with background job processing",
+    "data_driven_insights": "Historical analysis and trend tracking",
+    "integrated_analytics": "Combines stress, irrigation, calendar, and disease data",
+    "professional_visualization": "Interactive maps with Leaflet, heatmaps, and charts"
+  },
+
+  "NEXT_PHASES": [
+    "Mobile app development (React Native or Flutter)",
+    "IoT sensor integration (soil moisture, temperature probes)",
+    "Predictive analytics using historical data (yield forecasting)",
+    "Advanced ML models for disease severity prediction",
+    "Blockchain integration for supply chain traceability",
+    "Integration with agricultural equipment (tractors, drones)",
+    "Water trading market for irrigation optimization",
+    "Carbon credit calculation for sustainable practices"
+  ]
+}

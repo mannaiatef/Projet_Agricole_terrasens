@@ -1,0 +1,372 @@
+.recommendation-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Decision Card */
+.decision-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #667eea;
+
+  .decision-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    .decision-emoji {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .decision-info {
+      flex: 1;
+
+      h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.2rem;
+        color: #333;
+      }
+
+      .decision-priority {
+        margin: 0;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .decision-reason {
+    margin: 0;
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}
+
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+
+  .metric-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    .metric-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+
+      .metric-icon {
+        font-size: 1.5rem;
+      }
+
+      h4 {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #555;
+        flex: 1;
+      }
+    }
+
+    .metric-value {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #667eea;
+      margin-bottom: 0.5rem;
+
+      .temp {
+        font-size: 1.6rem;
+      }
+    }
+
+    .metric-bar {
+      width: 100%;
+      height: 6px;
+      background: #f0f0f0;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+
+      .metric-progress {
+        height: 100%;
+        border-radius: 3px;
+        transition: width 0.3s ease;
+      }
+    }
+
+    .metric-label {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .metric-description {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #666;
+    }
+  }
+}
+
+/* Weather Section */
+.weather-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  h3 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  .weather-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+
+    .weather-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+      background: #f9f9f9;
+      border-radius: 6px;
+      gap: 0.5rem;
+
+      .icon {
+        font-size: 1.5rem;
+      }
+
+      .label {
+        font-size: 0.85rem;
+        color: #666;
+        font-weight: 500;
+      }
+
+      .value {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #667eea;
+      }
+    }
+  }
+}
+
+/* Analysis Section */
+.analysis-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  .analysis-content {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 4px solid #667eea;
+
+    p {
+      margin: 0;
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  }
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    .icon {
+      font-size: 1rem;
+    }
+
+    &-primary {
+      background: #f0f0f0;
+      color: #555;
+
+      &:hover {
+        background: #e0e0e0;
+        transform: translateY(-2px);
+      }
+    }
+
+    &-success {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+      }
+    }
+  }
+}
+
+/* Calculation Details Section */
+.calculation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+
+  .calc-item {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-left: 4px solid #667eea;
+
+    .calc-label {
+      font-size: 0.8rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .calc-value {
+      font-size: 1.1rem;
+      color: #333;
+      font-weight: 600;
+    }
+  }
+}
+
+/* NDVI Section */
+.ndvi-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  h3 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  .ndvi-bar {
+    position: relative;
+    height: 40px;
+    background: linear-gradient(to right, #c62828, #f57c00, #fdd835, #648d3d, #2e7d32);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+
+    .ndvi-value {
+      position: absolute;
+      top: -30px;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-weight: 600;
+      font-size: 0.85rem;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid #333;
+      }
+    }
+
+    .ndvi-scale {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      color: white;
+      font-weight: 600;
+
+      .scale-mark {
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+
+  .ndvi-label {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .weather-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .decision-header {
+    flex-direction: column;
+  }
+}

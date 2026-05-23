@@ -1,0 +1,471 @@
+<div class="disease-history-container">
+  <!-- Header -->
+  <div class="history-header">
+    <h2>📊 Analysis History</h2>
+    <p>View all your disease detection analyses</p>
+  </div>
+
+  <!-- Error Message -->
+  <div class="error-message" *ngIf="error">
+    <strong>⚠️ Error:</strong> {{ error }}
+  </div>
+
+  <!-- Statistics Section -->
+  <div class="statistics-section" *ngIf="statistics && statistics.length > 0">
+    <h3>Disease Frequency</h3>
+    <div class="stats-grid">
+      <div class="stat-card" *ngFor="let stat of statistics">
+        <div class="stat-disease">{{ translator.translate(stat.diseaseName) }}</div>
+        <div class="stat-count">{{ stat.count }} detections</div>
+        <div class="stat-percentage">{{ stat.percentage }}%</div>
+        <div class="stat-confidence">Avg: {{ stat.avgConfidencePercent }}%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary Stats -->
+  <div class="summary-stats" *ngIf="totalRecords > 0">
+    <div class="summary-item">
+      <span class="label">Total Analyses:</span>
+      <span class="value">{{ totalRecords }}</span>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" *ngIf="isLoading">
+    <div class="spinner"></div>
+    <p>Loading analyses...</p>
+  </div>
+
+  <!-- History Table -->
+  <div class="history-table-container" *ngIf="!isLoading && historyData.length > 0">
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>Disease</th>
+          <th>Confidence</th>
+          <th>Date & Time</th>
+          <th>Parcel ID</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let analysis of historyData" [class.uncertain]="isUncertain(analysis.confidence)">
+          <td class="disease-cell">
+            <div class="disease-name">{{ translator.translate(analysis.diseaseName) }}</div>
+            <div class="recommendation-preview">{{ analysis.recommendation | slice:0:50 }}...</div>
+          </td>
+          <td class="confidence-cell">
+            <div class="confidence-badge" [ngClass]="getConfidenceBadgeClass(analysis.confidence)">
+              {{ analysis.confidence }}%
+            </div>
+            <div class="uncertainty" *ngIf="isUncertain(analysis.confidence)">
+              ⚠️ Uncertain
+            </div>
+          </td>
+          <td class="date-cell">
+            {{ formatDate(analysis.createdAt) }}
+          </td>
+          <td class="parcel-cell">
+            {{ analysis.parcelId || '-' }}
+          </td>
+          <td class="actions-cell">
+            <button class="btn-view" [routerLink]="['/disease', analysis.analysisId]" title="View details">
+              👁️
+            </button>
+            <button class="btn-delete" (click)="deleteAnalysis(analysis.analysisId)" title="Delete">
+              🗑️
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="!isLoading && historyData.length === 0">
+    <div class="empty-icon">📭</div>
+    <h3>No analysis history yet</h3>
+    <p>Start by uploading crop images to detect diseases</p>
+    <a href="/disease/upload" class="btn-primary">Go to Analyzer</a>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" *ngIf="getTotalPages() > 1 && !isLoading">
+    <button class="btn-page" (click)="previousPage()" [disabled]="currentPage === 1">
+      ← Previous
+    </button>
+    <span class="page-info">
+      Page {{ currentPage }} of {{ getTotalPages() }}
+    </span>
+    <button class="btn-page" (click)="nextPage()" [disabled]="currentPage === getTotalPages()">
+      Next →
+    </button>
+  </div>
+</div>
+
+<style scoped>
+.disease-history-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.history-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.history-header h2 {
+  font-size: 28px;
+  color: #2d5016;
+  margin: 0 0 10px 0;
+}
+
+.history-header p {
+  color: #666;
+  margin: 0;
+}
+
+/* Error Message */
+.error-message {
+  padding: 15px;
+  background: #fee;
+  color: #c33;
+  border: 1px solid #fcc;
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+/* Statistics Section */
+.statistics-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.statistics-section h3 {
+  color: #2d5016;
+  margin-top: 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #f0f8e5 0%, #ffffff 100%);
+  padding: 15px;
+  border-radius: 4px;
+  border-left: 4px solid #2d5016;
+  text-align: center;
+}
+
+.stat-disease {
+  font-weight: 600;
+  color: #2d5016;
+  margin-bottom: 8px;
+}
+
+.stat-count {
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+}
+
+.stat-percentage {
+  font-size: 12px;
+  color: #999;
+}
+
+.stat-confidence {
+  font-size: 12px;
+  color: #2d5016;
+  margin-top: 5px;
+}
+
+/* Summary Stats */
+.summary-stats {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.summary-item .label {
+  color: #999;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.summary-item .value {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2d5016;
+}
+
+/* Loading */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 40px;
+}
+
+.spinner {
+  border: 4px solid #f0f0f0;
+  border-top: 4px solid #2d5016;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* History Table */
+.history-table-container {
+  margin: 25px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.history-table thead {
+  background: #2d5016;
+  color: white;
+}
+
+.history-table th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.history-table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.3s;
+}
+
+.history-table tbody tr:hover {
+  background: #f9f9f9;
+}
+
+.history-table tbody tr.uncertain {
+  background: #fffbf0;
+}
+
+.history-table td {
+  padding: 15px;
+  color: #555;
+}
+
+/* Disease Cell */
+.disease-cell {
+  font-weight: 500;
+  color: #2d5016;
+}
+
+.disease-name {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.recommendation-preview {
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
+}
+
+/* Confidence Cell */
+.confidence-cell {
+  text-align: center;
+}
+
+.confidence-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 12px;
+  color: white;
+}
+
+.confidence-badge.high {
+  background: #2d5016;
+}
+
+.confidence-badge.medium {
+  background: #f39c12;
+}
+
+.confidence-badge.low {
+  background: #e74c3c;
+}
+
+.uncertainty {
+  font-size: 12px;
+  color: #e74c3c;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+/* Date Cell */
+.date-cell {
+  font-size: 13px;
+  color: #999;
+}
+
+/* Parcel Cell */
+.parcel-cell {
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Actions Cell */
+.actions-cell {
+  text-align: center;
+}
+
+.btn-view,
+.btn-delete {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px 8px;
+  transition: transform 0.2s;
+}
+
+.btn-view:hover,
+.btn-delete:hover {
+  transform: scale(1.2);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.empty-state h3 {
+  color: #333;
+  margin: 0 0 10px 0;
+  font-size: 20px;
+}
+
+.empty-state p {
+  color: #999;
+  margin: 0 0 20px 0;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 12px 30px;
+  background: #2d5016;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  background: #1e3610;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 25px;
+  padding: 20px;
+}
+
+.btn-page {
+  padding: 10px 20px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-page:hover:not(:disabled) {
+  background: #2d5016;
+  color: white;
+  border-color: #2d5016;
+}
+
+.btn-page:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-info {
+  color: #666;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .disease-history-container {
+    padding: 15px;
+  }
+
+  .history-table {
+    font-size: 13px;
+  }
+
+  .history-table th,
+  .history-table td {
+    padding: 10px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .pagination {
+    flex-direction: column;
+  }
+
+  .btn-page {
+    width: 100%;
+  }
+}
+</style>

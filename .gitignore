@@ -1,0 +1,65 @@
+# Root .gitignore for Terrasens
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+
+# Build
+dist/
+build/
+out-tsc/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Angular
+.angular/
+angular.json
+
+# Logs
+npm-debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+.tmp
+temp/
+tmp/
+
+# CI/CD
+.github/workflows/
+.gitlab-ci.yml
+.travis.yml
+
+# Database
+*.sql
+*.db
+*.sqlite
+mysql_data/

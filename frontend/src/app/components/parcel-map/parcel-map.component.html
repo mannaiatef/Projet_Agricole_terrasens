@@ -1,0 +1,32 @@
+<div class="map-container">
+  <div #mapContainer class="leaflet-map"></div>
+
+  <div class="map-controls">
+    <button class="btn btn-sm btn-primary" (click)="zoomToParcel()" [disabled]="!parcelGeometry">
+      <i class="fas fa-search-plus"></i> Zoom to Parcel
+    </button>
+    <button class="btn btn-sm btn-secondary" (click)="clearMap()">
+      <i class="fas fa-trash"></i> Clear
+    </button>
+  </div>
+
+  <div class="map-legend">
+    <h4>Legend</h4>
+    <div class="legend-item">
+      <div class="legend-color" style="background-color: #F44336;"></div>
+      <span>High Stress (NDVI < 0.3)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background-color: #FF9800;"></div>
+      <span>Medium Stress (0.3 - 0.5)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background-color: #4CAF50;"></div>
+      <span>Healthy (NDVI > 0.5)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background-color: #2196F3;"></div>
+      <span>Parcel Boundary</span>
+    </div>
+  </div>
+</div>

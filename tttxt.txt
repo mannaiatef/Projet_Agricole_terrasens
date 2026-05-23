@@ -1,0 +1,19 @@
+je mettre un dossier agri-chatbot-backend , ce dossier contien un projet backend et frontend d'un projet du cropcalendar  ce projet et en python et angular , j'ai besoin de faire la meme entité .... la meme logique du backend , la bd le code , mais just transferer le code de python au express js , le dossier app qui contien le projet backend et meme le dossier principale agri-chatbot-backend contien des fichier sql et .env .... d'aprés sa tu va supprimer la logique du dossier crop-calendar-service et tu va remplacé tout ce logique dans le dossier crop-calendar-service 
+
+
+
+maintenant dans le dossier agri-chat-bot-backend/frontend , il ya le logique du frontend  , j'ai besoin de scraper ce logique avec leur code et de le mettre sous le dossier terrasens/frontend qui represente le frontend de mon projet , merci de scrapé tous le layouts .... tout le deseign et tout la structure puis verifier que tout les route du backend et relier avec le frontend et bien integrere  
+
+
+
+
+
+meteo :
+https://api.open-meteo.com/v1/forecast?latitude=36.938837&longitude=10.151496&hourly=temperature_2m,relative_humidity_2m,precipitation,et0_fao_evapotranspiration
+
+
+
+
+
+netstat -ano | findstr :3004
+taskkill /PID 18212 /F

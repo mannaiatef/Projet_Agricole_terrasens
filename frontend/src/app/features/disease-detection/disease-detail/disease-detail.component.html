@@ -1,0 +1,165 @@
+<div class="disease-detail-container">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading analysis details...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage && !isLoading" class="error-state">
+    <h2>⚠️ Error</h2>
+    <p>{{ errorMessage }}</p>
+    <button (click)="goBack()" class="btn btn-primary">← Go Back</button>
+  </div>
+
+  <!-- Analysis Details -->
+  <div *ngIf="analysis && !isLoading" class="analysis-detail">
+    <!-- Header -->
+    <div class="detail-header">
+      <button (click)="goBack()" class="back-btn">← Back</button>
+      <h1>Disease Analysis Details</h1>
+      <span class="analysis-date">{{ analysis.analysisDate | date:'full' }}</span>
+    </div>
+
+    <!-- Image & Status -->
+    <div class="detail-content">
+      <div class="image-section">
+        <img [src]="analysis.imageUrl" alt="Analyzed Image" class="analysis-image" />
+        <div class="status-badge" [style.backgroundColor]="getSeverityBgColor(analysis?.status || 'completed')">
+          <span [style.color]="getSeverityColor(analysis?.status || 'completed')">{{ (analysis?.status || 'completed').toUpperCase() }}</span>
+        </div>
+      </div>
+
+      <!-- Main Information -->
+      <div class="info-section">
+        <!-- Detected Diseases -->
+        <div class="diseases-container">
+          <h2>🦠 Detected Diseases</h2>
+
+          <div *ngIf="!analysis.detectedDiseases || analysis.detectedDiseases.length === 0" class="no-diseases">
+            <p>✅ No diseases detected!</p>
+          </div>
+
+          <div *ngFor="let disease of analysis.detectedDiseases || []" class="disease-item">
+            <div
+              class="disease-header"
+              [style.backgroundColor]="getSeverityBgColor(disease?.severity || 'low')"
+              [style.borderLeft]="'4px solid ' + getSeverityColor(disease?.severity || 'low')"
+            >
+              <div class="disease-title">
+                <h3>{{ disease?.name || 'Unknown Disease' }}</h3>
+                <span
+                  class="severity-badge"
+                  [style.backgroundColor]="getSeverityColor(disease?.severity || 'low')"
+                >
+                  {{ (disease?.severity || 'low').toUpperCase() }}
+                </span>
+              </div>
+            </div>
+
+            <div class="disease-details">
+              <div class="detail-row">
+                <span class="label">Confidence Level:</span>
+                <div class="confidence-bar">
+                  <div
+                    class="confidence-fill"
+                    [style.width.%]="(disease?.confidence || 0) * 100"
+                  ></div>
+                  <span class="percentage">{{ ((disease?.confidence || 0) * 100).toFixed(1) }}%</span>
+                </div>
+              </div>
+
+              <div class="detail-row">
+                <span class="label">Affected Area:</span>
+                <span class="value">{{ (disease?.affectedArea || 0).toFixed(1) }}%</span>
+              </div>
+
+              <!-- Severity Indicator -->
+              <div class="severity-indicator">
+                <div class="indicator-bar">
+                  <div
+                    class="indicator-fill"
+                    [style.width.%]="disease?.affectedArea || 0"
+                    [style.backgroundColor]="getSeverityColor(disease?.severity || 'low')"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Treatment Recommendations -->
+        <div class="recommendations-container">
+          <h2>🎯 Treatment Recommendations</h2>
+
+          <div class="recommendation-cards">
+            <div
+              *ngIf="analysis?.recommendations?.pesticide"
+              class="recommendation-card pesticide"
+            >
+              <div class="rec-header">
+                <h3>💊 Chemical Treatment</h3>
+              </div>
+              <p class="rec-content">{{ analysis.recommendations.pesticide }}</p>
+            </div>
+
+            <div
+              *ngIf="analysis?.recommendations?.organic"
+              class="recommendation-card organic"
+            >
+              <div class="rec-header">
+                <h3>🌱 Organic Method</h3>
+              </div>
+              <p class="rec-content">{{ analysis.recommendations.organic }}</p>
+            </div>
+
+            <div
+              *ngIf="analysis?.recommendations?.method"
+              class="recommendation-card method"
+            >
+              <div class="rec-header">
+                <h3>🔧 Application Method</h3>
+              </div>
+              <p class="rec-content">{{ analysis.recommendations.method }}</p>
+            </div>
+
+            <div
+              *ngIf="analysis?.recommendations?.preventive"
+              class="recommendation-card preventive"
+            >
+              <div class="rec-header">
+                <h3>🛡️ Prevention Measures</h3>
+              </div>
+              <p class="rec-content">{{ analysis.recommendations.preventive }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Parcel Information -->
+        <div *ngIf="analysis?.parcelId" class="parcel-info">
+          <h2>🚜 Linked Parcel</h2>
+          <div class="parcel-card">
+            <div class="detail-row">
+              <span class="label">Parcel ID:</span>
+              <span class="value">{{ analysis.parcelId }}</span>
+            </div>
+            <a
+              [routerLink]="['/app/disease-detection/parcel', analysis.parcelId]"
+              class="btn btn-primary btn-sm"
+            >
+              View All Analyses for This Parcel →
+            </a>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button (click)="goBack()" class="btn btn-secondary">← Back to Analysis List</button>
+          <a routerLink="/app/disease-detection" class="btn btn-primary">
+            Analyze Another Image
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

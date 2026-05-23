@@ -1,0 +1,196 @@
+<div class="parcel-stress-container">
+  <!-- Header -->
+  <div class="header">
+    <h1>Vegetation Stress Analysis</h1>
+    <p class="subtitle">Real-time NDVI monitoring and stress detection</p>
+  </div>
+
+  <!-- Error Alert -->
+  <div class="alert alert-error" *ngIf="error">
+    <div class="alert-content">
+      <span class="alert-icon">⚠️</span>
+      <span>{{ error }}</span>
+      <button class="alert-close" (click)="clearError()">×</button>
+    </div>
+  </div>
+
+  <!-- Success Alert -->
+  <div class="alert alert-success" *ngIf="successMessage">
+    <div class="alert-content">
+      <span class="alert-icon">✓</span>
+      <span>{{ successMessage }}</span>
+      <button class="alert-close" (click)="clearSuccess()">×</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Left: Parcel Selection & Controls -->
+    <div class="sidebar">
+      <div class="section">
+        <h2>Select Parcel</h2>
+        <div class="parcel-list" [class.loading]="loading">
+          <div *ngIf="loading" class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading parcels...</p>
+          </div>
+
+          <div
+            *ngFor="let parcel of parcels"
+            class="parcel-item"
+            [class.active]="selectedParcelId === parcel.id"
+            (click)="onParcelSelected(parcel.id)"
+          >
+            <div class="parcel-name">{{ parcel.name }}</div>
+            <div class="parcel-details">
+              {{ parcel.crop_type }} • {{ parcel.area }}ha
+            </div>
+          </div>
+
+          <div *ngIf="!loading && parcels.length === 0" class="empty-state">
+            <p>No parcels available</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analysis Controls -->
+      <div class="section" *ngIf="selectedParcelId">
+        <h2>Analysis Controls</h2>
+        <button
+          class="btn btn-primary"
+          [disabled]="analyzing || loading"
+          (click)="triggerAnalysis()"
+        >
+          <span *ngIf="!analyzing">↻ Analyze Now</span>
+          <span *ngIf="analyzing">
+            <span class="spinner-small"></span> Analyzing...
+          </span>
+        </button>
+
+        <div class="progress" *ngIf="analyzing">
+          <div class="progress-bar" [style.width.%]="getProgressBarHeight()">
+            {{ analysisProgress }}%
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Analysis Results & Map -->
+    <div class="main">
+      <!-- No Selection State -->
+      <div class="empty-state-large" *ngIf="!selectedParcelId && !loading">
+        <div class="empty-icon">📍</div>
+        <h3>Select a Parcel</h3>
+        <p>Choose a parcel from the list to view stress analysis</p>
+      </div>
+
+      <!-- Analysis Results -->
+      <div class="results" *ngIf="selectedParcelId && selectedParcel">
+        <!-- Stress Metrics -->
+        <div class="metrics-row">
+          <!-- Stress Level Badge -->
+          <div class="metric-card stress-card">
+            <div class="metric-label">Stress Level</div>
+            <div
+              class="stress-badge"
+              [style.background-color]="getStressColor()"
+            >
+              {{ getStressLevel() }}
+            </div>
+            <div class="metric-value" *ngIf="analysis">
+              {{ formatPercentage(analysis.record.stress_percentage) }}%
+            </div>
+            <div class="metric-subtext" *ngIf="!analysis">No data</div>
+          </div>
+
+          <!-- NDVI Value -->
+          <div class="metric-card">
+            <div class="metric-label">Mean NDVI</div>
+            <div class="metric-value" *ngIf="analysis">
+              {{ formatNDVI(analysis.record.mean_ndvi) }}
+            </div>
+            <div class="metric-subtext" *ngIf="!analysis">No data</div>
+            <div class="metric-range">(Healthy: >0.5)</div>
+          </div>
+
+          <!-- Analysis Age -->
+          <div class="metric-card">
+            <div class="metric-label">Last Analysis</div>
+            <div class="metric-value" *ngIf="analysis">
+              {{ analysis.record.created_at | date: 'short' }}
+            </div>
+            <div class="metric-subtext" *ngIf="!analysis">Never</div>
+            <div
+              class="metric-warning"
+              *ngIf="analysis && isAnalysisOld()"
+            >
+              ⚠️ Outdated
+            </div>
+          </div>
+        </div>
+
+        <!-- Stress Zones Summary -->
+        <div class="section" *ngIf="stressZones.length > 0">
+          <h3>Stress Zone Distribution</h3>
+          <div class="zones-grid">
+            <div *ngFor="let zone of stressZones" class="zone-card">
+              <div class="zone-label">{{ zone.name }}</div>
+              <div class="zone-value">
+                {{ formatPercentage(zone.area_percentage) }}%
+              </div>
+              <div
+                class="zone-stress-badge"
+                [style.background-color]="
+                  stressService.getZoneColor(zone.stress_level)
+                "
+              >
+                {{ zone.stress_level }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alerts Section -->
+        <div class="section" *ngIf="alerts.length > 0">
+          <h3>Active Alerts ({{ alerts.length }})</h3>
+          <div class="alerts-list">
+            <div *ngFor="let alert of alerts" class="alert-item">
+              <div class="alert-header">
+                <span class="alert-type" [class]="'type-' + alert.alert_type">
+                  {{ alert.alert_type }}
+                </span>
+                <span class="alert-severity">{{ alert.severity }}</span>
+              </div>
+              <div class="alert-message">{{ alert.message }}</div>
+              <div class="alert-footer">
+                <span class="alert-time">
+                  {{ alert.created_at | date: 'short' }}
+                </span>
+                <button
+                  class="btn-small"
+                  (click)="acknowledgeAlert(alert.id)"
+                  *ngIf="!alert.acknowledged_at"
+                >
+                  Acknowledge
+                </button>
+                <span class="acknowledged" *ngIf="alert.acknowledged_at">
+                  ✓ Acknowledged
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map Visualization -->
+      <div class="section" *ngIf="selectedParcelId && parcelGeometry">
+        <h3>Stress Map Visualization</h3>
+        <app-parcel-map
+          [parcelGeometry]="parcelGeometry"
+          [stressZones]="stressZones"
+          [parcelId]="selectedParcelId"
+        ></app-parcel-map>
+      </div>
+    </div>
+  </div>
+</div>

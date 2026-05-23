@@ -1,0 +1,6 @@
+{"level":"error","message":"connect ECONNREFUSED ::1:3002","parcelId":23,"service":"stress-service","timestamp":"2026-04-07 21:55:14"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3002","parcelId":23,"recordId":18,"service":"stress-service","timestamp":"2026-04-07 21:55:14"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3002","level":"error","message":"[Dev Mock] Job failed: 23-1775595314368","service":"stress-service","timestamp":"2026-04-07 21:55:14"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3002","parcelId":23,"service":"stress-service","timestamp":"2026-04-07 22:01:55"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3002","parcelId":23,"recordId":19,"service":"stress-service","timestamp":"2026-04-07 22:01:55"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3002","level":"error","message":"[Dev Mock] Job failed: 23-1775595715799","service":"stress-service","timestamp":"2026-04-07 22:01:55"}

@@ -1,0 +1,364 @@
+<div class="disease-detection-container">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1>🦠 Disease & Pest Detection</h1>
+      <p>AI-powered crop disease identification and treatment recommendations</p>
+    </div>
+  </div>
+
+  <!-- Alerts -->
+  <div class="alerts-container">
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-error">
+      {{ errorMessage }}
+    </div>
+  </div>
+
+  <!-- Authentication Required -->
+  <div *ngIf="!isAuthenticated" class="auth-required-container">
+    <div class="auth-required-card">
+      <h2>🔒 Authentication Required</h2>
+      <p>You need to be logged in to use the disease detection feature.</p>
+      <a routerLink="/app/login" class="login-button">Go to Login</a>
+    </div>
+  </div>
+
+  <!-- Main Content (visible when authenticated) -->
+  <div *ngIf="isAuthenticated" class="main-content">
+  <div class="tabs-navigation">
+    <button
+      [class.active]="activeTab === 'upload'"
+      (click)="switchTab('upload')"
+      class="tab-button"
+    >
+      📤 Upload & Analyze
+    </button>
+    <button
+      [class.active]="activeTab === 'history'"
+      (click)="switchTab('history')"
+      class="tab-button"
+    >
+      📋 History
+    </button>
+    <button
+      [class.active]="activeTab === 'statistics'"
+      (click)="switchTab('statistics')"
+      class="tab-button"
+    >
+      📊 Statistics
+    </button>
+    <button
+      [class.active]="activeTab === 'high-risk'"
+      (click)="switchTab('high-risk')"
+      class="tab-button"
+    >
+      🚨 High Risk
+    </button>
+  </div>
+
+  <!-- Content Sections -->
+  <div class="content-area">
+    <!-- Upload & Analyze Tab -->
+    <section *ngIf="activeTab === 'upload'" class="tab-content upload-section">
+      <div class="upload-container">
+        <div
+          class="drop-zone"
+          (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)"
+          (drop)="onDrop($event)"
+        >
+          <div class="drop-zone-content">
+            <div class="upload-icon">📷</div>
+            <h2>Drag & Drop Your Crop Image</h2>
+            <p>or click to browse</p>
+            <input
+              type="file"
+              #fileInput
+              (change)="onFileSelected($event)"
+              accept="image/*"
+              style="display: none"
+            />
+            <button
+              (click)="fileInput.click()"
+              class="btn btn-primary"
+            >
+              Select Image
+            </button>
+          </div>
+        </div>
+
+        <!-- Selected File Preview -->
+        <div *ngIf="selectedFile" class="file-preview">
+          <div class="preview-content">
+            <img
+              [src]="previewImageUrl"
+              alt="Preview"
+              class="preview-image"
+            />
+            <div class="file-info">
+              <p><strong>File:</strong> {{ selectedFile.name }}</p>
+              <p><strong>Size:</strong> {{ (selectedFile.size / 1024).toFixed(2) }} KB</p>
+              <p><strong>Type:</strong> {{ selectedFile.type }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Parcel Selection -->
+        <div class="parcel-selection">
+          <label for="parcelSelect">
+            Link to Parcel (Optional):
+          </label>
+          <select
+            id="parcelSelect"
+            [(ngModel)]="selectedParcelId"
+            class="form-control"
+          >
+            <option value="">No specific parcel</option>
+            <!-- Dynamically populate from parcels service -->
+          </select>
+        </div>
+
+        <!-- Analyze Button -->
+        <button
+          (click)="analyzeImage()"
+          [disabled]="!selectedFile || isAnalyzing"
+          class="btn btn-success btn-large"
+        >
+          <span *ngIf="!isAnalyzing">🔍 Analyze Image</span>
+          <span *ngIf="isAnalyzing">⏳ Analyzing...</span>
+        </button>
+
+        <!-- Progress Bar -->
+        <div *ngIf="isAnalyzing" class="progress-container">
+          <div class="progress-bar" [style.width.%]="analysisProgress"></div>
+          <p class="progress-text">{{ analysisProgress.toFixed(0) }}% Complete</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- History Tab -->
+    <section *ngIf="activeTab === 'history'" class="tab-content history-section">
+      <div class="section-header">
+        <h2>📋 Analysis History</h2>
+        <p class="text-muted">Total analyses: {{ totalItems }}</p>
+      </div>
+
+      <div *ngIf="(analysisHistory?.length || 0) === 0" class="empty-state">
+        <p>No analyses found. Upload an image to get started!</p>
+      </div>
+
+      <div *ngIf="(analysisHistory?.length || 0) > 0" class="history-grid">
+        <div *ngFor="let analysis of analysisHistory" class="history-card">
+          <div class="card-image">
+            <img [src]="analysis.imageUrl" alt="Analysis" />
+          </div>
+          <div class="card-content">
+            <h3>{{ analysis.mainDisease }}</h3>
+            <p class="confidence">
+              Confidence:
+              <strong>{{ (analysis.confidence * 100).toFixed(1) }}%</strong>
+            </p>
+            <p class="date">
+              {{ analysis.analysisDate | date:'short' }}
+            </p>
+            <div class="card-actions">
+              <a
+                [routerLink]="['/app/disease-detection/analysis', analysis.id]"
+                class="btn btn-sm btn-info"
+              >
+                View Details
+              </a>
+              <button
+                (click)="deleteAnalysis(analysis.id)"
+                class="btn btn-sm btn-danger"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div *ngIf="totalPages > 1" class="pagination">
+        <button
+          (click)="goToPage(currentPage - 1)"
+          [disabled]="currentPage === 1"
+          class="btn btn-sm"
+        >
+          ← Previous
+        </button>
+        <span class="page-info">
+          Page {{ currentPage }} of {{ totalPages }}
+        </span>
+        <button
+          (click)="goToPage(currentPage + 1)"
+          [disabled]="currentPage === totalPages"
+          class="btn btn-sm"
+        >
+          Next →
+        </button>
+      </div>
+    </section>
+
+    <!-- Statistics Tab -->
+    <section *ngIf="activeTab === 'statistics'" class="tab-content statistics-section">
+      <div class="section-header">
+        <h2>📊 Disease Statistics</h2>
+      </div>
+
+      <div *ngIf="statistics" class="stats-grid">
+        <!-- Overview Cards -->
+        <div class="stat-card">
+          <div class="stat-value">{{ statistics.totalAnalyses }}</div>
+          <div class="stat-label">Total Analyses</div>
+        </div>
+        <div class="stat-card success">
+          <div class="stat-value">{{ statistics.successfulAnalyses }}</div>
+          <div class="stat-label">Successful</div>
+        </div>
+        <div class="stat-card error">
+          <div class="stat-value">{{ statistics.failedAnalyses }}</div>
+          <div class="stat-label">Failed</div>
+        </div>
+
+        <!-- Severity Distribution -->
+        <div class="severity-distribution">
+          <h3>Severity Distribution</h3>
+          <div class="severity-bars">
+            <div class="severity-item">
+              <span class="severity-label">Low</span>
+              <div class="severity-bar">
+                <div
+                  class="severity-fill low"
+                  [style.width.%]="((statistics?.severityDistribution?.low || 0) / (statistics?.totalAnalyses || 1) * 100) || 0"
+                ></div>
+              </div>
+              <span class="severity-count">{{ statistics?.severityDistribution?.low || 0 }}</span>
+            </div>
+            <div class="severity-item">
+              <span class="severity-label">Medium</span>
+              <div class="severity-bar">
+                <div
+                  class="severity-fill medium"
+                  [style.width.%]="((statistics?.severityDistribution?.medium || 0) / (statistics?.totalAnalyses || 1) * 100) || 0"
+                ></div>
+              </div>
+              <span class="severity-count">{{ statistics?.severityDistribution?.medium || 0 }}</span>
+            </div>
+            <div class="severity-item">
+              <span class="severity-label">High</span>
+              <div class="severity-bar">
+                <div
+                  class="severity-fill high"
+                  [style.width.%]="((statistics?.severityDistribution?.high || 0) / (statistics?.totalAnalyses || 1) * 100) || 0"
+                ></div>
+              </div>
+              <span class="severity-count">{{ statistics?.severityDistribution?.high || 0 }}</span>
+            </div>
+            <div class="severity-item">
+              <span class="severity-label">Critical</span>
+              <div class="severity-bar">
+                <div
+                  class="severity-fill critical"
+                  [style.width.%]="((statistics?.severityDistribution?.critical || 0) / (statistics?.totalAnalyses || 1) * 100) || 0"
+                ></div>
+              </div>
+              <span class="severity-count">{{ statistics?.severityDistribution?.critical || 0 }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Diseases -->
+        <div class="top-diseases">
+          <h3>Most Common Diseases</h3>
+          <table class="diseases-table">
+            <thead>
+              <tr>
+                <th>Disease</th>
+                <th>Count</th>
+                <th>Percentage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let disease of statistics.commonDiseases | slice:0:10">
+                <td>{{ disease.name }}</td>
+                <td>{{ disease.count }}</td>
+                <td>
+                  <div class="percentage-bar">
+                    <div
+                      class="percentage-fill"
+                      [style.width.%]="disease.percentage"
+                    ></div>
+                    <span>{{ disease.percentage.toFixed(1) }}%</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div *ngIf="!statistics" class="loading">
+        Loading statistics...
+      </div>
+    </section>
+
+    <!-- High Risk Tab -->
+    <section *ngIf="activeTab === 'high-risk'" class="tab-content high-risk-section">
+      <div class="section-header">
+        <h2>🚨 High Risk Detections</h2>
+        <p class="text-muted">{{ highRiskAnalyses?.length || 0 }} high-risk analyses detected</p>
+      </div>
+
+      <div *ngIf="(highRiskAnalyses?.length || 0) === 0" class="empty-state success">
+        <p>✅ No high-risk detections! Your crops are healthy.</p>
+      </div>
+
+      <div *ngIf="(highRiskAnalyses?.length || 0) > 0" class="high-risk-grid">
+        <div *ngFor="let analysis of highRiskAnalyses" class="risk-card">
+          <div class="risk-badge" [style.backgroundColor]="getSeverityColor(analysis.severity)">
+            {{ getSeverityIcon(analysis.severity) }}
+            {{ analysis.severity.toUpperCase() }}
+          </div>
+          <img [src]="analysis.imageUrl" alt="Risk Detection" class="risk-image" />
+          <div class="risk-content">
+            <h3>{{ analysis?.detectedDiseases?.[0]?.name || 'Unknown Disease' }}</h3>
+            <p class="confidence">
+              Confidence: {{ ((analysis?.detectedDiseases?.[0]?.confidence || 0) * 100).toFixed(1) }}%
+            </p>
+            <p class="affected-area">
+              Affected Area: {{ analysis?.detectedDiseases?.[0]?.affectedArea?.toFixed(1) || 'N/A' }}%
+            </p>
+
+            <!-- Recommendations -->
+            <div class="recommendations">
+              <h4>🎯 Recommended Actions:</h4>
+              <ul>
+                <li *ngIf="analysis.recommendations.pesticide">
+                  <strong>Pesticide:</strong> {{ analysis.recommendations.pesticide }}
+                </li>
+                <li *ngIf="analysis.recommendations.organic">
+                  <strong>Organic Method:</strong> {{ analysis.recommendations.organic }}
+                </li>
+                <li *ngIf="analysis.recommendations.preventive">
+                  <strong>Prevention:</strong> {{ analysis.recommendations.preventive }}
+                </li>
+              </ul>
+            </div>
+
+            <a
+              [routerLink]="['/app/disease-detection/analysis', analysis.id]"
+              class="btn btn-primary"
+            >
+              View Full Details
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

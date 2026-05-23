@@ -1,0 +1,658 @@
+<div class="disease-upload-container">
+  <!-- Title -->
+  <div class="upload-header">
+    <h2>🌱 Crop Disease Detection</h2>
+    <p>Upload a crop image to detect diseases and get treatment recommendations</p>
+  </div>
+
+  <!-- Language Selector (Bonus Feature) -->
+  <div class="language-selector">
+    <button (click)="translator.setLanguage('en')" 
+            [class.active]="translator.getLanguage() === 'en'">EN</button>
+    <button (click)="translator.setLanguage('fr')" 
+            [class.active]="translator.getLanguage() === 'fr'">FR</button>
+    <button (click)="translator.setLanguage('ar')" 
+            [class.active]="translator.getLanguage() === 'ar'">AR</button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="upload-content">
+    <!-- Upload Area -->
+    <div class="upload-area"
+         [class.drag-over]="isDragOver"
+         (dragover)="onDragOver($event)"
+         (dragleave)="onDragLeave()"
+         (drop)="onDrop($event)">
+      
+      <div class="upload-prompt" *ngIf="!selectedFile">
+        <div class="upload-icon">📸</div>
+        <h3>{{ translator.translate('select_image') }}</h3>
+        <p>{{ translator.translate('or_drag') }}</p>
+        <input type="file" 
+               accept="image/jpeg,image/png" 
+               (change)="onFileSelected($event)"
+               style="display: none"
+               #fileInput>
+        <button class="upload-btn" (click)="fileInput.click()">
+          {{ translator.translate('upload_button') }}
+        </button>
+      </div>
+
+      <!-- Image Preview -->
+      <div class="preview-section" *ngIf="selectedFile && previewUrl">
+        <div class="preview-container">
+          <h4>{{ translator.translate('preview') }}</h4>
+          <img [src]="previewUrl" alt="Preview" class="preview-image">
+          <div class="file-info">
+            <p><strong>File:</strong> {{ selectedFile.name }}</p>
+            <p><strong>Size:</strong> {{ (selectedFile.size / 1024).toFixed(2) }} KB</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional: Parcel Selection -->
+    <div class="parcel-selection" *ngIf="selectedFile">
+      <label>Associated Parcel (Optional):</label>
+      <input type="number" 
+             [(ngModel)]="selectedParcelId" 
+             placeholder="Enter parcel ID">
+    </div>
+
+    <!-- Error Message -->
+    <div class="error-message" *ngIf="analysisError">
+      <strong>⚠️ {{ translator.translate('error') }}:</strong> {{ analysisError }}
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons" *ngIf="selectedFile && !isAnalyzing && !analysisResult">
+      <button class="btn-primary" (click)="analyzeImage()">
+        🔍 Analyze Image
+      </button>
+      <button class="btn-secondary" (click)="clearSelection()">
+        Clear
+      </button>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" *ngIf="isAnalyzing">
+      <div class="spinner"></div>
+      <p>{{ translator.translate('analyzing') }}</p>
+    </div>
+
+    <!-- Analysis Results Card -->
+    <div class="result-card" *ngIf="analysisResult && !isAnalyzing">
+      <div class="result-header">
+        <h3>{{ translator.translate('results') }}</h3>
+        <button class="close-btn" (click)="clearSelection()">✕</button>
+      </div>
+
+      <!-- Disease Info -->
+      <div class="disease-info">
+        <div class="disease-name">
+          <label>{{ translator.translate('disease_name') }}:</label>
+          <h2>{{ translator.translate(analysisResult.disease) }}</h2>
+        </div>
+
+        <div class="confidence">
+          <label>{{ translator.translate('confidence') }}:</label>
+          <div class="confidence-bar">
+            <div class="confidence-fill" 
+                 [style.width.%]="analysisResult.confidence"
+                 [ngClass]="getConfidenceBadgeClass(analysisResult.confidence)">
+              {{ analysisResult.confidence }}%
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Predictions -->
+      <div class="predictions" *ngIf="analysisResult.topPredictions">
+        <h4>Top Predictions:</h4>
+        <div class="prediction-list">
+          <div class="prediction" *ngFor="let pred of analysisResult.topPredictions">
+            <span class="prediction-name">{{ translator.translate(pred.label) }}</span>
+            <span class="prediction-score">{{ pred.score }}%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Treatment Recommendations -->
+      <div class="recommendation-section">
+        <h4>{{ translator.translate('recommendation') }}</h4>
+        <p class="recommendation-text">{{ analysisResult.recommendation }}</p>
+
+        <!-- Treatment Actions -->
+        <div class="treatment-info" *ngIf="analysisResult.treatment">
+          <h5>Recommended Actions:</h5>
+          <ul>
+            <li *ngFor="let action of analysisResult.treatment.actions">
+              {{ action }}
+            </li>
+          </ul>
+        </div>
+
+        <!-- Urgency Badge -->
+        <div class="urgency-badge" [ngClass]="getUrgencyBadgeClass(analysisResult.urgency)">
+          {{ analysisResult.urgency.toUpperCase() }} PRIORITY
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer" *ngIf="analysisResult.disclaimer">
+          <strong>⚠️ {{ analysisResult.disclaimer }}</strong>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="result-actions">
+        <button class="btn-primary" (click)="clearSelection()">
+          Analyze Another Image
+        </button>
+        <button class="btn-secondary" (click)="selectedParcelId = null">
+          Clear Selection
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style scoped>
+.disease-upload-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.upload-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.upload-header h2 {
+  font-size: 28px;
+  color: #2d5016;
+  margin: 0 0 10px 0;
+}
+
+.upload-header p {
+  color: #666;
+  margin: 0;
+}
+
+/* Language Selector */
+.language-selector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.language-selector button {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.language-selector button.active {
+  background: #2d5016;
+  color: white;
+  border-color: #2d5016;
+}
+
+/* Upload Area */
+.upload-area {
+  border: 3px dashed #bbb;
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  transition: all 0.3s;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.upload-area.drag-over {
+  border-color: #2d5016;
+  background-color: #f0f8e5;
+  transform: scale(1.02);
+}
+
+.upload-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.upload-icon {
+  font-size: 48px;
+}
+
+.upload-prompt h3 {
+  margin: 0;
+  color: #333;
+  font-size: 20px;
+}
+
+.upload-prompt p {
+  margin: 0;
+  color: #999;
+  font-size: 14px;
+}
+
+.upload-btn {
+  padding: 12px 30px;
+  background: #2d5016;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.upload-btn:hover {
+  background: #1e3610;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
+}
+
+/* Preview Section */
+.preview-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.preview-section h4 {
+  margin: 0;
+  color: #333;
+}
+
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+.file-info {
+  background: white;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #666;
+}
+
+.file-info p {
+  margin: 5px 0;
+}
+
+/* Parcel Selection */
+.parcel-selection {
+  margin: 20px 0;
+  padding: 15px;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+
+.parcel-selection label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.parcel-selection input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Error Message */
+.error-message {
+  padding: 15px;
+  background: #fee;
+  color: #c33;
+  border: 1px solid #fcc;
+  border-radius: 4px;
+  margin: 15px 0;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background: #2d5016;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1e3610;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
+}
+
+.btn-secondary {
+  background: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+  background: #e0e0e0;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 40px;
+}
+
+.spinner {
+  border: 4px solid #f0f0f0;
+  border-top: 4px solid #2d5016;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-spinner p {
+  color: #666;
+  margin: 0;
+}
+
+/* Result Card */
+.result-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.result-header h3 {
+  margin: 0;
+  color: #2d5016;
+  font-size: 22px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* Disease Info */
+.disease-info {
+  margin-bottom: 25px;
+}
+
+.disease-name h2 {
+  margin: 0;
+  color: #2d5016;
+  font-size: 24px;
+}
+
+.disease-name label {
+  display: block;
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.confidence {
+  margin-top: 15px;
+}
+
+.confidence label {
+  display: block;
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.confidence-bar {
+  width: 100%;
+  height: 30px;
+  background: #f0f0f0;
+  border-radius: 15px;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.confidence-fill {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.5s ease;
+  color: white;
+  font-weight: 600;
+}
+
+.confidence-fill.high {
+  background: linear-gradient(135deg, #2d5016, #1e3610);
+}
+
+.confidence-fill.medium {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.confidence-fill.low {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+/* Predictions */
+.predictions {
+  margin: 25px 0;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.predictions h4 {
+  margin: 0 0 12px 0;
+  color: #333;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.prediction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.prediction {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: white;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.prediction-name {
+  font-weight: 500;
+}
+
+.prediction-score {
+  color: #2d5016;
+  font-weight: 600;
+}
+
+/* Recommendation Section */
+.recommendation-section {
+  margin: 25px 0;
+  padding: 20px;
+  background: #f0f8e5;
+  border-left: 4px solid #2d5016;
+  border-radius: 4px;
+}
+
+.recommendation-section h4 {
+  margin: 0 0 10px 0;
+  color: #2d5016;
+}
+
+.recommendation-text {
+  margin: 0 0 15px 0;
+  color: #555;
+  line-height: 1.6;
+}
+
+.treatment-info {
+  margin: 15px 0;
+}
+
+.treatment-info h5 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 14px;
+}
+
+.treatment-info ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.treatment-info li {
+  color: #555;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.urgency-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  margin-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.urgency-badge.high {
+  background: #fee;
+  color: #c33;
+}
+
+.urgency-badge.medium {
+  background: #fef3cd;
+  color: #856404;
+}
+
+.urgency-badge.low {
+  background: #e8f5e9;
+  color: #2d5016;
+}
+
+.disclaimer {
+  margin-top: 15px;
+  padding: 10px;
+  background: #fff3cd;
+  border-left: 4px solid #f39c12;
+  font-size: 13px;
+  color: #856404;
+  border-radius: 4px;
+}
+
+/* Result Actions */
+.result-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+@media (max-width: 768px) {
+  .disease-upload-container {
+    padding: 15px;
+  }
+
+  .upload-area {
+    padding: 30px 15px;
+  }
+
+  .result-card {
+    padding: 15px;
+  }
+
+  .action-buttons,
+  .result-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+}
+</style>

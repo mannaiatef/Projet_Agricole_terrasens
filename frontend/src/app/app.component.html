@@ -1,0 +1,24 @@
+<header class="navbar">
+  <div class="container navbar-content">
+    <div class="navbar-brand">
+      <h1>🌱 Terrasens</h1>
+    </div>
+    <nav class="navbar-menu" *ngIf="isLoggedIn">
+      <span class="welcome-message">Welcome, {{ userName }}</span>
+      <button (click)="logout()" class="btn btn-danger">Logout</button>
+    </nav>
+  </div>
+</header>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Chatbot Component -->
+<app-chatbot></app-chatbot>
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2024 Terrasens. All rights reserved.</p>
+  </div>
+</footer>

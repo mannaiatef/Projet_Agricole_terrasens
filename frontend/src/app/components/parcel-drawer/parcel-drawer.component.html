@@ -1,0 +1,92 @@
+<div class="parcel-drawer-container">
+  <!-- Header with instructions -->
+  <div class="drawer-header">
+    <h3>{{ editMode ? 'Edit' : 'Draw' }} Parcel Boundaries</h3>
+    <p class="instructions">{{ instructions.help }}</p>
+  </div>
+
+  <!-- Map Container -->
+  <div class="map-wrapper" [class.loading]="!isMapReady">
+    <div #mapContainer class="map-container"></div>
+    <div *ngIf="!isMapReady" class="loading-overlay">
+      <p>Loading map...</p>
+    </div>
+  </div>
+
+  <!-- Drawing Controls and Information -->
+  <div class="controls-panel">
+    <!-- Status and Calculator -->
+    <div class="status-section">
+      <div class="status-card" [class.active]="hasParcelDrawn()">
+        <div class="status-header">
+          <p class="status-label">Parcel Summary</p>
+          <button *ngIf="hasParcelDrawn()" (click)="clearDrawing()" class="clear-btn" title="Clear drawing">
+            ✕ Clear
+          </button>
+        </div>
+
+        <div *ngIf="parcelData" class="parcel-info">
+          <!-- Area Display -->
+          <div class="info-item">
+            <label>Area:</label>
+            <div class="value-display">
+              <span class="area-value">{{ getFormattedArea() }}</span>
+              <button (click)="toggleAreaUnit()" class="toggle-unit" title="Toggle between hectares and m²">
+                {{ areaUnit === 'hectares' ? 'ha' : 'm²' }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Point Count -->
+          <div class="info-item">
+            <label>Points:</label>
+            <span class="value">{{ parcelData.pointCount }}</span>
+          </div>
+
+          <!-- Center Coordinates -->
+          <div class="info-item coordinates">
+            <label>Center Coordinates:</label>
+            <div class="coord-values">
+              <span class="value" [title]="'Latitude: ' + parcelData.center[0]">
+                {{ parcelData.center[0].toFixed(4) }}°
+              </span>
+              <span class="value" [title]="'Longitude: ' + parcelData.center[1]">
+                {{ parcelData.center[1].toFixed(4) }}°
+              </span>
+            </div>
+          </div>
+
+          <!-- GeoJSON Preview (collapsed) -->
+          <details class="geojson-preview">
+            <summary>View GeoJSON</summary>
+            <pre>{{ parcelData.geometry | json }}</pre>
+          </details>
+        </div>
+
+        <div *ngIf="!parcelData" class="no-parcel">
+          <p>👇 Draw a polygon on the map to create a parcel boundary</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instructions Panel -->
+    <div class="instructions-section">
+      <h4>How to Draw:</h4>
+      <ol>
+        <li>Use the <strong>polygon tool</strong> (top-left corner) to draw</li>
+        <li>Click on the map to place polygon vertices</li>
+        <li>Complete the polygon by clicking on the starting point</li>
+        <li>Edit the polygon by dragging vertices or using the edit tool</li>
+        <li>Area and coordinates are calculated automatically</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Parcel Summary at Bottom -->
+  <div *ngIf="hasParcelDrawn()" class="summary-footer">
+    <div class="summary-content">
+      <strong>Ready to save:</strong> Parcel with {{ parcelData!.pointCount }} points,
+      {{ getFormattedArea() }}, at coordinates ({{ parcelData!.center[0].toFixed(4) }}, {{ parcelData!.center[1].toFixed(4) }})
+    </div>
+  </div>
+</div>

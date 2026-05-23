@@ -1,0 +1,126 @@
+<div class="irrigation-dashboard">
+  <!-- Header -->
+  <div class="dashboard-header">
+    <h1>💧 Irrigation Management</h1>
+    <p>Intelligent irrigation recommendations based on weather and field stress</p>
+  </div>
+
+  <!-- Error Alert -->
+  <app-irrigation-alert
+    *ngIf="error$ | async as error"
+    [type]="'error'"
+    [message]="error"
+    (onDismiss)="dismissError()"
+  ></app-irrigation-alert>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="loading$ | async" class="loading-overlay">
+    <div class="spinner"></div>
+    <p>Processing...</p>
+  </div>
+
+  <!-- Main Content -->
+  <div class="dashboard-content">
+    <!-- Left Panel: Parcel Selection -->
+    <div class="parcel-selector-panel">
+      <h2>Select Field</h2>
+
+      <div class="parcel-list">
+        <button
+          *ngFor="let parcel of parcels"
+          class="parcel-button"
+          [class.active]="selectedParcelId === parcel.id"
+          (click)="onParcelSelected(parcel.id)"
+        >
+          <span class="parcel-icon">🌾</span>
+          <span class="parcel-name">{{ parcel.name }}</span>
+          <span class="parcel-id">#{{ parcel.id }}</span>
+        </button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="btn btn-primary btn-block" (click)="calculateIrrigation()">
+          <span class="icon">⚡</span>
+          Calculate Irrigation
+        </button>
+        <button class="btn btn-secondary btn-block" (click)="getLatestRecommendation()">
+          <span class="icon">📊</span>
+          View Latest
+        </button>
+        <button class="btn btn-secondary btn-block" (click)="loadHistory()">
+          <span class="icon">📈</span>
+          View History
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Panel: Content -->
+    <div class="content-panel">
+      <!-- High Priority Alert -->
+      <div
+        *ngIf="currentRecommendation && currentRecommendation.priority === 'HIGH'"
+        class="alert alert-danger"
+      >
+        <span class="alert-icon">⚠️</span>
+        <div class="alert-content">
+          <h3>Urgent Irrigation Required</h3>
+          <p>{{ currentRecommendation.decision_reason }}</p>
+        </div>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="tab-navigation">
+        <button
+          class="tab-button"
+          [class.active]="activeTab === 'recommendation'"
+          (click)="activeTab = 'recommendation'"
+        >
+          💧 Recommendation
+        </button>
+        <button
+          class="tab-button"
+          [class.active]="activeTab === 'schedule'"
+          (click)="activeTab = 'schedule'"
+        >
+          📅 Schedule
+        </button>
+        <button
+          class="tab-button"
+          [class.active]="activeTab === 'history'"
+          (click)="activeTab = 'history'"
+        >
+          📋 History
+        </button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="tab-content">
+        <!-- Recommendation Tab -->
+        <div *ngIf="activeTab === 'recommendation'" class="tab-pane">
+          <app-irrigation-recommendation
+            [recommendation]="currentRecommendation"
+            [onCalculate]="calculateIrrigation.bind(this)"
+            (onSchedule)="openScheduleForm()"
+          ></app-irrigation-recommendation>
+        </div>
+
+        <!-- Schedule Tab -->
+        <div *ngIf="activeTab === 'schedule'" class="tab-pane">
+          <app-irrigation-schedule
+            [parcelId]="selectedParcelId"
+            [recommendation]="currentRecommendation"
+          ></app-irrigation-schedule>
+        </div>
+
+        <!-- History Tab -->
+        <div *ngIf="activeTab === 'history'" class="tab-pane">
+          <app-irrigation-history
+            [records]="history"
+            [parcelId]="selectedParcelId"
+          ></app-irrigation-history>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

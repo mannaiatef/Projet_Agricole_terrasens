@@ -1,0 +1,107 @@
+<div class="schedule-container">
+  <!-- Header with Add Button -->
+  <div class="schedule-header">
+    <h3>📅 Irrigation Schedule</h3>
+    <button class="btn btn-secondary" (click)="showAddForm = !showAddForm">
+      <span class="icon">+</span>
+      {{ showAddForm ? 'Cancel' : 'Add Schedule' }}
+    </button>
+  </div>
+
+  <!-- Add Schedule Form -->
+  <div *ngIf="showAddForm" class="add-schedule-form">
+    <div class="form-group">
+      <label>Date</label>
+      <input type="date" [(ngModel)]="newSchedule.date" />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Time</label>
+        <input type="time" [(ngModel)]="newSchedule.time" />
+      </div>
+      <div class="form-group">
+        <label>Amount (mm)</label>
+        <input type="number" [(ngModel)]="newSchedule.amount" />
+      </div>
+      <div class="form-group">
+        <label>Duration (min)</label>
+        <input type="number" [(ngModel)]="newSchedule.duration" />
+      </div>
+    </div>
+
+    <button class="btn btn-primary" (click)="addSchedule()">
+      <span class="icon">✓</span>
+      Save Schedule
+    </button>
+  </div>
+
+  <!-- Schedule List -->
+  <div class="schedule-list">
+    <div *ngIf="schedules.length === 0" class="empty-state">
+      <p>No schedules planned</p>
+    </div>
+
+    <div *ngFor="let schedule of schedules; let i = index" class="schedule-item">
+      <div class="schedule-status">
+        <span
+          class="status-badge"
+          [style.color]="getStatusColor(schedule.status)"
+        >
+          {{ getStatusEmoji(schedule.status) }}
+        </span>
+      </div>
+
+      <div class="schedule-details">
+        <div class="schedule-date">
+          <strong>{{ formatDate(schedule.date) }}</strong>
+          <span class="schedule-time">{{ schedule.time }}</span>
+        </div>
+        <div class="schedule-info">
+          <span class="info-item">
+            <span class="icon">💧</span>
+            {{ schedule.amount }}mm
+          </span>
+          <span class="info-item">
+            <span class="icon">⏱️</span>
+            {{ schedule.duration }} min
+          </span>
+        </div>
+      </div>
+
+      <div class="schedule-actions">
+        <button
+          *ngIf="schedule.status === 'planned'"
+          class="btn btn-xs btn-primary"
+          (click)="executeNow(schedule)"
+        >
+          Execute Now
+        </button>
+        <button class="btn btn-xs btn-danger" (click)="deleteSchedule(i)">
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upcoming Summary -->
+  <div class="summary-section" *ngIf="schedules.length > 0">
+    <h4>Summary</h4>
+    <div class="summary-stats">
+      <div class="stat">
+        <span class="label">Total Schedules</span>
+        <span class="value">{{ schedules.length }}</span>
+      </div>
+      <div class="stat">
+        <span class="label">Planned</span>
+        <span class="value">{{ (schedules | slice: 0).length }}</span>
+      </div>
+      <div class="stat">
+        <span class="label">Total Water</span>
+        <span class="value">
+          {{ (schedules | slice: 0 | map: 'amount' | sum) | number: '1.1-1' }}mm
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

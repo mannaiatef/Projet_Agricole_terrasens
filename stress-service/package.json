@@ -1,0 +1,38 @@
+{
+  "name": "stress-service",
+  "version": "1.0.0",
+  "description": "Smart Agriculture Vegetation Stress Detection Microservice",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "migrations": "node db/migrations.js",
+    "seed-db": "node db/seed.js",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [
+    "agriculture",
+    "ndvi",
+    "stress-detection",
+    "satellite-imagery",
+    "planet-labs"
+  ],
+  "author": "AgriTech",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "bullmq": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.0",
+    "node-cron": "^3.0.2",
+    "redis": "^4.6.0",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1"
+  }
+}

@@ -1,0 +1,54 @@
+<div class="dashboard-wrapper">
+  <!-- Header Navigation -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="brand">
+        <h1>🌾 Terrasens</h1>
+        <p>Smart Agriculture Platform</p>
+      </div>
+
+      <nav class="main-nav">
+        <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
+          📊 Overview
+        </a>
+        <a routerLink="/fields" routerLinkActive="active" class="nav-link">
+          🌾 Fields
+        </a>
+        <a routerLink="/dashboard/parcelles" routerLinkActive="active" class="nav-link">
+          📍 Mes Parcelles
+        </a>
+        <a routerLink="/dashboard/calendar" routerLinkActive="active" class="nav-link">
+          📅 Crop Calendar
+        </a>
+        <a href="#" class="nav-link">
+          💧 Irrigation
+        </a>
+        <a href="#" class="nav-link">
+          📊 Analytics
+        </a>
+        <a href="#" class="nav-link">
+          ⚙️ Settings
+        </a>
+      </nav>
+
+      <div class="user-menu">
+        <div class="user-info">
+          <span class="user-name">{{ currentUser?.name || 'User' }}</span>
+          <button (click)="logout()" class="btn-logout">
+            🚪 Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="dashboard-main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Footer -->
+  <footer class="dashboard-footer">
+    <p>&copy; 2024 Terrasens. Smart Agriculture Solutions.</p>
+  </footer>
+</div>

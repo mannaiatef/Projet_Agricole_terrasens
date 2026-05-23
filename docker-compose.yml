@@ -1,0 +1,269 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: terrasens-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: terrasens_auth
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - terrasens-network
+
+  # Auth Service
+  auth-service:
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    container_name: terrasens-auth-service
+    environment:
+      PORT: 3001
+      NODE_ENV: production
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: terrasens_auth
+      JWT_SECRET: terrasens_jwt_secret_key_production
+      JWT_EXPIRATION: 7d
+    ports:
+      - "3001:3001"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - terrasens-network
+    restart: unless-stopped
+
+  # Crop Calendar Service
+  crop-calendar-service:
+    build:
+      context: ./crop-calendar-service
+      dockerfile: Dockerfile
+    container_name: terrasens-crop-calendar-service
+    environment:
+      PORT: 3003
+      NODE_ENV: production
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: terrasens_calendar
+      JWT_SECRET: terrasens_jwt_secret_key_production
+    ports:
+      - "3003:3003"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - terrasens-network
+    restart: unless-stopped
+
+  # Irrigation Service
+  irrigation-service:
+    build:
+      context: ./irrigation-service
+      dockerfile: Dockerfile
+    container_name: terrasens-irrigation-service
+    environment:
+      NODE_ENV: production
+      SERVICE_PORT: 3004
+      SERVICE_NAME: irrigation-service
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: terrasens_irrigation
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      CROP_CALENDAR_SERVICE_URL: http://crop-calendar-service:3003
+      STRESS_SERVICE_URL: http://stress-service:3005
+      WEATHER_API_URL: https://api.open-meteo.com/v1
+      JWT_SECRET: terrasens_jwt_secret_key_production
+      ENABLE_CRON_JOBS: "true"
+      ENABLE_QUEUE: "true"
+      LOG_LEVEL: info
+    ports:
+      - "3004:3004"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      crop-calendar-service:
+        condition: service_started
+    networks:
+      - terrasens-network
+    restart: unless-stopped
+
+  # Redis (for Stress Service queue)
+  redis:
+    image: redis:7-alpine
+    container_name: terrasens-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      timeout: 3s
+      retries: 5
+    networks:
+      - terrasens-network
+    restart: unless-stopped
+
+  # Stress Service API
+  stress-service:
+    build:
+      context: ./stress-service
+      dockerfile: Dockerfile
+    container_name: terrasens-stress-service
+    environment:
+      PORT: 3005
+      NODE_ENV: production
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: stress_service_db
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      PLANET_API_KEY: ${PLANET_API_KEY:-your_planet_api_key_here}
+      PLANET_API_BASE_URL: https://api.planet.com/data/v1
+      CROP_CALENDAR_SERVICE_URL: http://crop-calendar-service:3003
+      LOG_LEVEL: info
+      CRON_SCHEDULE: "0 2 * * *"
+      STRESS_ALERT_THRESHOLD: 30
+    ports:
+      - "3005:3005"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      crop-calendar-service:
+        condition: service_started
+    networks:
+      - terrasens-network
+    restart: unless-stopped
+
+  # Stress Service Worker
+  stress-worker:
+    build:
+      context: ./stress-service
+      dockerfile: Dockerfile
+    container_name: terrasens-stress-worker
+    command: node src/worker.js
+    environment:
+      NODE_ENV: production
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: stress_service_db
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      PLANET_API_KEY: ${PLANET_API_KEY:-your_planet_api_key_here}
+      PLANET_API_BASE_URL: https://api.planet.com/data/v1
+      CROP_CALENDAR_SERVICE_URL: http://crop-calendar-service:3003
+      LOG_LEVEL: info
+      CRON_SCHEDULE: "0 2 * * *"
+      STRESS_ALERT_THRESHOLD: 30
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - terrasens-network
+    restart: unless-stopped
+
+  # API Gateway
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    container_name: terrasens-api-gateway
+    environment:
+      PORT: 3000
+      NODE_ENV: production
+      AUTH_SERVICE_URL: http://auth-service:3001
+      CALENDAR_SERVICE_URL: http://crop-calendar-service:3003
+      IRRIGATION_SERVICE_URL: http://irrigation-service:3004
+      STRESS_SERVICE_URL: http://stress-service:3005
+      JWT_SECRET: terrasens_jwt_secret_key_production
+    ports:
+      - "3000:3000"
+    depends_on:
+      - auth-service
+      - crop-calendar-service
+      - stress-service
+    networks:
+      - terrasens-network
+    restart: unless-stopped
+
+  # Chatbot Service
+  chatbot-service:
+    build:
+      context: ./chatbot-service
+      dockerfile: Dockerfile
+    container_name: terrasens-chatbot-service
+    environment:
+      PORT: 3006
+      NODE_ENV: production
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: terrasens_chatbot
+      JWT_SECRET: terrasens_jwt_secret_key_production
+      API_GATEWAY_URL: http://api-gateway:3000
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-your_gemini_api_key_here}
+    ports:
+      - "3006:3006"
+    volumes:
+      - ./chatbot-service/uploads:/app/uploads
+    depends_on:
+      mysql:
+        condition: service_healthy
+      api-gateway:
+        condition: service_started
+    networks:
+      - terrasens-network
+    restart: unless-stopped
+
+  # Frontend (Angular)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: terrasens-frontend
+    environment:
+      API_URL: http://localhost:3000/api
+    ports:
+      - "4200:4200"
+    depends_on:
+      - api-gateway
+      - chatbot-service
+    networks:
+      - terrasens-network
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  terrasens-network:
+    driver: bridge

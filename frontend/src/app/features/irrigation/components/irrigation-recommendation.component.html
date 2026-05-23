@@ -1,0 +1,171 @@
+<div class="recommendation-container" *ngIf="recommendation">
+  <!-- Decision Card -->
+  <div class="decision-card" [style.border-left]="'4px solid ' + priorityColor">
+    <div class="decision-header">
+      <span class="decision-emoji">{{ decisionEmoji }}</span>
+      <div class="decision-info">
+        <h3>{{ parcelName }} - {{ cropName }}</h3>
+        <p class="decision-priority" [style.color]="priorityColor">
+          Priority: <strong>{{ recommendation.priority }}</strong>
+        </p>
+      </div>
+    </div>
+    <p class="decision-reason">{{ recommendation.decision_reason }}</p>
+  </div>
+
+  <!-- Key Metrics Grid -->
+  <div class="metrics-grid">
+    <!-- Water Amount -->
+    <div class="metric-card">
+      <div class="metric-header">
+        <span class="metric-icon">💧</span>
+        <h4>Water Amount</h4>
+      </div>
+      <div class="metric-value">{{ irrigationAmount }}mm</div>
+      <p class="metric-description">
+        Total: {{ recommendation.water_volume_m3 | number: '1.0-2' }} m³
+      </p>
+    </div>
+
+    <!-- Plant Stress -->
+    <div class="metric-card">
+      <div class="metric-header">
+        <span class="metric-icon">🌡️</span>
+        <h4>Plant Stress</h4>
+      </div>
+      <div class="metric-value">{{ stressPercentage }}%</div>
+      <div class="metric-bar">
+        <div
+          class="metric-progress"
+          [style.width.%]="stressPercentage"
+          [style.backgroundColor]="
+            stressPercentage < 30
+              ? '#388e3c'
+              : stressPercentage < 50
+              ? '#f57c00'
+              : '#c62828'
+          "
+        ></div>
+      </div>
+      <p class="metric-label">{{ healthStatus }}</p>
+    </div>
+
+    <!-- Duration -->
+    <div class="metric-card">
+      <div class="metric-header">
+        <span class="metric-icon">⏱️</span>
+        <h4>Duration</h4>
+      </div>
+      <div class="metric-value">{{ recommendation.duration_minutes }}m</div>
+      <p class="metric-description">
+        Recommended time: {{ recommendedTime }}
+      </p>
+    </div>
+
+    <!-- Area -->
+    <div class="metric-card">
+      <div class="metric-header">
+        <span class="metric-icon">📍</span>
+        <h4>Field Area</h4>
+      </div>
+      <div class="metric-value">{{ recommendation.area_hectares }}ha</div>
+      <p class="metric-description">
+        Parcel area
+      </p>
+    </div>
+  </div>
+
+  <!-- Weather Data -->
+  <div class="weather-section" *ngIf="recommendation.conditions">
+    <h3>Weather Conditions</h3>
+    <div class="weather-grid">
+      <div class="weather-item">
+        <span class="icon">🌡️</span>
+        <span class="label">Temperature</span>
+        <span class="value">{{ temperature | number: '1.0-1' }}°C</span>
+      </div>
+      <div class="weather-item">
+        <span class="icon">💧</span>
+        <span class="label">Humidity</span>
+        <span class="value">{{ humidity | number: '1.0-0' }}%</span>
+      </div>
+      <div class="weather-item">
+        <span class="icon">🌧️</span>
+        <span class="label">Rain Forecast 24h</span>
+        <span class="value">{{ recommendation.conditions.rain_forecast_24h | number: '1.0-1' }}mm</span>
+      </div>
+      <div class="weather-item">
+        <span class="icon">☁️</span>
+        <span class="label">Conditions</span>
+        <span class="value">{{ recommendation.conditions.weather_description }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculation Details -->
+  <div class="analysis-section" *ngIf="recommendation.calculations">
+    <h3>Calculation Details</h3>
+    <div class="calculation-grid">
+      <div class="calc-item">
+        <span class="calc-label">ET₀ (Reference Evapotranspiration)</span>
+        <span class="calc-value">{{ recommendation.calculations.et0 | number: '1.0-2' }}mm/day</span>
+      </div>
+      <div class="calc-item">
+        <span class="calc-label">Kc (Crop Coefficient)</span>
+        <span class="calc-value">{{ recommendation.calculations.kc | number: '1.0-2' }}</span>
+      </div>
+      <div class="calc-item">
+        <span class="calc-label">ETc (Crop Evapotranspiration)</span>
+        <span class="calc-value">{{ recommendation.calculations.etc | number: '1.0-2' }}mm/day</span>
+      </div>
+      <div class="calc-item">
+        <span class="calc-label">Base Water Amount</span>
+        <span class="calc-value">{{ recommendation.calculations.base_water_amount | number: '1.0-2' }}mm</span>
+      </div>
+      <div class="calc-item">
+        <span class="calc-label">Stress Adjustment</span>
+        <span class="calc-value">{{ recommendation.calculations.stress_adjustment | number: '1.0-2' }}x</span>
+      </div>
+      <div class="calc-item">
+        <span class="calc-label">Humidity Adjustment</span>
+        <span class="calc-value">{{ recommendation.calculations.humidity_adjustment | number: '1.0-2' }}x</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NDVI Status -->
+  <div class="ndvi-section" *ngIf="recommendation.conditions">
+    <h3>Plant Health (NDVI)</h3>
+    <div class="ndvi-bar">
+      <div class="ndvi-value" [style.left.%]="(recommendation.conditions.ndvi + 1) * 50">
+        <span class="ndvi-number">{{ recommendation.conditions.ndvi | number: '1.0-2' }}</span>
+      </div>
+      <div class="ndvi-scale">
+        <span class="scale-mark">-1</span>
+        <span class="scale-mark">0</span>
+        <span class="scale-mark">1</span>
+      </div>
+    </div>
+    <p class="ndvi-label">
+      {{ recommendation.conditions.ndvi > 0.5 ? 'Healthy' : recommendation.conditions.ndvi > 0 ? 'Moderate' : 'Stressed' }}
+    </p>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button class="btn btn-primary" (click)="calculateIrrigation()">
+      <span class="icon">⚡</span>
+      Recalculate
+    </button>
+    <button class="btn btn-success" (click)="scheduleIrrigation()">
+      <span class="icon">📅</span>
+      Schedule Now
+    </button>
+  </div>
+</div>
+
+<div *ngIf="!recommendation" class="empty-state">
+  <span class="icon">📊</span>
+  <p>No recommendation available</p>
+  <p class="hint">Select a field and calculate irrigation to see recommendations</p>
+</div>
