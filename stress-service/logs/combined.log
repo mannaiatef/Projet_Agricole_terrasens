@@ -2299,3 +2299,1169 @@
 {"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-05-23 20:59:16"}
 {"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-05-23 20:59:16"}
 {"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-05-23 20:59:16"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-02 22:18:26"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-02 22:18:26"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-02 22:18:26"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/map","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:08"}
+{"level":"info","message":"Fetching parcel map data","parcelId":31,"service":"stress-service","timestamp":"2026-06-02 22:22:08"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-02 22:22:08"}
+{"level":"info","message":"Parcel data loaded","parcelId":31,"service":"stress-service","timestamp":"2026-06-02 22:22:08"}
+{"hasTiles":false,"level":"info","message":"Map data prepared successfully","parcelId":31,"service":"stress-service","timestamp":"2026-06-02 22:22:08","zoneCount":0}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:22"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:22"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:22"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:22"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:22"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:22"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:22"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:22"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:22"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:22"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:22"}
+{"body":{"parcel_id":31,"priority":"high"},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"level":"info","message":"[Dev Mock] Job queued: 31-1780435347838","name":"analyze-stress","parcelId":31,"service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"jobId":"31-1780435347838","level":"info","message":"Stress analysis job added to queue","parcelId":31,"service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"level":"info","message":"[Dev Mock] Processing job: 31-1780435347838","parcelId":31,"service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"level":"info","message":"Starting stress analysis","parcelId":31,"service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"level":"info","message":"Stress record created","parcelId":31,"recordId":48,"service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"level":"info","message":"Parcel data loaded","parcelId":31,"service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"level":"info","message":"Stress record status updated","recordId":48,"service":"stress-service","status":"processing","timestamp":"2026-06-02 22:22:27"}
+{"level":"info","message":"[Dev Mock] Returning mock satellite imagery data","service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"cloudCoverage":0.02,"itemId":"mock_ls8_1780435347881_2","level":"info","message":"Imagery selected","service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"assetType":"ortho_analytic_4b_sr","itemId":"mock_ls8_1780435347881_2","level":"info","message":"[Dev Mock] Returning mock image asset data","service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"assetType":"ortho_analytic_4b_sr","itemId":"mock_ls8_1780435347881_2","level":"info","message":"[Dev Mock] Returning mock image asset data","service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"level":"info","message":"[Dev Mock] Returning mock image data for asset","service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"level":"info","message":"[Dev Mock] Returning mock image data for asset","service":"stress-service","timestamp":"2026-06-02 22:22:27"}
+{"dataType":2,"height":256,"level":"info","message":"Computing NDVI","service":"stress-service","timestamp":"2026-06-02 22:22:27","width":256}
+{"level":"info","meanNdvi":"0.3397","message":"NDVI computation completed","service":"stress-service","timestamp":"2026-06-02 22:22:28","validPixelCount":65536}
+{"level":"info","meanNdvi":"0.3397","message":"NDVI computed","service":"stress-service","timestamp":"2026-06-02 22:22:28"}
+{"level":"info","message":"Generating GeoJSON stress zones","pixelCount":0,"service":"stress-service","timestamp":"2026-06-02 22:22:28"}
+{"level":"info","message":"GeoJSON zones generated","service":"stress-service","timestamp":"2026-06-02 22:22:28","zoneCount":0}
+{"level":"info","message":"Analysis results stored","recordId":48,"service":"stress-service","timestamp":"2026-06-02 22:22:28","zoneCount":0}
+{"level":"info","message":"Stress record status updated","recordId":48,"service":"stress-service","status":"completed","timestamp":"2026-06-02 22:22:28"}
+{"level":"info","message":"Stress analysis results updated","recordId":48,"service":"stress-service","timestamp":"2026-06-02 22:22:28"}
+{"alertId":30,"level":"info","message":"Alert created","parcelId":31,"recordId":48,"service":"stress-service","timestamp":"2026-06-02 22:22:28"}
+{"level":"warn","message":"High stress alert created","parcelId":31,"service":"stress-service","stressPercentage":66.40625,"timestamp":"2026-06-02 22:22:28"}
+{"level":"info","message":"Stress analysis completed successfully","parcelId":31,"recordId":48,"service":"stress-service","stressPercentage":"66.41","timestamp":"2026-06-02 22:22:28"}
+{"level":"info","message":"[Dev Mock] Job completed: 31-1780435347838","parcelId":31,"recordId":48,"service":"stress-service","stressPercentage":"66.41","timestamp":"2026-06-02 22:22:28"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:48"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:48"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:48"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:48"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:48"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:48"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:48"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:48"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:48"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:48"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-02 22:22:48"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-02 22:23:12"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-02 22:23:12"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-02 22:23:12"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-04 17:27:55"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-04 17:27:55"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-04 17:27:55"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/map","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:28:57"}
+{"level":"info","message":"Fetching parcel map data","parcelId":31,"service":"stress-service","timestamp":"2026-06-04 17:28:57"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-04 17:28:57"}
+{"level":"info","message":"Parcel data loaded","parcelId":31,"service":"stress-service","timestamp":"2026-06-04 17:28:57"}
+{"hasTiles":false,"level":"info","message":"Map data prepared successfully","parcelId":31,"service":"stress-service","timestamp":"2026-06-04 17:28:58","zoneCount":0}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:10"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:10"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:10"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:10"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:10"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:10"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:10"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:10"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:10"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:10"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:10"}
+{"body":{"parcel_id":31,"priority":"high"},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"[Dev Mock] Job queued: 31-1780590555035","name":"analyze-stress","parcelId":31,"service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"jobId":"31-1780590555035","level":"info","message":"Stress analysis job added to queue","parcelId":31,"service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"[Dev Mock] Processing job: 31-1780590555035","parcelId":31,"service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"Starting stress analysis","parcelId":31,"service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"Stress record created","parcelId":31,"recordId":49,"service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"Parcel data loaded","parcelId":31,"service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"Stress record status updated","recordId":49,"service":"stress-service","status":"processing","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"[Dev Mock] Returning mock satellite imagery data","service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"cloudCoverage":0.02,"itemId":"mock_ls8_1780590555086_2","level":"info","message":"Imagery selected","service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"assetType":"ortho_analytic_4b_sr","itemId":"mock_ls8_1780590555086_2","level":"info","message":"[Dev Mock] Returning mock image asset data","service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"assetType":"ortho_analytic_4b_sr","itemId":"mock_ls8_1780590555086_2","level":"info","message":"[Dev Mock] Returning mock image asset data","service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"[Dev Mock] Returning mock image data for asset","service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"[Dev Mock] Returning mock image data for asset","service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"dataType":2,"height":256,"level":"info","message":"Computing NDVI","service":"stress-service","timestamp":"2026-06-04 17:29:15","width":256}
+{"level":"info","meanNdvi":"0.3401","message":"NDVI computation completed","service":"stress-service","timestamp":"2026-06-04 17:29:15","validPixelCount":65536}
+{"level":"info","meanNdvi":"0.3401","message":"NDVI computed","service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"Generating GeoJSON stress zones","pixelCount":0,"service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"GeoJSON zones generated","service":"stress-service","timestamp":"2026-06-04 17:29:15","zoneCount":0}
+{"level":"info","message":"Analysis results stored","recordId":49,"service":"stress-service","timestamp":"2026-06-04 17:29:15","zoneCount":0}
+{"level":"info","message":"Stress record status updated","recordId":49,"service":"stress-service","status":"completed","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"Stress analysis results updated","recordId":49,"service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"alertId":31,"level":"info","message":"Alert created","parcelId":31,"recordId":49,"service":"stress-service","timestamp":"2026-06-04 17:29:15"}
+{"level":"warn","message":"High stress alert created","parcelId":31,"service":"stress-service","stressPercentage":66.40625,"timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"Stress analysis completed successfully","parcelId":31,"recordId":49,"service":"stress-service","stressPercentage":"66.41","timestamp":"2026-06-04 17:29:15"}
+{"level":"info","message":"[Dev Mock] Job completed: 31-1780590555035","parcelId":31,"recordId":49,"service":"stress-service","stressPercentage":"66.41","timestamp":"2026-06-04 17:29:15"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:41"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:41"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:41"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:41"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:41"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:41"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:41"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:41"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:41"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:41"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:29:41"}
+{"body":{"parcel_id":26,"priority":"high"},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"[Dev Mock] Job queued: 26-1780590606542","name":"analyze-stress","parcelId":26,"service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"jobId":"26-1780590606542","level":"info","message":"Stress analysis job added to queue","parcelId":26,"service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"[Dev Mock] Processing job: 26-1780590606542","parcelId":26,"service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"Starting stress analysis","parcelId":26,"service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"Stress record created","parcelId":26,"recordId":50,"service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"Parcel data retrieved","parcelId":26,"service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"Parcel data loaded","parcelId":26,"service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"Stress record status updated","recordId":50,"service":"stress-service","status":"processing","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"[Dev Mock] Returning mock satellite imagery data","service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"cloudCoverage":0.02,"itemId":"mock_ls8_1780590606592_2","level":"info","message":"Imagery selected","service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"assetType":"ortho_analytic_4b_sr","itemId":"mock_ls8_1780590606592_2","level":"info","message":"[Dev Mock] Returning mock image asset data","service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"assetType":"ortho_analytic_4b_sr","itemId":"mock_ls8_1780590606592_2","level":"info","message":"[Dev Mock] Returning mock image asset data","service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"[Dev Mock] Returning mock image data for asset","service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"[Dev Mock] Returning mock image data for asset","service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"dataType":2,"height":256,"level":"info","message":"Computing NDVI","service":"stress-service","timestamp":"2026-06-04 17:30:06","width":256}
+{"level":"info","meanNdvi":"0.3398","message":"NDVI computation completed","service":"stress-service","timestamp":"2026-06-04 17:30:06","validPixelCount":65536}
+{"level":"info","meanNdvi":"0.3398","message":"NDVI computed","service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"Generating GeoJSON stress zones","pixelCount":0,"service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"GeoJSON zones generated","service":"stress-service","timestamp":"2026-06-04 17:30:06","zoneCount":0}
+{"level":"info","message":"Analysis results stored","recordId":50,"service":"stress-service","timestamp":"2026-06-04 17:30:06","zoneCount":0}
+{"level":"info","message":"Stress record status updated","recordId":50,"service":"stress-service","status":"completed","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"Stress analysis results updated","recordId":50,"service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"alertId":32,"level":"info","message":"Alert created","parcelId":26,"recordId":50,"service":"stress-service","timestamp":"2026-06-04 17:30:06"}
+{"level":"warn","message":"High stress alert created","parcelId":26,"service":"stress-service","stressPercentage":66.40625,"timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"Stress analysis completed successfully","parcelId":26,"recordId":50,"service":"stress-service","stressPercentage":"66.41","timestamp":"2026-06-04 17:30:06"}
+{"level":"info","message":"[Dev Mock] Job completed: 26-1780590606542","parcelId":26,"recordId":50,"service":"stress-service","stressPercentage":"66.41","timestamp":"2026-06-04 17:30:06"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:30:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:30:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:30:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:30:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:30:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:30:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:30:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:30:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:30:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:30:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:30:21"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-04 17:34:15"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-04 17:34:16"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-04 17:34:16"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-04 17:36:23"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-04 17:36:23"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-04 17:36:23"}
+{"level":"info","message":"Received shutdown signal","service":"stress-service","timestamp":"2026-06-04 17:36:35"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-04 17:36:43"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-04 17:36:43"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-04 17:36:43"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:36:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:36:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:36:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:36:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:36:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:36:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:00"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:00"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:00"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:00"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:00"}
+{"body":{"parcel_id":29,"priority":"high"},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:11"}
+{"level":"info","message":"[Dev Mock] Job queued: 29-1780591031872","name":"analyze-stress","parcelId":29,"service":"stress-service","timestamp":"2026-06-04 17:37:11"}
+{"jobId":"29-1780591031872","level":"info","message":"Stress analysis job added to queue","parcelId":29,"service":"stress-service","timestamp":"2026-06-04 17:37:11"}
+{"level":"info","message":"[Dev Mock] Processing job: 29-1780591031872","parcelId":29,"service":"stress-service","timestamp":"2026-06-04 17:37:11"}
+{"level":"info","message":"Starting stress analysis","parcelId":29,"service":"stress-service","timestamp":"2026-06-04 17:37:11"}
+{"level":"info","message":"Stress record created","parcelId":29,"recordId":51,"service":"stress-service","timestamp":"2026-06-04 17:37:11"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-04 17:37:11"}
+{"level":"info","message":"Parcel data loaded","parcelId":29,"service":"stress-service","timestamp":"2026-06-04 17:37:11"}
+{"level":"info","message":"Stress record status updated","recordId":51,"service":"stress-service","status":"processing","timestamp":"2026-06-04 17:37:11"}
+{"level":"info","message":"[Dev Mock] Returning mock satellite imagery data","service":"stress-service","timestamp":"2026-06-04 17:37:11"}
+{"cloudCoverage":0.02,"itemId":"mock_ls8_1780591031985_2","level":"info","message":"Imagery selected","service":"stress-service","timestamp":"2026-06-04 17:37:11"}
+{"assetType":"ortho_analytic_4b_sr","itemId":"mock_ls8_1780591031985_2","level":"info","message":"[Dev Mock] Returning mock image asset data","service":"stress-service","timestamp":"2026-06-04 17:37:11"}
+{"assetType":"ortho_analytic_4b_sr","itemId":"mock_ls8_1780591031985_2","level":"info","message":"[Dev Mock] Returning mock image asset data","service":"stress-service","timestamp":"2026-06-04 17:37:11"}
+{"level":"info","message":"[Dev Mock] Returning mock image data for asset","service":"stress-service","timestamp":"2026-06-04 17:37:12"}
+{"level":"info","message":"[Dev Mock] Returning mock image data for asset","service":"stress-service","timestamp":"2026-06-04 17:37:12"}
+{"dataType":2,"height":256,"level":"info","message":"Computing NDVI","service":"stress-service","timestamp":"2026-06-04 17:37:12","width":256}
+{"level":"info","meanNdvi":"0.3397","message":"NDVI computation completed","service":"stress-service","timestamp":"2026-06-04 17:37:12","validPixelCount":65536}
+{"level":"info","meanNdvi":"0.3397","message":"NDVI computed","service":"stress-service","timestamp":"2026-06-04 17:37:12"}
+{"level":"info","message":"Generating GeoJSON stress zones","pixelCount":0,"service":"stress-service","timestamp":"2026-06-04 17:37:12"}
+{"level":"info","message":"GeoJSON zones generated","service":"stress-service","timestamp":"2026-06-04 17:37:12","zoneCount":0}
+{"level":"info","message":"Analysis results stored","recordId":51,"service":"stress-service","timestamp":"2026-06-04 17:37:12","zoneCount":0}
+{"level":"info","message":"Stress record status updated","recordId":51,"service":"stress-service","status":"completed","timestamp":"2026-06-04 17:37:12"}
+{"level":"info","message":"Stress analysis results updated","recordId":51,"service":"stress-service","timestamp":"2026-06-04 17:37:12"}
+{"alertId":33,"level":"info","message":"Alert created","parcelId":29,"recordId":51,"service":"stress-service","timestamp":"2026-06-04 17:37:12"}
+{"level":"warn","message":"High stress alert created","parcelId":29,"service":"stress-service","stressPercentage":66.40625,"timestamp":"2026-06-04 17:37:12"}
+{"level":"info","message":"Stress analysis completed successfully","parcelId":29,"recordId":51,"service":"stress-service","stressPercentage":"66.41","timestamp":"2026-06-04 17:37:12"}
+{"level":"info","message":"[Dev Mock] Job completed: 29-1780591031872","parcelId":29,"recordId":51,"service":"stress-service","stressPercentage":"66.41","timestamp":"2026-06-04 17:37:12"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/map","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:32"}
+{"level":"info","message":"Fetching parcel map data","parcelId":29,"service":"stress-service","timestamp":"2026-06-04 17:37:32"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-04 17:37:32"}
+{"level":"info","message":"Parcel data loaded","parcelId":29,"service":"stress-service","timestamp":"2026-06-04 17:37:32"}
+{"hasTiles":false,"level":"info","message":"Map data prepared successfully","parcelId":29,"service":"stress-service","timestamp":"2026-06-04 17:37:32","zoneCount":0}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:37:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:38:09"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:38:09"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:38:09"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:38:09"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:38:09"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:38:09"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:38:09"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:38:09"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:38:09"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:38:09"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:38:09"}
+{"body":{},"level":"info","message":"GET /stress/29","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 17:38:17"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-04 20:36:45"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-04 20:36:45"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-04 20:36:45"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-04 22:14:13"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-04 22:14:13"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-04 22:14:13"}
+{"body":{},"level":"info","message":"GET /stress/31","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:18:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:18:53"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:18:53"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:18:53"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:18:53"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:18:53"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:18:53"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:18:53"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:18:53"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:18:53"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:18:53"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:18:53"}
+{"body":{},"level":"info","message":"GET /stress/31","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:28:32"}
+{"body":{},"level":"info","message":"GET /stress/31","queryParams":{},"service":"stress-service","timestamp":"2026-06-04 22:29:58"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:39:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:39:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:39:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:39:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:39:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:39:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:39:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:39:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:39:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:39:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:39:59"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:40:08"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:40:08"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:40:08"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:40:08"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:40:08"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:40:08"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:40:08"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:40:08"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:40:08"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:40:08"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:40:08"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:49:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:49:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:49:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:49:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:49:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:49:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:49:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:49:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:49:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:49:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 15:49:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:01:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:01:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:01:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:01:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:01:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:01:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:01:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:01:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:01:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:01:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:01:23"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:29"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:29"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:29"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:29"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:29"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:29"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:29"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:29"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:29"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:29"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:03:29"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:05:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:05:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:05:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:05:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:05:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:05:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:05:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:05:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:05:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:05:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:05:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:06:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:06:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:06:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:06:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:06:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:06:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:06:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:06:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:06:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:06:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 16:06:49"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 20:28:31"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 20:28:31"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 20:28:31"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 20:28:31"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 20:28:31"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 20:28:32"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 20:28:32"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 20:28:32"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 20:28:32"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 20:28:32"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-05 20:28:32"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-06 16:39:06"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-06 16:39:06"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-06 16:39:06"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-06 16:40:50"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-06 16:40:50"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-06 16:40:50"}
+{"body":{},"level":"info","message":"GET /stress/parcel/32/map","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:44:01"}
+{"level":"info","message":"Fetching parcel map data","parcelId":32,"service":"stress-service","timestamp":"2026-06-06 16:44:01"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-06 16:44:01"}
+{"level":"info","message":"Parcel data loaded","parcelId":32,"service":"stress-service","timestamp":"2026-06-06 16:44:01"}
+{"hasTiles":false,"level":"info","message":"Map data prepared successfully","parcelId":32,"service":"stress-service","timestamp":"2026-06-06 16:44:01","zoneCount":0}
+{"body":{},"level":"info","message":"GET /stress/32","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:45:21"}
+{"body":{},"level":"info","message":"GET /stress/parcel/32/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/32/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:33"}
+{"body":{"parcel_id":32,"priority":"high"},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"[Dev Mock] Job queued: 32-1780760801502","name":"analyze-stress","parcelId":32,"service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"jobId":"32-1780760801502","level":"info","message":"Stress analysis job added to queue","parcelId":32,"service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"[Dev Mock] Processing job: 32-1780760801502","parcelId":32,"service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"Starting stress analysis","parcelId":32,"service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"Stress record created","parcelId":32,"recordId":52,"service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"Parcel data loaded","parcelId":32,"service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"Stress record status updated","recordId":52,"service":"stress-service","status":"processing","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"[Dev Mock] Returning mock satellite imagery data","service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"cloudCoverage":0.02,"itemId":"mock_ls8_1780760801533_2","level":"info","message":"Imagery selected","service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"assetType":"ortho_analytic_4b_sr","itemId":"mock_ls8_1780760801533_2","level":"info","message":"[Dev Mock] Returning mock image asset data","service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"assetType":"ortho_analytic_4b_sr","itemId":"mock_ls8_1780760801533_2","level":"info","message":"[Dev Mock] Returning mock image asset data","service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"[Dev Mock] Returning mock image data for asset","service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"[Dev Mock] Returning mock image data for asset","service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"dataType":2,"height":256,"level":"info","message":"Computing NDVI","service":"stress-service","timestamp":"2026-06-06 16:46:41","width":256}
+{"level":"info","meanNdvi":"0.3399","message":"NDVI computation completed","service":"stress-service","timestamp":"2026-06-06 16:46:41","validPixelCount":65536}
+{"level":"info","meanNdvi":"0.3399","message":"NDVI computed","service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"Generating GeoJSON stress zones","pixelCount":0,"service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"GeoJSON zones generated","service":"stress-service","timestamp":"2026-06-06 16:46:41","zoneCount":0}
+{"level":"info","message":"Analysis results stored","recordId":52,"service":"stress-service","timestamp":"2026-06-06 16:46:41","zoneCount":0}
+{"level":"info","message":"Stress record status updated","recordId":52,"service":"stress-service","status":"completed","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"Stress analysis results updated","recordId":52,"service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"alertId":34,"level":"info","message":"Alert created","parcelId":32,"recordId":52,"service":"stress-service","timestamp":"2026-06-06 16:46:41"}
+{"level":"warn","message":"High stress alert created","parcelId":32,"service":"stress-service","stressPercentage":66.40625,"timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"Stress analysis completed successfully","parcelId":32,"recordId":52,"service":"stress-service","stressPercentage":"66.41","timestamp":"2026-06-06 16:46:41"}
+{"level":"info","message":"[Dev Mock] Job completed: 32-1780760801502","parcelId":32,"recordId":52,"service":"stress-service","stressPercentage":"66.41","timestamp":"2026-06-06 16:46:41"}
+{"body":{},"level":"info","message":"GET /stress/parcel/32/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:48:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:48:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:48:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:48:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:48:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:48:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:48:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:48:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:48:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:48:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:48:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:48:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/33/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-06 16:52:09"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-06 20:44:44"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-06 20:44:44"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-06 20:44:44"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-11 15:20:51"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-11 15:20:51"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-11 15:20:51"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:23:36"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:23:36"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:23:36"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:23:36"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:23:36"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:23:36"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:23:38"}
+{"body":{},"level":"info","message":"GET /stress/parcel/32/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:23:38"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:23:38"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:23:38"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:23:38"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:23:38"}
+{"body":{},"level":"info","message":"GET /stress/parcel/32/map","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:26:16"}
+{"level":"info","message":"Fetching parcel map data","parcelId":32,"service":"stress-service","timestamp":"2026-06-11 15:26:16"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-11 15:26:16"}
+{"level":"info","message":"Parcel data loaded","parcelId":32,"service":"stress-service","timestamp":"2026-06-11 15:26:16"}
+{"hasTiles":false,"level":"info","message":"Map data prepared successfully","parcelId":32,"service":"stress-service","timestamp":"2026-06-11 15:26:16","zoneCount":0}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/map","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:26:20"}
+{"level":"info","message":"Fetching parcel map data","parcelId":31,"service":"stress-service","timestamp":"2026-06-11 15:26:20"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-11 15:26:20"}
+{"level":"info","message":"Parcel data loaded","parcelId":31,"service":"stress-service","timestamp":"2026-06-11 15:26:20"}
+{"hasTiles":false,"level":"info","message":"Map data prepared successfully","parcelId":31,"service":"stress-service","timestamp":"2026-06-11 15:26:20","zoneCount":0}
+{"body":{},"level":"info","message":"GET /stress/32","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:27:05"}
+{"body":{},"level":"info","message":"GET /stress/parcel/32/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:27:43"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:27:43"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:27:43"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:27:43"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:27:43"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:27:43"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:27:43"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:27:43"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:27:43"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:27:43"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:27:43"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-11 15:27:43"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-11 15:28:00"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-11 15:28:00"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-11 15:28:00"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-12 14:47:41"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-12 14:47:41"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-12 14:47:41"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-12 14:52:51"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-12 14:52:51"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-12 14:54:58"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-12 14:54:58"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-12 14:54:58"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-14 15:38:03"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-14 15:38:03"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-14 15:38:03"}
+{"body":{},"level":"info","message":"GET /health/detailed","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:10"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-14 15:39:10"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:39:10"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:39:10"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:10"}
+{"body":{"parcel_id":29},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:11"}
+{"level":"info","message":"[Dev Mock] Job queued: 29-1781447951018","name":"analyze-stress","parcelId":29,"service":"stress-service","timestamp":"2026-06-14 15:39:11"}
+{"jobId":"29-1781447951018","level":"info","message":"Stress analysis job added to queue","parcelId":29,"service":"stress-service","timestamp":"2026-06-14 15:39:11"}
+{"level":"info","message":"[Dev Mock] Processing job: 29-1781447951018","parcelId":29,"service":"stress-service","timestamp":"2026-06-14 15:39:11"}
+{"level":"info","message":"Starting stress analysis","parcelId":29,"service":"stress-service","timestamp":"2026-06-14 15:39:11"}
+{"level":"info","message":"Stress record created","parcelId":29,"recordId":53,"service":"stress-service","timestamp":"2026-06-14 15:39:11"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":29,"service":"stress-service","timestamp":"2026-06-14 15:39:11"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":29,"recordId":53,"service":"stress-service","timestamp":"2026-06-14 15:39:11"}
+{"level":"info","message":"Stress record status updated","recordId":53,"service":"stress-service","status":"failed","timestamp":"2026-06-14 15:39:11"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 29-1781447951018","service":"stress-service","timestamp":"2026-06-14 15:39:11"}
+{"body":{},"level":"info","message":"GET /stress/jobs/29-1781447951018","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:13"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:14"}
+{"body":{"parcel_id":30},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:14"}
+{"level":"info","message":"[Dev Mock] Job queued: 30-1781447954053","name":"analyze-stress","parcelId":30,"service":"stress-service","timestamp":"2026-06-14 15:39:14"}
+{"jobId":"30-1781447954053","level":"info","message":"Stress analysis job added to queue","parcelId":30,"service":"stress-service","timestamp":"2026-06-14 15:39:14"}
+{"level":"info","message":"[Dev Mock] Processing job: 30-1781447954053","parcelId":30,"service":"stress-service","timestamp":"2026-06-14 15:39:14"}
+{"level":"info","message":"Starting stress analysis","parcelId":30,"service":"stress-service","timestamp":"2026-06-14 15:39:14"}
+{"level":"info","message":"Stress record created","parcelId":30,"recordId":54,"service":"stress-service","timestamp":"2026-06-14 15:39:14"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":30,"service":"stress-service","timestamp":"2026-06-14 15:39:14"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":30,"recordId":54,"service":"stress-service","timestamp":"2026-06-14 15:39:14"}
+{"level":"info","message":"Stress record status updated","recordId":54,"service":"stress-service","status":"failed","timestamp":"2026-06-14 15:39:14"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 30-1781447954053","service":"stress-service","timestamp":"2026-06-14 15:39:14"}
+{"body":{},"level":"info","message":"GET /stress/jobs/30-1781447954053","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:16"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:17"}
+{"body":{"parcel_id":31},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:17"}
+{"level":"info","message":"[Dev Mock] Job queued: 31-1781447957085","name":"analyze-stress","parcelId":31,"service":"stress-service","timestamp":"2026-06-14 15:39:17"}
+{"jobId":"31-1781447957085","level":"info","message":"Stress analysis job added to queue","parcelId":31,"service":"stress-service","timestamp":"2026-06-14 15:39:17"}
+{"level":"info","message":"[Dev Mock] Processing job: 31-1781447957085","parcelId":31,"service":"stress-service","timestamp":"2026-06-14 15:39:17"}
+{"level":"info","message":"Starting stress analysis","parcelId":31,"service":"stress-service","timestamp":"2026-06-14 15:39:17"}
+{"level":"info","message":"Stress record created","parcelId":31,"recordId":55,"service":"stress-service","timestamp":"2026-06-14 15:39:17"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":31,"service":"stress-service","timestamp":"2026-06-14 15:39:17"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":31,"recordId":55,"service":"stress-service","timestamp":"2026-06-14 15:39:17"}
+{"level":"info","message":"Stress record status updated","recordId":55,"service":"stress-service","status":"failed","timestamp":"2026-06-14 15:39:17"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 31-1781447957085","service":"stress-service","timestamp":"2026-06-14 15:39:17"}
+{"body":{},"level":"info","message":"GET /stress/jobs/31-1781447957085","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:19"}
+{"body":{},"level":"info","message":"GET /stress/parcel/32/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:20"}
+{"body":{"parcel_id":32},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:20"}
+{"level":"info","message":"[Dev Mock] Job queued: 32-1781447960109","name":"analyze-stress","parcelId":32,"service":"stress-service","timestamp":"2026-06-14 15:39:20"}
+{"jobId":"32-1781447960109","level":"info","message":"Stress analysis job added to queue","parcelId":32,"service":"stress-service","timestamp":"2026-06-14 15:39:20"}
+{"level":"info","message":"[Dev Mock] Processing job: 32-1781447960109","parcelId":32,"service":"stress-service","timestamp":"2026-06-14 15:39:20"}
+{"level":"info","message":"Starting stress analysis","parcelId":32,"service":"stress-service","timestamp":"2026-06-14 15:39:20"}
+{"level":"info","message":"Stress record created","parcelId":32,"recordId":56,"service":"stress-service","timestamp":"2026-06-14 15:39:20"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":32,"service":"stress-service","timestamp":"2026-06-14 15:39:20"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":32,"recordId":56,"service":"stress-service","timestamp":"2026-06-14 15:39:20"}
+{"level":"info","message":"Stress record status updated","recordId":56,"service":"stress-service","status":"failed","timestamp":"2026-06-14 15:39:20"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 32-1781447960109","service":"stress-service","timestamp":"2026-06-14 15:39:20"}
+{"body":{},"level":"info","message":"GET /stress/jobs/32-1781447960109","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:22"}
+{"body":{},"level":"info","message":"GET /stress/parcel/33/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:23"}
+{"body":{"parcel_id":33},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:23"}
+{"level":"info","message":"[Dev Mock] Job queued: 33-1781447963138","name":"analyze-stress","parcelId":33,"service":"stress-service","timestamp":"2026-06-14 15:39:23"}
+{"jobId":"33-1781447963138","level":"info","message":"Stress analysis job added to queue","parcelId":33,"service":"stress-service","timestamp":"2026-06-14 15:39:23"}
+{"level":"info","message":"[Dev Mock] Processing job: 33-1781447963138","parcelId":33,"service":"stress-service","timestamp":"2026-06-14 15:39:23"}
+{"level":"info","message":"Starting stress analysis","parcelId":33,"service":"stress-service","timestamp":"2026-06-14 15:39:23"}
+{"level":"info","message":"Stress record created","parcelId":33,"recordId":57,"service":"stress-service","timestamp":"2026-06-14 15:39:23"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":33,"service":"stress-service","timestamp":"2026-06-14 15:39:23"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":33,"recordId":57,"service":"stress-service","timestamp":"2026-06-14 15:39:23"}
+{"level":"info","message":"Stress record status updated","recordId":57,"service":"stress-service","status":"failed","timestamp":"2026-06-14 15:39:23"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 33-1781447963138","service":"stress-service","timestamp":"2026-06-14 15:39:23"}
+{"body":{},"level":"info","message":"GET /stress/jobs/33-1781447963138","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:25"}
+{"body":{},"level":"info","message":"GET /stress/queue/stats","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:39:26"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:39:26"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:39:26"}
+{"body":{},"level":"info","message":"GET /health/detailed","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"body":{"parcel_id":29},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"info","message":"[Dev Mock] Job queued: 29-1781448186923","name":"analyze-stress","parcelId":29,"service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"jobId":"29-1781448186923","level":"info","message":"Stress analysis job added to queue","parcelId":29,"service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"info","message":"[Dev Mock] Processing job: 29-1781448186923","parcelId":29,"service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"info","message":"Starting stress analysis","parcelId":29,"service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"info","message":"Stress record created","parcelId":29,"recordId":58,"service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":29,"service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":29,"recordId":58,"service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"info","message":"Stress record status updated","recordId":58,"service":"stress-service","status":"failed","timestamp":"2026-06-14 15:43:06"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 29-1781448186923","service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"body":{},"level":"info","message":"GET /stress/jobs/29-1781448186923","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:08"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:09"}
+{"body":{"parcel_id":30},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:09"}
+{"level":"info","message":"[Dev Mock] Job queued: 30-1781448189952","name":"analyze-stress","parcelId":30,"service":"stress-service","timestamp":"2026-06-14 15:43:09"}
+{"jobId":"30-1781448189952","level":"info","message":"Stress analysis job added to queue","parcelId":30,"service":"stress-service","timestamp":"2026-06-14 15:43:09"}
+{"level":"info","message":"[Dev Mock] Processing job: 30-1781448189952","parcelId":30,"service":"stress-service","timestamp":"2026-06-14 15:43:09"}
+{"level":"info","message":"Starting stress analysis","parcelId":30,"service":"stress-service","timestamp":"2026-06-14 15:43:09"}
+{"level":"info","message":"Stress record created","parcelId":30,"recordId":59,"service":"stress-service","timestamp":"2026-06-14 15:43:09"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":30,"service":"stress-service","timestamp":"2026-06-14 15:43:09"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":30,"recordId":59,"service":"stress-service","timestamp":"2026-06-14 15:43:09"}
+{"level":"info","message":"Stress record status updated","recordId":59,"service":"stress-service","status":"failed","timestamp":"2026-06-14 15:43:09"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 30-1781448189952","service":"stress-service","timestamp":"2026-06-14 15:43:09"}
+{"body":{},"level":"info","message":"GET /stress/jobs/30-1781448189952","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:12"}
+{"body":{"parcel_id":31},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:12"}
+{"level":"info","message":"[Dev Mock] Job queued: 31-1781448192977","name":"analyze-stress","parcelId":31,"service":"stress-service","timestamp":"2026-06-14 15:43:12"}
+{"jobId":"31-1781448192977","level":"info","message":"Stress analysis job added to queue","parcelId":31,"service":"stress-service","timestamp":"2026-06-14 15:43:12"}
+{"level":"info","message":"[Dev Mock] Processing job: 31-1781448192977","parcelId":31,"service":"stress-service","timestamp":"2026-06-14 15:43:12"}
+{"level":"info","message":"Starting stress analysis","parcelId":31,"service":"stress-service","timestamp":"2026-06-14 15:43:12"}
+{"level":"info","message":"Stress record created","parcelId":31,"recordId":60,"service":"stress-service","timestamp":"2026-06-14 15:43:12"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":31,"service":"stress-service","timestamp":"2026-06-14 15:43:12"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":31,"recordId":60,"service":"stress-service","timestamp":"2026-06-14 15:43:12"}
+{"level":"info","message":"Stress record status updated","recordId":60,"service":"stress-service","status":"failed","timestamp":"2026-06-14 15:43:12"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 31-1781448192977","service":"stress-service","timestamp":"2026-06-14 15:43:12"}
+{"body":{},"level":"info","message":"GET /stress/jobs/31-1781448192977","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:14"}
+{"body":{},"level":"info","message":"GET /stress/parcel/32/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:16"}
+{"body":{"parcel_id":32},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:16"}
+{"level":"info","message":"[Dev Mock] Job queued: 32-1781448196011","name":"analyze-stress","parcelId":32,"service":"stress-service","timestamp":"2026-06-14 15:43:16"}
+{"jobId":"32-1781448196011","level":"info","message":"Stress analysis job added to queue","parcelId":32,"service":"stress-service","timestamp":"2026-06-14 15:43:16"}
+{"level":"info","message":"[Dev Mock] Processing job: 32-1781448196011","parcelId":32,"service":"stress-service","timestamp":"2026-06-14 15:43:16"}
+{"level":"info","message":"Starting stress analysis","parcelId":32,"service":"stress-service","timestamp":"2026-06-14 15:43:16"}
+{"level":"info","message":"Stress record created","parcelId":32,"recordId":61,"service":"stress-service","timestamp":"2026-06-14 15:43:16"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":32,"service":"stress-service","timestamp":"2026-06-14 15:43:16"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":32,"recordId":61,"service":"stress-service","timestamp":"2026-06-14 15:43:16"}
+{"level":"info","message":"Stress record status updated","recordId":61,"service":"stress-service","status":"failed","timestamp":"2026-06-14 15:43:16"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 32-1781448196011","service":"stress-service","timestamp":"2026-06-14 15:43:16"}
+{"body":{},"level":"info","message":"GET /stress/jobs/32-1781448196011","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:18"}
+{"body":{},"level":"info","message":"GET /stress/parcel/33/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:19"}
+{"body":{"parcel_id":33},"level":"info","message":"POST /stress/analyze","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:19"}
+{"level":"info","message":"[Dev Mock] Job queued: 33-1781448199039","name":"analyze-stress","parcelId":33,"service":"stress-service","timestamp":"2026-06-14 15:43:19"}
+{"jobId":"33-1781448199039","level":"info","message":"Stress analysis job added to queue","parcelId":33,"service":"stress-service","timestamp":"2026-06-14 15:43:19"}
+{"level":"info","message":"[Dev Mock] Processing job: 33-1781448199039","parcelId":33,"service":"stress-service","timestamp":"2026-06-14 15:43:19"}
+{"level":"info","message":"Starting stress analysis","parcelId":33,"service":"stress-service","timestamp":"2026-06-14 15:43:19"}
+{"level":"info","message":"Stress record created","parcelId":33,"recordId":62,"service":"stress-service","timestamp":"2026-06-14 15:43:19"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":33,"service":"stress-service","timestamp":"2026-06-14 15:43:19"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":33,"recordId":62,"service":"stress-service","timestamp":"2026-06-14 15:43:19"}
+{"level":"info","message":"Stress record status updated","recordId":62,"service":"stress-service","status":"failed","timestamp":"2026-06-14 15:43:19"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 33-1781448199039","service":"stress-service","timestamp":"2026-06-14 15:43:19"}
+{"body":{},"level":"info","message":"GET /stress/jobs/33-1781448199039","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:21"}
+{"body":{},"level":"info","message":"GET /stress/queue/stats","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 15:43:22"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:43:22"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:43:22"}
+{"body":{},"level":"info","message":"GET /stress/31","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 22:00:42"}
+{"body":{},"level":"info","message":"GET /stress/30","queryParams":{},"service":"stress-service","timestamp":"2026-06-14 22:17:48"}
+{"body":{},"level":"info","message":"GET /stress/parcel/32/map","queryParams":{},"service":"stress-service","timestamp":"2026-06-15 14:37:29"}
+{"level":"info","message":"Fetching parcel map data","parcelId":32,"service":"stress-service","timestamp":"2026-06-15 14:37:29"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-15 14:37:29"}
+{"level":"info","message":"Parcel data loaded","parcelId":32,"service":"stress-service","timestamp":"2026-06-15 14:37:29"}
+{"hasTiles":false,"level":"info","message":"Map data prepared successfully","parcelId":32,"service":"stress-service","timestamp":"2026-06-15 14:37:29","zoneCount":0}
+{"body":{},"level":"info","message":"GET /stress/31","queryParams":{},"service":"stress-service","timestamp":"2026-06-15 14:46:12"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-15 14:55:52"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-16 21:14:33"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-16 21:14:33"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-16 21:14:33"}
+{"level":"warn","message":"Sentinel Hub credentials not configured in environment variables","service":"stress-service","timestamp":"2026-06-18 22:04:11"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-18 22:04:11"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-18 22:04:11"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-18 22:04:11"}
+{"body":{},"level":"info","message":"GET /stress/parcel/32/map","queryParams":{},"service":"stress-service","timestamp":"2026-06-18 22:04:56"}
+{"level":"info","message":"Fetching parcel map data","parcelId":32,"service":"stress-service","timestamp":"2026-06-18 22:04:56"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-18 22:04:56"}
+{"level":"info","message":"Parcel data loaded","parcelId":32,"service":"stress-service","timestamp":"2026-06-18 22:04:56"}
+{"hasTiles":false,"level":"info","message":"Map data prepared successfully","parcelId":32,"service":"stress-service","timestamp":"2026-06-18 22:04:56","zoneCount":0}
+{"body":{},"level":"info","message":"GET /stress/parcel/32/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-18 22:05:02"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-18 22:05:02"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-18 22:05:02"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-18 22:05:02"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-18 22:05:02"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-18 22:05:02"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-18 22:05:02"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-18 22:05:02"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-18 22:05:02"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-18 22:05:02"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-18 22:05:02"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-18 22:05:02"}
+{"body":{},"level":"info","message":"GET /stress/parcel/Bouarada/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:07:19"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/30/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"fieldId":"30","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"fieldId":"30","level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/30/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"fieldId":"30","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"fieldId":"30","level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/30/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"fieldId":"30","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"fieldId":"30","level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"level":"warn","message":"Sentinel Hub credentials not configured in environment variables","service":"stress-service","timestamp":"2026-06-20 21:14:59"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-20 21:14:59"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-20 21:14:59"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-20 21:14:59"}
+{"level":"warn","message":"Sentinel Hub credentials not configured in environment variables","service":"stress-service","timestamp":"2026-06-20 21:15:11"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-20 21:15:11"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-20 21:15:11"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-20 21:15:11"}
+{"level":"warn","message":"Sentinel Hub credentials not configured in environment variables","service":"stress-service","timestamp":"2026-06-20 21:15:34"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-20 21:15:34"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-20 21:15:34"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-20 21:15:34"}
+{"level":"warn","message":"Sentinel Hub credentials not configured in environment variables","service":"stress-service","timestamp":"2026-06-20 21:16:18"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-20 21:16:18"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-20 21:16:18"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-20 21:16:18"}
+{"level":"warn","message":"Sentinel Hub credentials not configured in environment variables","service":"stress-service","timestamp":"2026-06-20 21:17:19"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-20 21:17:19"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-20 21:17:19"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-20 21:17:19"}
+{"level":"warn","message":"Sentinel Hub credentials not configured in environment variables","service":"stress-service","timestamp":"2026-06-20 21:17:42"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-20 21:17:42"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-20 21:17:42"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-20 21:17:42"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/30/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"fieldId":"30","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:19:08"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"fieldId":"30","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"body":{},"level":"info","message":"GET /stress/parcel/32/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:20:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/31/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:20:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/30/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:20:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/29/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:20:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/28/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:20:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/27/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:20:33"}
+{"body":{},"level":"info","message":"GET /stress/parcel/26/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:20:34"}
+{"body":{},"level":"info","message":"GET /stress/parcel/25/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:20:34"}
+{"body":{},"level":"info","message":"GET /stress/parcel/24/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:20:34"}
+{"body":{},"level":"info","message":"GET /stress/parcel/22/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:20:34"}
+{"body":{},"level":"info","message":"GET /stress/parcel/23/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:20:34"}
+{"body":{},"level":"info","message":"GET /stress/parcel/21/latest","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:20:34"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/1/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:21:00"}
+{"fieldId":"1","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:21:00"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/1","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:21:00"}
+{"fieldId":"1","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:21:00"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:21:00"}
+{"level":"warn","message":"Parcel not found","parcelId":1,"service":"stress-service","timestamp":"2026-06-20 21:21:00"}
+{"fieldId":"1","level":"error","message":"Parcel 1 not found","service":"stress-service","timestamp":"2026-06-20 21:21:00"}
+{"level":"warn","message":"Parcel not found","parcelId":1,"service":"stress-service","timestamp":"2026-06-20 21:21:00"}
+{"fieldId":"1","level":"error","message":"Parcel 1 not found","service":"stress-service","timestamp":"2026-06-20 21:21:00"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/31/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"fieldId":"31","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:21:16"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:21:17"}
+{"fieldId":"31","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-20 21:21:17"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-20 21:21:17"}
+{"level":"warn","message":"Sentinel Hub credentials not configured in environment variables","service":"stress-service","timestamp":"2026-06-20 21:21:49"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-20 21:21:49"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-20 21:21:49"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-20 21:21:49"}
+{"level":"warn","message":"Sentinel Hub credentials not configured in environment variables","service":"stress-service","timestamp":"2026-06-20 21:23:11"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-20 21:23:11"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-20 21:23:11"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-20 21:23:11"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/31/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"fieldId":"31","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:23:55"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:23:56"}
+{"fieldId":"31","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-20 21:23:56"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-20 21:23:56"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/30/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"fieldId":"30","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:24:22"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"fieldId":"30","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"body":{},"level":"info","message":"GET /stress/sentinel","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:25:54"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/29/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"fieldId":"29","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/29","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"fieldId":"29","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"fieldId":"29","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:28:09"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/29/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:28:10"}
+{"fieldId":"29","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-20 21:28:10"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-20 21:28:10"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:30:08"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:30:08"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:30:08"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:30:08"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:30:08"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:30:08"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:30:08"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:30:08"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:30:08"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:30:23"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:30:23"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:30:23"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:30:23"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:30:23"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:30:23"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:30:23"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:30:23"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:30:23"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/30/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:30:34"}
+{"fieldId":"30","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:30:34"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:30:34"}
+{"body":{},"level":"info","message":"GET /stress/30","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:30:34"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:32:19"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:32:19"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:32:19"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:32:19"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:32:19"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:32:19"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:32:19"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:32:19"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:32:19"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/29/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"fieldId":"29","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/29","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"fieldId":"29","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"fieldId":"29","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:32:27"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/29/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"fieldId":"29","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/29","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:32:46"}
+{"fieldId":"29","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:32:46"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-20 21:32:46"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:32:46"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:32:46"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:32:46"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:32:46"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:32:46"}
+{"fieldId":"29","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:32:46"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:33:01"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:33:01"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-20 21:33:01"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:33:01"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:33:01"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:33:01"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:33:01"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:33:01"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:33:01"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/29","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"fieldId":"29","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/29/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"fieldId":"29","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"fieldId":"29","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:33:48"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/29/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"fieldId":"29","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:33:53"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/1/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:33:53"}
+{"fieldId":"1","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:33:53"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/1","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:33:53"}
+{"fieldId":"1","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:33:53"}
+{"level":"warn","message":"Parcel not found","parcelId":1,"service":"stress-service","timestamp":"2026-06-20 21:33:53"}
+{"fieldId":"1","level":"error","message":"Parcel 1 not found","service":"stress-service","timestamp":"2026-06-20 21:33:53"}
+{"level":"warn","message":"Parcel not found","parcelId":1,"service":"stress-service","timestamp":"2026-06-20 21:33:53"}
+{"fieldId":"1","level":"error","message":"Parcel 1 not found","service":"stress-service","timestamp":"2026-06-20 21:33:53"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/30/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"fieldId":"30","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:34:01"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"fieldId":"30","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:34:23"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:34:23"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-20 21:34:23"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:34:23"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:34:23"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:34:23"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:34:23"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:34:23"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:34:23"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-20 21:35:10"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:35:10"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-20 21:35:10"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:35:10"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:35:10"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:35:10"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:35:10"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:35:10"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:35:10"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/30/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:35:22"}
+{"fieldId":"30","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-20 21:35:22"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:35:22"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30","queryParams":{},"service":"stress-service","timestamp":"2026-06-20 21:36:45"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-20 21:36:45"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-20 21:36:45"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:36:45"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-20 21:36:45"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:36:45"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:36:45"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:36:45"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-20 21:36:45"}
+{"level":"warn","message":"Sentinel Hub credentials not configured in environment variables","service":"stress-service","timestamp":"2026-06-20 22:10:56"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-20 22:10:56"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-20 22:10:56"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-20 22:10:56"}
+{"level":"warn","message":"Sentinel Hub credentials not configured in environment variables","service":"stress-service","timestamp":"2026-06-21 20:29:48"}
+{"level":"info","message":"Database connected successfully","service":"stress-service","timestamp":"2026-06-21 20:29:48"}
+{"level":"info","message":"Database initialized","service":"stress-service","timestamp":"2026-06-21 20:29:48"}
+{"level":"info","message":"Stress Service API running on port 3005","service":"stress-service","timestamp":"2026-06-21 20:29:48"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/32/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"fieldId":"32","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"fieldId":"32","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"fieldId":"32","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-21 20:37:51"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"fieldId":"32","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/31/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:46:00"}
+{"fieldId":"31","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-21 20:46:00"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:46:00"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-21 20:46:00"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 20:46:00"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-21 20:46:00"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:46:00"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:46:01"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:46:01"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:01"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:01"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-21 20:46:01"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-21 20:46:01"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:46:01"}
+{"fieldId":"31","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 20:46:01"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-21 20:46:01"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31","queryParams":{"imageType":"TrueColor"},"service":"stress-service","timestamp":"2026-06-21 20:46:12"}
+{"fieldId":"31","imageType":"TrueColor","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 20:46:12"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-21 20:46:12"}
+{"level":"info","message":"Generating True Color image","service":"stress-service","timestamp":"2026-06-21 20:46:12"}
+{"level":"info","message":"[Dev Mock] Generating mock True Color image","service":"stress-service","timestamp":"2026-06-21 20:46:12"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:46:12"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:12"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:12"}
+{"fieldId":"31","imageType":"TrueColor","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5285,"timestamp":"2026-06-21 20:46:12"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:46:12"}
+{"fieldId":"31","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 20:46:12"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-21 20:46:12"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31","queryParams":{"imageType":"Moisture"},"service":"stress-service","timestamp":"2026-06-21 20:46:15"}
+{"fieldId":"31","imageType":"Moisture","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 20:46:15"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-21 20:46:15"}
+{"level":"info","message":"Generating Moisture visualization","service":"stress-service","timestamp":"2026-06-21 20:46:15"}
+{"level":"info","message":"[Dev Mock] Generating mock Moisture image","service":"stress-service","timestamp":"2026-06-21 20:46:15"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:46:15"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:15"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:15"}
+{"fieldId":"31","imageType":"Moisture","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5284,"timestamp":"2026-06-21 20:46:15"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:46:15"}
+{"fieldId":"31","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 20:46:15"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-21 20:46:15"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-21 20:46:19"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 20:46:19"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-21 20:46:19"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:46:19"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:46:19"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:46:19"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:19"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:19"}
+{"fieldId":"31","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-21 20:46:19"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/31/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:46:19"}
+{"fieldId":"31","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 20:46:19"}
+{"level":"info","message":"Parcel data retrieved","parcelId":31,"service":"stress-service","timestamp":"2026-06-21 20:46:19"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/32/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"fieldId":"32","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"fieldId":"32","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"fieldId":"32","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-21 20:46:52"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"fieldId":"32","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"body":{"imageType":"NDVI"},"level":"info","message":"POST /stress/sentinel/download/32","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:46:57"}
+{"fieldId":"32","imageType":"NDVI","level":"info","message":"Downloading field image","service":"stress-service","timestamp":"2026-06-21 20:46:57"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 20:46:57"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:46:57"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:46:57"}
+{"fieldId":"32","filename":"Parcel 32_NDVI_2026-06-21.png","imageType":"NDVI","level":"info","message":"Field image downloaded","service":"stress-service","timestamp":"2026-06-21 20:46:57"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32","queryParams":{"imageType":"TrueColor"},"service":"stress-service","timestamp":"2026-06-21 20:47:26"}
+{"fieldId":"32","imageType":"TrueColor","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 20:47:26"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 20:47:26"}
+{"level":"info","message":"Generating True Color image","service":"stress-service","timestamp":"2026-06-21 20:47:26"}
+{"level":"info","message":"[Dev Mock] Generating mock True Color image","service":"stress-service","timestamp":"2026-06-21 20:47:26"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:47:26"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:47:26"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:47:26"}
+{"fieldId":"32","imageType":"TrueColor","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5285,"timestamp":"2026-06-21 20:47:26"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:47:26"}
+{"fieldId":"32","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 20:47:26"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 20:47:26"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32","queryParams":{"imageType":"Moisture"},"service":"stress-service","timestamp":"2026-06-21 20:47:28"}
+{"fieldId":"32","imageType":"Moisture","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 20:47:28"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 20:47:28"}
+{"level":"info","message":"Generating Moisture visualization","service":"stress-service","timestamp":"2026-06-21 20:47:28"}
+{"level":"info","message":"[Dev Mock] Generating mock Moisture image","service":"stress-service","timestamp":"2026-06-21 20:47:28"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:47:28"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:47:28"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:47:28"}
+{"fieldId":"32","imageType":"Moisture","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5284,"timestamp":"2026-06-21 20:47:28"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:47:28"}
+{"fieldId":"32","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 20:47:28"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 20:47:28"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-21 20:47:31"}
+{"fieldId":"32","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 20:47:31"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 20:47:31"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:47:31"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:47:31"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:47:31"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:47:31"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:47:31"}
+{"fieldId":"32","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-21 20:47:31"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:47:31"}
+{"fieldId":"32","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 20:47:31"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 20:47:31"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/29","queryParams":{"imageType":"TrueColor"},"service":"stress-service","timestamp":"2026-06-21 20:58:26"}
+{"fieldId":"29","imageType":"TrueColor","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 20:58:26"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-21 20:58:26"}
+{"level":"info","message":"Generating True Color image","service":"stress-service","timestamp":"2026-06-21 20:58:26"}
+{"level":"info","message":"[Dev Mock] Generating mock True Color image","service":"stress-service","timestamp":"2026-06-21 20:58:26"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:58:26"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:58:26"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:58:26"}
+{"fieldId":"29","imageType":"TrueColor","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5285,"timestamp":"2026-06-21 20:58:26"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/29/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:58:26"}
+{"fieldId":"29","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 20:58:26"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-21 20:58:26"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/29","queryParams":{"imageType":"Moisture"},"service":"stress-service","timestamp":"2026-06-21 20:58:28"}
+{"fieldId":"29","imageType":"Moisture","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 20:58:28"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-21 20:58:28"}
+{"level":"info","message":"Generating Moisture visualization","service":"stress-service","timestamp":"2026-06-21 20:58:28"}
+{"level":"info","message":"[Dev Mock] Generating mock Moisture image","service":"stress-service","timestamp":"2026-06-21 20:58:28"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:58:28"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:58:28"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:58:28"}
+{"fieldId":"29","imageType":"Moisture","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5284,"timestamp":"2026-06-21 20:58:28"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/29/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:58:28"}
+{"fieldId":"29","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 20:58:28"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-21 20:58:28"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/29","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-21 20:58:30"}
+{"fieldId":"29","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 20:58:30"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-21 20:58:30"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:58:30"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-21 20:58:30"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:58:30"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:58:30"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:58:30"}
+{"fieldId":"29","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-21 20:58:30"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/29/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 20:58:30"}
+{"fieldId":"29","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 20:58:30"}
+{"level":"info","message":"Parcel data retrieved","parcelId":29,"service":"stress-service","timestamp":"2026-06-21 20:58:30"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/legend","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/field/32/info","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"fieldId":"32","level":"info","message":"Retrieving field information","service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"fieldId":"32","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"fieldId":"32","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"fieldId":"32","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-21 21:03:10"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 21:03:22"}
+{"fieldId":"32","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 21:03:22"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32","queryParams":{"imageType":"TrueColor"},"service":"stress-service","timestamp":"2026-06-21 21:03:22"}
+{"fieldId":"32","imageType":"TrueColor","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 21:03:22"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 21:03:22"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 21:03:22"}
+{"level":"info","message":"Generating True Color image","service":"stress-service","timestamp":"2026-06-21 21:03:22"}
+{"level":"info","message":"[Dev Mock] Generating mock True Color image","service":"stress-service","timestamp":"2026-06-21 21:03:22"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 21:03:22"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 21:03:22"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 21:03:22"}
+{"fieldId":"32","imageType":"TrueColor","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5285,"timestamp":"2026-06-21 21:03:22"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 21:03:24"}
+{"fieldId":"32","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 21:03:24"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 21:03:24"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32","queryParams":{"imageType":"Moisture"},"service":"stress-service","timestamp":"2026-06-21 21:03:24"}
+{"fieldId":"32","imageType":"Moisture","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 21:03:24"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 21:03:24"}
+{"level":"info","message":"Generating Moisture visualization","service":"stress-service","timestamp":"2026-06-21 21:03:24"}
+{"level":"info","message":"[Dev Mock] Generating mock Moisture image","service":"stress-service","timestamp":"2026-06-21 21:03:24"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 21:03:24"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 21:03:24"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 21:03:24"}
+{"fieldId":"32","imageType":"Moisture","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5284,"timestamp":"2026-06-21 21:03:24"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/32/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 21:03:26"}
+{"fieldId":"32","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 21:03:26"}
+{"level":"info","message":"Parcel data retrieved","parcelId":32,"service":"stress-service","timestamp":"2026-06-21 21:03:26"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30/metadata","queryParams":{},"service":"stress-service","timestamp":"2026-06-21 21:03:38"}
+{"fieldId":"30","level":"info","message":"Retrieving field image metadata","service":"stress-service","timestamp":"2026-06-21 21:03:38"}
+{"body":{},"level":"info","message":"GET /stress/sentinel/image/30","queryParams":{"imageType":"NDVI"},"service":"stress-service","timestamp":"2026-06-21 21:03:38"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Requesting field image","service":"stress-service","timestamp":"2026-06-21 21:03:38"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-21 21:03:38"}
+{"level":"info","message":"Parcel data retrieved","parcelId":30,"service":"stress-service","timestamp":"2026-06-21 21:03:38"}
+{"level":"info","message":"Generating NDVI visualization","service":"stress-service","timestamp":"2026-06-21 21:03:38"}
+{"level":"info","message":"[Dev Mock] Generating mock NDVI visualization","service":"stress-service","timestamp":"2026-06-21 21:03:38"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 21:03:38"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 21:03:38"}
+{"level":"warn","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 21:03:38"}
+{"fieldId":"30","imageType":"NDVI","level":"info","message":"Field image retrieved successfully","service":"stress-service","size":5649,"timestamp":"2026-06-21 21:03:38"}

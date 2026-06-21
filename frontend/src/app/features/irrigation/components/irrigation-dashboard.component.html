@@ -1,8 +1,24 @@
 <div class="irrigation-dashboard">
   <!-- Header -->
   <div class="dashboard-header">
-    <h1>💧 Irrigation Management</h1>
-    <p>Intelligent irrigation recommendations based on weather and field stress</p>
+    <div class="header-content">
+      <div class="header-title">
+        <h1>💧 Irrigation Management System</h1>
+        <p class="subtitle">Real-time irrigation recommendations based on weather and field conditions</p>
+      </div>
+      <div class="header-stats" *ngIf="currentRecommendation">
+        <div class="stat-badge">
+          <span class="stat-label">Last Update:</span>
+          <span class="stat-value">{{ currentRecommendation.timestamp | date:'short' }}</span>
+        </div>
+        <div class="stat-badge" [class.status-high]="currentRecommendation.priority === 'HIGH'"
+             [class.status-medium]="currentRecommendation.priority === 'MEDIUM'"
+             [class.status-low]="currentRecommendation.priority === 'LOW'">
+          <span class="stat-label">Priority:</span>
+          <span class="stat-value">{{ currentRecommendation.priority }}</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Error Alert -->
@@ -23,7 +39,10 @@
   <div class="dashboard-content">
     <!-- Left Panel: Parcel Selection -->
     <div class="parcel-selector-panel">
-      <h2>Select Field</h2>
+      <div class="panel-header">
+        <h2>🌾 Your Fields</h2>
+        <span class="field-count">{{ parcels.length }} fields</span>
+      </div>
 
       <div class="parcel-list">
         <button
@@ -32,25 +51,30 @@
           [class.active]="selectedParcelId === parcel.id"
           (click)="onParcelSelected(parcel.id)"
         >
-          <span class="parcel-icon">🌾</span>
-          <span class="parcel-name">{{ parcel.name }}</span>
-          <span class="parcel-id">#{{ parcel.id }}</span>
+          <div class="parcel-card-inner">
+            <span class="parcel-icon">🌾</span>
+            <div class="parcel-info">
+              <span class="parcel-name">{{ parcel.name }}</span>
+              <span class="parcel-id">Field #{{ parcel.id }}</span>
+            </div>
+            <span class="parcel-arrow">›</span>
+          </div>
         </button>
       </div>
 
       <!-- Action Buttons -->
       <div class="action-buttons">
-        <button class="btn btn-primary btn-block" (click)="calculateIrrigation()">
+        <button class="btn btn-primary btn-block" (click)="calculateIrrigation()" title="Calculate optimal irrigation for selected field">
           <span class="icon">⚡</span>
-          Calculate Irrigation
+          <span>Calculate</span>
         </button>
-        <button class="btn btn-secondary btn-block" (click)="getLatestRecommendation()">
+        <button class="btn btn-accent btn-block" (click)="getLatestRecommendation()" title="View the latest recommendation">
           <span class="icon">📊</span>
-          View Latest
+          <span>Latest</span>
         </button>
-        <button class="btn btn-secondary btn-block" (click)="loadHistory()">
+        <button class="btn btn-outline btn-block" (click)="loadHistory()" title="View irrigation history">
           <span class="icon">📈</span>
-          View History
+          <span>History</span>
         </button>
       </div>
     </div>
@@ -60,13 +84,15 @@
       <!-- High Priority Alert -->
       <div
         *ngIf="currentRecommendation && currentRecommendation.priority === 'HIGH'"
-        class="alert alert-danger"
+        class="alert alert-danger priority-alert"
       >
         <span class="alert-icon">⚠️</span>
         <div class="alert-content">
-          <h3>Urgent Irrigation Required</h3>
+          <h3>🚨 Urgent Irrigation Required</h3>
           <p>{{ currentRecommendation.decision_reason }}</p>
+          <button class="btn btn-small btn-primary" (click)="calculateIrrigation()">Take Action Now</button>
         </div>
+        <button class="alert-close" (click)="dismissError()">✕</button>
       </div>
 
       <!-- Tab Navigation -->
@@ -76,21 +102,24 @@
           [class.active]="activeTab === 'recommendation'"
           (click)="activeTab = 'recommendation'"
         >
-          💧 Recommendation
+          <span class="tab-icon">💧</span>
+          <span class="tab-label">Recommendation</span>
         </button>
         <button
           class="tab-button"
           [class.active]="activeTab === 'schedule'"
           (click)="activeTab = 'schedule'"
         >
-          📅 Schedule
+          <span class="tab-icon">📅</span>
+          <span class="tab-label">Schedule</span>
         </button>
         <button
           class="tab-button"
           [class.active]="activeTab === 'history'"
           (click)="activeTab = 'history'"
         >
-          📋 History
+          <span class="tab-icon">📋</span>
+          <span class="tab-label">History</span>
         </button>
       </div>
 

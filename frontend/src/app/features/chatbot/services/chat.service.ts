@@ -57,7 +57,7 @@ export class ChatService {
             type: 'bot',
             content: response.data.response,
             timestamp: new Date(),
-            toolsUsed: response.data.toolsUsed,
+            toolsUsed: this.normalizeToolsUsed(response.data.toolsUsed),
           });
 
           this.updateChatState({ isLoading: false });
@@ -141,14 +141,14 @@ export class ChatService {
                   type: 'user',
                   content: conversation.userMessage,
                   timestamp: new Date(conversation.createdAt),
-                  toolsUsed: conversation.toolsUsed,
+                  toolsUsed: this.normalizeToolsUsed(conversation.toolsUsed),
                 });
 
                 this.addMessage({
                   type: 'bot',
                   content: conversation.botResponse,
                   timestamp: new Date(conversation.createdAt),
-                  toolsUsed: conversation.toolsUsed,
+                  toolsUsed: this.normalizeToolsUsed(conversation.toolsUsed),
                 });
               }
               console.log('[ChatService] Successfully loaded', response.data.length, 'conversations');
@@ -182,6 +182,21 @@ export class ChatService {
   /**
    * Add a message to the chat
    */
+  private normalizeToolsUsed(tools: any): string[] {
+    if (Array.isArray(tools)) {
+      return tools;
+    }
+    if (typeof tools === 'string') {
+      try {
+        const parsed = JSON.parse(tools);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    }
+    return [];
+  }
+
   private addMessage(message: Message): void {
     const currentState = this.chatStateSubject.value;
     this.chatStateSubject.next({

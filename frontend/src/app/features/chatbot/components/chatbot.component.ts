@@ -20,7 +20,6 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
       state('closed', style({
         transform: 'translateY(20px)',
         opacity: 0,
-        pointerEvents: 'none',
       })),
       transition('open <=> closed', [
         animate('300ms ease-in-out')

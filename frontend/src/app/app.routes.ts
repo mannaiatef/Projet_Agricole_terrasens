@@ -73,6 +73,8 @@ export const routes: Routes = [
                     .then(m => m.SatelliteComponent),
                 data: { title: 'Satellite & NDVI' }
             },
+
+            
             {
                 path: 'chatbot',
                 loadComponent: () => import('./features/chatbot/chatbot.component')
@@ -126,6 +128,7 @@ export const routes: Routes = [
     { path: 'disease-detection', redirectTo: '/app/disease-detection', pathMatch: 'full' },
     { path: 'fields', redirectTo: '/app/fields', pathMatch: 'full' },
     { path: 'home', redirectTo: '/app/dashboard', pathMatch: 'full' },
+
 
     /**
      * CATCH-ALL

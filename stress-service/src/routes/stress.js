@@ -1,5 +1,6 @@
 const express = require('express');
 const StressController = require('../controllers/StressController');
+const SentinelHubController = require('../controllers/SentinelHubController');
 
 const router = express.Router();
 
@@ -46,6 +47,41 @@ router.get('/jobs/:jobId', StressController.getJobStatus);
  * Get queue statistics
  */
 router.get('/queue/stats', StressController.getQueueStats);
+
+// ============================================
+// SENTINEL HUB ROUTES
+// ============================================
+
+/**
+ * GET /stress/sentinel/image/:fieldId
+ * Retrieve satellite image from Sentinel Hub for a field
+ * Query params: imageType (NDVI|TrueColor|Moisture), date
+ */
+router.get('/sentinel/image/:fieldId', SentinelHubController.getFieldImage);
+
+/**
+ * GET /stress/sentinel/image/:fieldId/metadata
+ * Get metadata about available satellite images
+ */
+router.get('/sentinel/image/:fieldId/metadata', SentinelHubController.getFieldImageMetadata);
+
+/**
+ * GET /stress/sentinel/field/:fieldId/info
+ * Get comprehensive field information for sentinel image viewer
+ */
+router.get('/sentinel/field/:fieldId/info', SentinelHubController.getFieldInfo);
+
+/**
+ * GET /stress/sentinel/legend
+ * Get NDVI color scale legend
+ */
+router.get('/sentinel/legend', SentinelHubController.getNDVILegend);
+
+/**
+ * POST /stress/sentinel/download/:fieldId
+ * Download satellite image with metadata
+ */
+router.post('/sentinel/download/:fieldId', SentinelHubController.downloadFieldImage);
 
 // LEGACY routes (kept for backward compatibility)
 

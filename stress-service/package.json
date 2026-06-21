@@ -9,7 +9,10 @@
     "migrations": "node db/migrations.js",
     "seed-db": "node db/seed.js",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "validate": "node validate-stress-output.js",
+    "validate:verbose": "node validate-stress-output.js --verbose",
+    "validate:watch": "node validate-stress-output.js && npm run validate:watch"
   },
   "keywords": [
     "agriculture",

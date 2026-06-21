@@ -144,3 +144,118 @@
 {"level":"error","message":"MapService.getParcelMapData is not a function","service":"stress-service","timestamp":"2026-05-03 22:04:17"}
 {"level":"error","message":"MapService.getParcelMapData is not a function","service":"stress-service","timestamp":"2026-05-03 22:04:21"}
 {"level":"error","message":"MapService.getParcelMapData is not a function","service":"stress-service","timestamp":"2026-05-03 22:04:23"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:39:10"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:39:10"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":29,"service":"stress-service","timestamp":"2026-06-14 15:39:11"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":29,"recordId":53,"service":"stress-service","timestamp":"2026-06-14 15:39:11"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 29-1781447951018","service":"stress-service","timestamp":"2026-06-14 15:39:11"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":30,"service":"stress-service","timestamp":"2026-06-14 15:39:14"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":30,"recordId":54,"service":"stress-service","timestamp":"2026-06-14 15:39:14"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 30-1781447954053","service":"stress-service","timestamp":"2026-06-14 15:39:14"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":31,"service":"stress-service","timestamp":"2026-06-14 15:39:17"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":31,"recordId":55,"service":"stress-service","timestamp":"2026-06-14 15:39:17"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 31-1781447957085","service":"stress-service","timestamp":"2026-06-14 15:39:17"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":32,"service":"stress-service","timestamp":"2026-06-14 15:39:20"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":32,"recordId":56,"service":"stress-service","timestamp":"2026-06-14 15:39:20"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 32-1781447960109","service":"stress-service","timestamp":"2026-06-14 15:39:20"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":33,"service":"stress-service","timestamp":"2026-06-14 15:39:23"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":33,"recordId":57,"service":"stress-service","timestamp":"2026-06-14 15:39:23"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 33-1781447963138","service":"stress-service","timestamp":"2026-06-14 15:39:23"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:39:26"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:39:26"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":29,"service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":29,"recordId":58,"service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 29-1781448186923","service":"stress-service","timestamp":"2026-06-14 15:43:06"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":30,"service":"stress-service","timestamp":"2026-06-14 15:43:09"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":30,"recordId":59,"service":"stress-service","timestamp":"2026-06-14 15:43:09"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 30-1781448189952","service":"stress-service","timestamp":"2026-06-14 15:43:09"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":31,"service":"stress-service","timestamp":"2026-06-14 15:43:12"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":31,"recordId":60,"service":"stress-service","timestamp":"2026-06-14 15:43:12"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 31-1781448192977","service":"stress-service","timestamp":"2026-06-14 15:43:12"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":32,"service":"stress-service","timestamp":"2026-06-14 15:43:16"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":32,"recordId":61,"service":"stress-service","timestamp":"2026-06-14 15:43:16"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 32-1781448196011","service":"stress-service","timestamp":"2026-06-14 15:43:16"}
+{"level":"error","message":"connect ECONNREFUSED ::1:3003","parcelId":33,"service":"stress-service","timestamp":"2026-06-14 15:43:19"}
+{"level":"error","message":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","parcelId":33,"recordId":62,"service":"stress-service","timestamp":"2026-06-14 15:43:19"}
+{"error":"Failed to fetch parcel data: connect ECONNREFUSED ::1:3003","level":"error","message":"[Dev Mock] Job failed: 33-1781448199039","service":"stress-service","timestamp":"2026-06-14 15:43:19"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:43:22"}
+{"level":"error","message":"stressAnalysisQueue.getJobCounts is not a function","service":"stress-service","timestamp":"2026-06-14 15:43:22"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"fieldId":"30","level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:13:52"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"fieldId":"30","level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:14:02"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"fieldId":"30","level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:14:13"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:19:08"}
+{"fieldId":"1","level":"error","message":"Parcel 1 not found","service":"stress-service","timestamp":"2026-06-20 21:21:00"}
+{"fieldId":"1","level":"error","message":"Parcel 1 not found","service":"stress-service","timestamp":"2026-06-20 21:21:00"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:21:16"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:23:55"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:24:22"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:28:09"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:30:08"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:30:08"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:30:23"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:30:23"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:32:19"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:32:19"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:32:27"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:32:46"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:32:46"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:33:01"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:33:01"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:33:48"}
+{"fieldId":"1","level":"error","message":"Parcel 1 not found","service":"stress-service","timestamp":"2026-06-20 21:33:53"}
+{"fieldId":"1","level":"error","message":"Parcel 1 not found","service":"stress-service","timestamp":"2026-06-20 21:33:53"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:34:01"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:34:23"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:34:23"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:35:10"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:35:10"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-20 21:36:45"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-20 21:36:45"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:37:51"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:46:01"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:01"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:46:12"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:12"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:46:15"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:15"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:46:19"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:19"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:46:52"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:47:26"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:47:26"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:47:28"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:47:28"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:47:31"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:47:31"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:58:26"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:58:26"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:58:28"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:58:28"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 20:58:30"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 20:58:30"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 21:03:10"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 21:03:22"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 21:03:22"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 21:03:24"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 21:03:24"}
+{"level":"error","message":"Sentinel Hub credentials not configured","service":"stress-service","timestamp":"2026-06-21 21:03:38"}
+{"level":"error","message":"Failed to authenticate with Sentinel Hub","service":"stress-service","timestamp":"2026-06-21 21:03:38"}

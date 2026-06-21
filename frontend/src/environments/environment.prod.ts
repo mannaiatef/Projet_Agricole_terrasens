@@ -28,6 +28,16 @@ export const environment = {
       parcelById: '/parcels/:parcelId',
       parcelGeometry: '/parcels/:parcelId/geometry',
       parcelsByFarmer: '/farmers/:farmerId/parcels'
+    },
+
+    // Sentinel Hub Service Endpoints
+    sentinelHub: {
+      baseUrl: 'https://api.terrasens.io/stress/sentinel',
+      getImage: '/image/:fieldId',
+      getImageMetadata: '/image/:fieldId/metadata',
+      getFieldInfo: '/field/:fieldId/info',
+      getNDVILegend: '/legend',
+      downloadImage: '/download/:fieldId'
     }
   },
 

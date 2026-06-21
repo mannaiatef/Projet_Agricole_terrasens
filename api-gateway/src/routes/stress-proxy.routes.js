@@ -54,6 +54,13 @@ router.post('/analyze-bulk', proxyMiddleware);
 router.post('/analyze/:parcelId', proxyMiddleware);
 router.post('/bulk-analyze', proxyMiddleware);
 
+// Sentinel Hub endpoints
+router.get('/sentinel/image/:fieldId', proxyMiddleware);
+router.get('/sentinel/image/:fieldId/metadata', proxyMiddleware);
+router.get('/sentinel/field/:fieldId/info', proxyMiddleware);
+router.get('/sentinel/legend', proxyMiddleware);
+router.post('/sentinel/download/:fieldId', proxyMiddleware);
+
 // PUT endpoints
 router.put('/alerts/:id/acknowledge', proxyMiddleware);
 

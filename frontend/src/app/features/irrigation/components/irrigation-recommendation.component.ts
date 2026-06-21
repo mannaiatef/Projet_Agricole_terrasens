@@ -114,4 +114,12 @@ export class IrrigationRecommendationComponent implements OnInit {
   get recommendedTime(): string {
     return this.recommendation?.recommended_time || '--:--';
   }
+
+  /**
+   * View detailed analysis - can be expanded to show more details
+   */
+  viewDetails(): void {
+    console.log('Viewing detailed analysis for recommendation:', this.recommendation);
+    // Could emit an event or open a modal with more details
+  }
 }

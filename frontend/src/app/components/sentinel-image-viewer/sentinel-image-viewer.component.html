@@ -1,0 +1,140 @@
+<div class="sentinel-image-viewer">
+  <!-- Header Section -->
+  <div class="viewer-header">
+    <div class="header-info">
+      <h2 class="field-name">{{ fieldInfo?.name || 'Field' }}</h2>
+      <div class="field-details" *ngIf="fieldInfo">
+        <span class="detail-item">
+          <span class="label">Crop:</span>
+          <span class="value">{{ fieldInfo.cropType }}</span>
+        </span>
+        <span class="detail-item">
+          <span class="label">Area:</span>
+          <span class="value">{{ fieldInfo.area }} ha</span>
+        </span>
+        <span class="detail-item" *ngIf="imageAcquisitionDate">
+          <span class="label">Date:</span>
+          <span class="value">{{ imageAcquisitionDate | date: 'short' }}</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="header-controls">
+      <div class="button-group">
+        <button
+          type="button"
+          class="btn btn-icon"
+          (click)="refreshImage()"
+          [disabled]="isLoading"
+          title="Refresh image"
+        >
+          <span class="icon">🔄</span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-icon"
+          (click)="downloadImage()"
+          [disabled]="isLoading || !imageUrl"
+          title="Download image"
+        >
+          <span class="icon">⬇️</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Type Selector -->
+  <div class="image-type-selector">
+    <div class="selector-label">Visualization Type:</div>
+    <div class="selector-buttons">
+      <button
+        *ngFor="let type of imageTypes"
+        type="button"
+        class="btn btn-type"
+        [class.active]="currentImageType === type"
+        (click)="switchImageType(type)"
+        [disabled]="isLoading"
+      >
+        <span class="icon">{{ getImageTypeIcon(type) }}</span>
+        <span class="label">{{ type }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Image Container -->
+  <div class="image-container-wrapper">
+    <!-- Loading State -->
+    <div class="loading-overlay" *ngIf="isLoading">
+      <div class="spinner"></div>
+      <p>Loading satellite image...</p>
+    </div>
+
+    <!-- Error State -->
+    <div class="error-message" *ngIf="error && !isLoading">
+      <p>{{ error }}</p>
+      <button type="button" class="btn btn-secondary" (click)="refreshImage()">
+        Try Again
+      </button>
+    </div>
+
+    <!-- Image Display -->
+    <div
+      class="image-container"
+      #imageContainer
+      [class.zoomed]="isZoomed"
+      [style.cursor]="getCursorStyle()"
+      (wheel)="handleZoom($event)"
+      (mousedown)="handleMouseDown($event)"
+      (dblclick)="handleDoubleClick()"
+    >
+      <img
+        *ngIf="imageUrl && !isLoading"
+        [src]="imageUrl"
+        alt="Satellite Image"
+        class="satellite-image"
+        [style.transform]="getImageTransformStyle()"
+      />
+      <div class="image-placeholder" *ngIf="!imageUrl && !isLoading && !error">
+        <p>No image to display</p>
+      </div>
+    </div>
+
+    <!-- Image Controls Info -->
+    <div class="image-info" *ngIf="imageUrl && !isLoading">
+      <p class="info-text">
+        🔍 <strong>Zoom:</strong> Use mouse wheel or hover
+      </p>
+      <p class="info-text">
+        ⬌ <strong>Pan:</strong> Drag when zoomed in
+      </p>
+      <p class="info-text">
+        🔄 <strong>Reset:</strong> Double-click image
+      </p>
+    </div>
+  </div>
+
+  <!-- NDVI Legend -->
+  <div class="legend-container" *ngIf="legend && currentImageType === 'NDVI'">
+    <div class="legend-header">
+      <h3>{{ legend.title }}</h3>
+    </div>
+
+    <div class="legend-scale">
+      <div class="legend-item" *ngFor="let item of legend.scale">
+        <div class="legend-color" [style.backgroundColor]="item.color"></div>
+        <div class="legend-info">
+          <span class="legend-value">{{ item.value }}</span>
+          <span class="legend-label">{{ item.label }}</span>
+          <span class="legend-description">{{ item.description }}</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="legend-notes">{{ legend.notes }}</p>
+    <p class="legend-source">📡 Source: {{ legend.dataSource }}</p>
+  </div>
+
+  <!-- Glassmorphism Card Border -->
+  <div class="card-border"></div>
+</div>
